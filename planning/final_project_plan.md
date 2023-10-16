@@ -14,11 +14,11 @@ A Tinder-esque style mobile app where dog owners can set-up playdates.
 * As a user, I can update my personal details, including uploading a profile picture
 * As a user, I can update my dog preferences, including size, age, neutered status, and other considerations
 * As a user, I can view other profiles in my area and "swipe left" or "swipe right"
-* As a user, I can view a list of my matches, view their profiels, and start conversations with them
+* As a user, I can view a list of my matches, view their profiles, and start conversations with them
 * As a user, I can logout when I am finished with my session
 
 ### ERD
-!["ERD"]()
+!["ERD"](/planning/Final_Project_ERD.png)
 
 ### Work Division
 * Jacqueline - Front-end
