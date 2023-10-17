@@ -24,7 +24,7 @@ A Tinder-esque style mobile app where dog owners can set-up playdates.
 * As a user, I can edit my dog's and my personal details after account creation
 
 ### ERD
-!["ERD"](/planning/Final_Project_ERD.png)
+* https://drive.google.com/file/d/10LnxsD1nMfnIAF8Y-JalP6ihOQywYnrO/view?usp=sharing
 
 ### Work Division
 * Jacqueline - Front-end
