@@ -1,4 +1,5 @@
 INSERT INTO dogs_traits (dog_id, trait_id)
+VALUES
   (1, 2),
   (1, 4),
   (1, 8),

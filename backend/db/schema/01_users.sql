@@ -7,5 +7,5 @@ CREATE TABLE users (
   email varchar(75) NOT NULL,
   password varchar(75) NOT NULL,
   bio varchar(500),
-  profile_img url
+  profile_img text
 );

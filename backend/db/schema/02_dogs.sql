@@ -11,5 +11,6 @@ CREATE TABLE dogs (
   size text CHECK (size in ('small', 'medium', 'large')) NOT NULL,
   --
 
-  FOREIGN KEY (user_id) REFERENCES users(id) NOT NULL
+  user_id int NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
