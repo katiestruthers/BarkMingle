@@ -84,6 +84,7 @@ android {
     namespace 'com.anonymous.BarkMingle'
     defaultConfig {
         applicationId 'com.anonymous.BarkMingle'
+        
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

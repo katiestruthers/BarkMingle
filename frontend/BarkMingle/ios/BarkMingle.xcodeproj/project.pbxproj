@@ -14,7 +14,9 @@
 		96905EF65AED1B983A6B3ABC /* libPods-BarkMingle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-BarkMingle.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+
 		A99951F4F3984504963AD0C2 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FE852ECE446959304EFB3 /* noop-file.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +33,10 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-BarkMingle/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+
 		7A3FE852ECE446959304EFB3 /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "BarkMingle/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 		DA100C2A94454B49BBC541BA /* BarkMingle-Bridging-Header.h */ = {isa = PBXFileReference; name = "BarkMingle-Bridging-Header.h"; path = "BarkMingle/BarkMingle-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +61,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
+
 				7A3FE852ECE446959304EFB3 /* noop-file.swift */,
 				DA100C2A94454B49BBC541BA /* BarkMingle-Bridging-Header.h */,
+
 			);
 			name = BarkMingle;
 			sourceTree = "<group>";
@@ -199,7 +205,9 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+
 				9C22CB2EEF4D40DCA3F7803B /* BarkMingle-Bridging-Header.h in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +301,9 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
+
 				A99951F4F3984504963AD0C2 /* noop-file.swift in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +331,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anonymous.BarkMingle";
 				PRODUCT_NAME = "BarkMingle";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -348,6 +359,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anonymous.BarkMingle";
 				PRODUCT_NAME = "BarkMingle";
 				SWIFT_VERSION = 5.0;

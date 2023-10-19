@@ -16,17 +16,26 @@
     ],
     "ios": {
       "supportsTablet": true,
+
       "bundleIdentifier": "com.anonymous.BarkMingle"
+
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+
       "package": "com.anonymous.BarkMingle"
+
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b6e21c9d-6f45-4fc1-aef7-69cac4aa045d"
+      }
     }
   }
 }
