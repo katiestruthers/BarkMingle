@@ -1,5 +1,6 @@
-SELECT likes.liked_user_id
+SELECT swipes.swiped_user_id
 FROM users
-JOIN likes
-ON users.id = likes.liked_by_user_id
-WHERE users.id = $1;
+JOIN swipes
+ON users.id = swipes.swiped_by_user_id
+WHERE is_liked
+AND users.id = $1;
