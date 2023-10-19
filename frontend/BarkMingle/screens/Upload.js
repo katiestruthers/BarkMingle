@@ -27,7 +27,7 @@ export default function Upload() {
     })
 
     if (!result.canceled) {
-      setImage(results.assets[0].uri);
+      setImage(result.assets[0].uri);
       // upload the image
     }
 
@@ -35,7 +35,7 @@ export default function Upload() {
 
   return (
     <View style={styles.container}>
-      <Uploading />
+      {image && <Uploading />}
       <ProgressBar progress={60} />
       <TouchableOpacity
         onPress={pickImage}
