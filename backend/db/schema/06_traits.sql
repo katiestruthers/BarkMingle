@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS traits CASCADE;
+
+CREATE TABLE traits (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name varchar(50) NOT NULL
+);
