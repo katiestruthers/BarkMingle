@@ -11,14 +11,28 @@ import EmptyState from "../components/EmptyState";
 import { Uploading } from "../components/Uploading";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
-import { storage } from "../firebaseConfig";
+import { storage, db } from "../firebaseConfig";
 
 export default function Upload() {
   const [image, setImage] = useState("");
   const [progress, setProgress] = useState(0);
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "photos"), (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          console.log("New file", change.doc.data());
+          setFiles((prevFiles) => [...prevFiles, change.doc.data()]);
+        }
+      });
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   async function pickImage() {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -58,10 +72,24 @@ export default function Upload() {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           console.log("File available at", downloadURL);
           // save record
+          await saveRecord(fileType, downloadURL, new Date().toISOString());
           setImage("");
         });
       }
     );
+  }
+
+  async function saveRecord(fileType, url, createdAt) {
+    try {
+      const docRef = await addDoc(collection(db, "photos"), {
+        fileType,
+        url,
+        createdAt,
+      });
+      console.log("document saved correctly", docRef.id);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
