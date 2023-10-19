@@ -6,7 +6,6 @@ export function Uploading({image, progress}) {
       <View 
         style={{
         width: 250,
-        height: 100,
         alignItems: "center",
         paddingVertical: 16,
         rowGap: 12,
@@ -26,6 +25,7 @@ export function Uploading({image, progress}) {
           />
         )}
         <Text>Uploading...</Text>
+        <ProgressBar progress={progress}/>
         <View
           style={{
             height: 1,
