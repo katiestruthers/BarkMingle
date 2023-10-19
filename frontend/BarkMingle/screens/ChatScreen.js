@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { View, Text, Button, ImageBackground, SafeAreaView } from "react-native";
-import styles from "../styles/loginStyles.js"
+import styles from "../styles/chatStyles.js"
 import useAuth from "../hooks/useAuth.js";
-import Footer from "../components/Footer.js";
+import NavBar from "../components/NavBar.js";
 
-// home screen component
+// chat screen component
 
 const ChatScreen = () => {
 
@@ -14,8 +14,8 @@ const ChatScreen = () => {
 
   return (
     <SafeAreaView style={styles.flex}>
-      <View style={styles.header}>
-        <Footer />
+      <View style={styles.navBar}>
+        <NavBar />
       </View>
       <ImageBackground 
         source={require('../assets/dogbones.jpg')}

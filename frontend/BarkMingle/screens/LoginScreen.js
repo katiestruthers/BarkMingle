@@ -1,17 +1,13 @@
-import React, { useLayoutEffect } from "react";
-import { InteractionManager, View, Text, Button, ImageBackground, TextInput } from "react-native";
+import React from "react";
+import { InteractionManager, View, Button, Text, ImageBackground, TextInput, TouchableOpacity } from "react-native";
 import useAuth from "../hooks/useAuth";
 import { useNavigation } from "@react-navigation/core";
-import { useTailwind }  from 'tailwind-rn';
 import styles from "../styles/loginStyles.js"
 
 
 
 // Login screen component
 const LoginScreen = () => {
-
-  // To use Tailwind styling:
-  // const tw = useTailwind();
 
   const { user } = useAuth();
 
@@ -39,8 +35,12 @@ const LoginScreen = () => {
             secureTextEntry={true}
           />
         </View>
+
+        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Login")}>
+          <Text style={styles.textInput}> Sign In </Text>
+        </TouchableOpacity>
       
-        <Button title="Sign In" />
+
       </ImageBackground>
     </View>
   )

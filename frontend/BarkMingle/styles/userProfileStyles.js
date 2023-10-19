@@ -1,18 +1,29 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-   header: {
-    marginTop: 50,
+
+  navBar: {
     width: "100%",
-    height: 70,
+    height: 100,
+    paddingBottom: 10,
     backgroundColor: "#ede7d5",
     flexDirection: "row",
     alignContent: "center",
-    alignItems: "center",
+    alignItems: "flex-end",
     justifyContent: "space-evenly",
   },
+  flex: {
+    flex: 1,
+  },
+  background: {
+    width: '100%', 
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
-})
+
+});
 
 
 export default styles;

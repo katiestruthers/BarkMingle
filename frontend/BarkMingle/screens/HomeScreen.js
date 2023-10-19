@@ -1,11 +1,9 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { InteractionManager, View, Text, Button, ImageBackground, SafeAreaView, TouchableOpacity, Image } from "react-native";
+import { InteractionManager, View, Text, ImageBackground, SafeAreaView, TouchableOpacity, Image } from "react-native";
 import Swiper from "react-native-deck-swiper";
-import styles from "../styles/loginStyles.js"
-import { useTailwind }  from 'tailwind-rn';
+import styles from "../styles/homeStyles.js"
 import useAuth from "../hooks/useAuth.js";
-import Footer from "../components/Footer.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faDog } from '@fortawesome/free-solid-svg-icons/faDog';
@@ -33,13 +31,12 @@ bio: "BIO: words words words words words words words words words words words wor
 
 const HomeScreen = () => {
 
-  // const tw = useTailwind();
   const navigation = useNavigation();
   const { user } = useAuth();
 
   return (
     <SafeAreaView style={styles.flex}>
-      <View style={styles.header}>
+      <View style={styles.navBar}>
         <TouchableOpacity  onPress={() => navigation.navigate("Chat")}>
           <FontAwesomeIcon icon={ faPaw } size={50} />
         </TouchableOpacity>

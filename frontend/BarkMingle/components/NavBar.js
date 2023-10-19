@@ -1,8 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { View, Text, Button, ImageBackground, SafeAreaView, TouchableOpacity } from "react-native";
-import styles from "../styles/footerStyles.js"
-import { useTailwind }  from 'tailwind-rn'; 
+import { TouchableOpacity } from "react-native";
 import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
@@ -10,9 +8,8 @@ import { faDog } from '@fortawesome/free-solid-svg-icons/faDog';
 import { faPaw } from '@fortawesome/free-solid-svg-icons/faPaw';
 
 
-const Footer = () => {
+const NavBar = () => {
 
-  const tw = useTailwind();
   const navigation = useNavigation();
 
   return (
@@ -33,4 +30,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default NavBar
