@@ -27,7 +27,6 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-
           <string>com.anonymous.BarkMingle</string>
         </array>
       </dict>
@@ -35,7 +34,6 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>exp+barkmingle</string>
-
         </array>
       </dict>
     </array>
@@ -56,8 +54,6 @@
         </dict>
       </dict>
     </dict>
-
-
     <key>NSCameraUsageDescription</key>
     <string>Allow $(PRODUCT_NAME) to access your camera</string>
     <key>NSMicrophoneUsageDescription</key>
