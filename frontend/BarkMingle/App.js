@@ -6,7 +6,6 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Upload />
-      <Text style={styles.text}>The triumphant beginnings of Bark/Mingle </Text>
       <StatusBar style="auto" />
     </View>
   );
