@@ -22,6 +22,7 @@ export default function Upload() {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
+    // use snapshot to capture each file added, iterate through all docs in db with change type "added" to files array
     const unsubscribe = onSnapshot(collection(db, "photos"), (snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
@@ -94,12 +95,25 @@ export default function Upload() {
 
   return (
     <View style={styles.container}>
+      <FlatList
+        data={files}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => {
+          if (item.fileType === 'image') {
+            return (
+              <Image
+                source={{ uri: item.url }}
+                style={{ width: "34%", height: 100 }}
+              />
+            );
+          }
+        }}
+      />
       {image && <Uploading image={image} progress={progress} />}
       <TouchableOpacity
         onPress={pickImage}
         style={{
           position: "absolute",
-          bottom: -50,
           width: 44,
           height: 44,
           justifyContent: "center",
@@ -116,6 +130,7 @@ export default function Upload() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
