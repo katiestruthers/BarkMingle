@@ -1,17 +1,31 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, ImageBackground, SafeAreaView } from "react-native";
+import styles from "../styles/loginStyles.js"
+import useAuth from "../hooks/useAuth.js";
+import Footer from "../components/Footer.js";
 
-// chat screen component
+// home screen component
 
 const ChatScreen = () => {
+
   const navigation = useNavigation();
+  const { user } = useAuth();
 
   return (
-    <View>
-      <Text>I am the chat screen</Text>
-      <Button title="Head Home" onPress={() => navigation.navigate("Home")}/>
-    </View>
+    <SafeAreaView style={styles.flex}>
+      <View style={styles.header}>
+        <Footer />
+      </View>
+      <ImageBackground 
+        source={require('../assets/dogbones.jpg')}
+        style={styles.background}>
+
+
+          <Text>CHAT SCREEN</Text>
+
+      </ImageBackground>
+    </SafeAreaView>
   )
 }
 

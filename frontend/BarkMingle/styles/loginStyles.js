@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: { 
+    marginTop: 50,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
@@ -10,7 +11,11 @@ const styles = StyleSheet.create({
     width: '100%', 
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  background2: {
+    width: '100%', 
+    height: '100%',
   },
   inputView: {
     backgroundColor: "#ede7d5",
@@ -26,8 +31,46 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginLeft: 20,
-  }
-
+  },
+  content: {
+    alignItems: "center",
+    rowGap: 100,
+  },
+  header: {
+    width: "100%",
+    height: 100,
+    paddingBottom: 10,
+    backgroundColor: "#ede7d5",
+    flexDirection: "row",
+    alignContent: "center",
+    alignItems: "flex-end",
+    justifyContent: "space-evenly",
+  },
+  flex: {
+    flex: 1,
+  },
+  cards: {
+    position: "relative",
+    borderRadius: 20,
+    padding: 20,
+    alignItems: "center",
+    alignSelf: "center",
+    backgroundColor: "#ffffff",
+    height: "75%",
+    width: "75%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width:0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+  cardImage: {
+    height: 120,
+    width: 120,
+  },
 })
 
 
