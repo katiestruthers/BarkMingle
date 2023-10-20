@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {View, Text, ImageBackground, TouchableOpacity, Image} from 'react-native'; // can also use SafeAreaView from reg react-native if it looks better?
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from "../styles/homeStyles.js" 
@@ -10,31 +10,47 @@ import { faPaw } from '@fortawesome/free-solid-svg-icons/faPaw';
 import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import Swiper from "react-native-deck-swiper";
+import dogProfiles from "../dummyData/dummyData.js"
+import useAuth from '../hooks/useAuth.js';
 
 
-const dummyData = [{
-  id: 1,
-  firstName: "Fido",
-  avatar: "https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2020-04/cb.jpg?itok=zzuVtGPr",
-  bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In purus mi, rhoncus sit amet ante eget, sagittis lobortis augue. Sed bibendum risus in ex faucibus hendrerit. Curabitur ut posuere neque, nec suscipit odio. Praesent dapibus interdum nisl id tempus. Nullam blandit commodo dui, ut maximus felis tempus eu. Ut sodales. "
-},
-  {id: 2,
-  firstName: "Rover",
-  avatar: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRvZyUyMGJyZWVkc3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In purus mi, rhoncus sit amet ante eget, sagittis lobortis augue. Sed bibendum risus in ex faucibus hendrerit. Curabitur ut posuere neque, nec suscipit odio. Praesent dapibus interdum nisl id tempus. Nullam blandit commodo dui, ut maximus felis tempus eu. Ut sodales. "
-},
-{id: 3,
-firstName: "Rex",
-avatar: "https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In purus mi, rhoncus sit amet ante eget, sagittis lobortis augue. Sed bibendum risus in ex faucibus hendrerit. Curabitur ut posuere neque, nec suscipit odio. Praesent dapibus interdum nisl id tempus. Nullam blandit commodo dui, ut maximus felis tempus eu. Ut sodales. "
-},
-];
-
+export const qtMatches = [];
 
 const HomeScreen = () => {
 
+  const { user } = useAuth();
+
+
+  // TEMP DATA MANIPULATION:
+
+  // filter profiles based on user id
+  const filteredProfiles = dogProfiles.filter((profile) => profile.id !== user);
+ 
   const navigation = useNavigation();
   const swipeRef = useRef(null);
+
+// use to add to matches / passes tables
+const swipeLeft = (cardIndex) => {
+  if (!filteredProfiles[cardIndex]) return;
+
+  const userSwiped = filteredProfiles[cardIndex];
+  console.log(`You swiped PASS on ${userSwiped.firstName}`)
+}
+
+const swipeRight = (cardIndex) => {
+  if (!filteredProfiles[cardIndex]) return;
+
+  const userSwiped = filteredProfiles[cardIndex];
+  console.log(`You swiped MATCH on ${userSwiped.firstName}`)
+  const swipedId = userSwiped.id
+
+  if ((userSwiped.matches).includes(user)) {
+    qtMatches.push(swipedId)
+  }
+  console.log(qtMatches)
+}
+
+////////////////////////////////////////////////////////
 
   return (
     <SafeAreaView style={styles.flex}> 
@@ -61,18 +77,18 @@ const HomeScreen = () => {
           <Swiper 
             ref={swipeRef}
             containerStyle={ {backgroundColor: "transparent"} }
-            cards={dummyData} 
+            cards={filteredProfiles} 
             stackSize={5}
             cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
             
-            onSwipedLeft={() => {
-              console.log("PASS")
+            onSwipedLeft={(cardIndex) => {
+              swipeLeft(cardIndex)
             }}
 
-            onSwipedRight={() => {
-              console.log("MATCH")
+            onSwipedRight={(cardIndex) => {
+              swipeRight(cardIndex)
             }}
 
             overlayLabels={{
@@ -95,7 +111,7 @@ const HomeScreen = () => {
                 },
               },
             }}
-            renderCard={(card) => (
+            renderCard={(card) => card ? (
               <View style={styles.cards} key={card.id} >
                 <Image
                   style={styles.cardImage}
@@ -103,14 +119,16 @@ const HomeScreen = () => {
                   source={{ uri: card.avatar }}
                 />
                 <View>
-                  <View >
-                  <Text>{card.firstName}</Text>
+                  <Text style={styles.name}>{card.firstName}</Text>
                   <Text>{card.bio}</Text>
-                  </View>
                 </View>
-
-              </View>
-            )}/>
+                
+              </View> ) : (
+                <View>
+                </View>
+            )}
+            
+            />
         </View>
 
         <View style={styles.buttons}>
@@ -121,6 +139,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity
+
           onPress={() => swipeRef.current.swipeRight()}
           >
           <FontAwesomeIcon icon={faHeart} size={50} style={{color: "#65d926",}} />

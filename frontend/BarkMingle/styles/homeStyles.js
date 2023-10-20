@@ -20,14 +20,17 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cards: {
+    zIndex: 3,
+    elevation: 3,
     position: "relative",
     borderRadius: 20,
-    padding: 20,
+    padding: 10,
+    paddingBottom: 20,
     alignItems: "center",
     alignSelf: "center",
     backgroundColor: "#ffffff",
     height: "75%",
-    width: "75%",
+    width: "90%",
     shadowColor: "#000",
     shadowOffset: {
       width:0,
@@ -38,14 +41,35 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   cardImage: {
-    height: 120,
-    width: 120,
+    height: "90%",
+    width: "100%",
+    borderRadius: 10,
   },
   buttons:{
     flexDirection: "row",
     justifyContent: "space-around",
     marginBottom: 105,
   },
+  name: {
+    fontSize: 20,
+    fontWeight: "500",
+  },
+  noProfiles: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: "center",
+  },
+  noProfilesText: {
+    zIndex: 0,
+    elevation: 0,
+
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "400",
+    paddingBottom: 20,
+  },
+
 
 
 
