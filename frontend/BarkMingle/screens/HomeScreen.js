@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
-import React from 'react';
+import React, { useRef } from 'react';
 import {View, Text, ImageBackground, TouchableOpacity, Image} from 'react-native'; // can also use SafeAreaView from reg react-native if it looks better?
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from "../styles/homeStyles.js" 
@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faDog } from '@fortawesome/free-solid-svg-icons/faDog';
 import { faPaw } from '@fortawesome/free-solid-svg-icons/faPaw';
+import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import Swiper from "react-native-deck-swiper";
 
 
@@ -14,17 +16,17 @@ const dummyData = [{
   id: 1,
   firstName: "Fido",
   avatar: "https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2020-04/cb.jpg?itok=zzuVtGPr",
-  bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fermentum eros mi, at placerat tortor tempor nec. Suspendisse tincidunt pulvinar metus, in finibus risus consectetur quis. Quisque ac lacus non ex sollicitudin dapibus vitae cursus orci. Vivamus finibus tristique eros non feugiat. Suspendisse nec arcu aliquam, interdum massa at, ornare enim. Nullam varius malesuada lacus, porta aliquam nisl tempus in. Fusce tempor odio tortor, vel dictum nulla molestie a. Nulla ac molestie purus. Nulla dolor metus, hendrerit id sollicitudin non, volutpat a nunc. Pellentesque pharetra, velit quis bibendum condimentum, urna odio sollicitudin turpis, in mattis odio elit nec mauris. Fusce."
+  bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In purus mi, rhoncus sit amet ante eget, sagittis lobortis augue. Sed bibendum risus in ex faucibus hendrerit. Curabitur ut posuere neque, nec suscipit odio. Praesent dapibus interdum nisl id tempus. Nullam blandit commodo dui, ut maximus felis tempus eu. Ut sodales. "
 },
   {id: 2,
   firstName: "Rover",
   avatar: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRvZyUyMGJyZWVkc3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu suscipit est, eu sollicitudin elit. Ut blandit tortor eget quam eleifend, id semper sapien porta. Etiam eu justo erat. Nam venenatis sollicitudin sollicitudin. Suspendisse pulvinar sagittis dolor, non venenatis lacus tempor non. Proin vitae dui ligula. In volutpat, dolor in tincidunt mattis, libero augue pellentesque ante, tincidunt sagittis turpis nunc sed lectus. Integer nulla sem, auctor eget magna quis, vehicula tempor magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque eget dolor sed sapien tincidunt. "
+  bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In purus mi, rhoncus sit amet ante eget, sagittis lobortis augue. Sed bibendum risus in ex faucibus hendrerit. Curabitur ut posuere neque, nec suscipit odio. Praesent dapibus interdum nisl id tempus. Nullam blandit commodo dui, ut maximus felis tempus eu. Ut sodales. "
 },
 {id: 3,
 firstName: "Rex",
 avatar: "https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc finibus arcu elementum ligula viverra mattis. Duis bibendum suscipit sem. Mauris venenatis lacus congue ornare tincidunt. Ut quis eros aliquam, faucibus magna at, vulputate sapien. In malesuada, nisl id cursus fringilla, odio nunc accumsan turpis, a volutpat elit eros nec nisi. Sed sollicitudin lectus quis elit auctor, quis ornare nisl pellentesque. Donec risus leo, dignissim at iaculis sed, aliquam eu lorem. In hac habitasse platea dictumst. Pellentesque accumsan gravida quam ac maximus. Duis fringilla metus id dapibus vulputate. Donec tincidunt mauris at lectus rhoncus, nec ultrices. "
+bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In purus mi, rhoncus sit amet ante eget, sagittis lobortis augue. Sed bibendum risus in ex faucibus hendrerit. Curabitur ut posuere neque, nec suscipit odio. Praesent dapibus interdum nisl id tempus. Nullam blandit commodo dui, ut maximus felis tempus eu. Ut sodales. "
 },
 ];
 
@@ -32,6 +34,7 @@ bio: "BIO: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc finibus
 const HomeScreen = () => {
 
   const navigation = useNavigation();
+  const swipeRef = useRef(null);
 
   return (
     <SafeAreaView style={styles.flex}> 
@@ -51,24 +54,34 @@ const HomeScreen = () => {
       </View>
 
       <ImageBackground 
-        source={require('../assets/dogbones.jpg')}
+        source={require('../assets/pale.jpg')}
         style={styles.background2}>
 
         <View style={styles.flex}>
           <Swiper 
+            ref={swipeRef}
             containerStyle={ {backgroundColor: "transparent"} }
             cards={dummyData} 
             stackSize={5}
             cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
+            
+            onSwipedLeft={() => {
+              console.log("PASS")
+            }}
+
+            onSwipedRight={() => {
+              console.log("MATCH")
+            }}
+
             overlayLabels={{
               left: {
-                title: "Nope",
+                title: "Pass",
                 style: {
                   label: {
                    textAlign: "right",
-                    color: "#d99504",
+                    color: "#f83207",
                   },
                 },
               },
@@ -77,7 +90,7 @@ const HomeScreen = () => {
                 style: {
                   label: {
                     textAlign: "left",
-                    color: "#0a96d1"
+                    color: "#65d926"
                   },
                 },
               },
@@ -98,6 +111,20 @@ const HomeScreen = () => {
 
               </View>
             )}/>
+        </View>
+
+        <View style={styles.buttons}>
+          <TouchableOpacity 
+          onPress={() => swipeRef.current.swipeLeft()}
+          >
+            <FontAwesomeIcon icon={faXmark} style={{color: "#f83207",}} size={50} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+          onPress={() => swipeRef.current.swipeRight()}
+          >
+          <FontAwesomeIcon icon={faHeart} size={50} style={{color: "#65d926",}} />
+          </TouchableOpacity>
         </View>
       
       </ImageBackground>
