@@ -15,7 +15,7 @@ const UserProfileScreen = () => {
         <NavBar />
       </View>
       <ImageBackground 
-        source={require('../assets/dogbones.jpg')}
+        source={require('../assets/pale.jpg')}
         style={styles.background}>
 
           <Text>USER PROFILE SCREEN</Text>

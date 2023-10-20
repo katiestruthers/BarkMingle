@@ -13,7 +13,7 @@ const LoginScreen = () => {
     return (
       <View style={styles.container}>
         <ImageBackground 
-          source={require('../assets/dogbones.jpg')}
+          source={require('../assets/purple.jpg')}
           style={styles.background}>
   
           <View style={styles.inputView}>
