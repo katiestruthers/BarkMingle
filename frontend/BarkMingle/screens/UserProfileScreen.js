@@ -1,11 +1,11 @@
-import { useNavigation } from '@react-navigation/core';
-import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from "@react-navigation/core";
+import React from "react";
+import { View, Text, ImageBackground } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import styles from "../styles/userProfileStyles.js"
 import NavBar from "../components/NavBar.js";
-import styles from "../styles/chatStyles.js"
 
-const ChatScreen = () => {
+const UserProfileScreen = () => {
 
   const navigation = useNavigation();
 
@@ -18,12 +18,11 @@ const ChatScreen = () => {
         source={require('../assets/dogbones.jpg')}
         style={styles.background}>
 
-
-          <Text>CHAT SCREEN</Text>
+          <Text>USER PROFILE SCREEN</Text>
 
       </ImageBackground>
     </SafeAreaView>
   )
 };
 
-export default ChatScreen
+export default UserProfileScreen
