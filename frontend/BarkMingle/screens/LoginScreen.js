@@ -2,8 +2,11 @@ import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { View, Text, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 import styles from "../styles/loginStyles.js"
+import useAuth from '../hooks/useAuth.js';
 
 const LoginScreen = () => {
+
+  const { user } = useAuth();
   
   const navigation = useNavigation();
 
