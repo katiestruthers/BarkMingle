@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { View, Text, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import styles from "../styles/loginStyles.js"
+import styles from "../styles/signInStyles.js"
 import useAuth from '../hooks/useAuth.js';
 
-const LoginScreen = () => {
+const SignInScreen = () => {
 
   const { user } = useAuth();
   
@@ -43,4 +43,4 @@ const LoginScreen = () => {
   )
 };
 
-export default LoginScreen
+export default SignInScreen

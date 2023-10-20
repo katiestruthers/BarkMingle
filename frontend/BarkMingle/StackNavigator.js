@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
-import LoginScreen from './screens/LoginScreen';
+import LandingScreen from './screens/LandingScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
 import useAuth from './hooks/useAuth';
 
@@ -24,7 +24,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Chat" component={ChatScreen} />
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />
       </> ) : 
-      (<Stack.Screen name="Login" component={LoginScreen} />)}
+      (<Stack.Screen name="LandingScreen" component={LandingScreen} />)}
       
     </Stack.Navigator>
   )
