@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { useFonts, Baloo} from '@expo-google-fonts/baloo-2'
 
 const styles = StyleSheet.create({
   container: { 
@@ -14,29 +13,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  getStartedButton: {
+  inputView: {
+    backgroundColor: "#ede7d5",
+    borderRadius: 30,
+    width: "70%",
+    height: 45,
+    marginBottom: 20,
+    marginTop: 20,
+    alignItems: "center",
+  },
+  textInput: {
+    height: 50,
+    flex: 1,
+    padding: 10,
+    textAlign: 'center',
+  },
+  loginButton: {
     backgroundColor: "#A5A7FB",
     borderRadius: 30,
-    width: 200,
+    width: "35%",
     height: 45,
     marginBottom: 10,
     marginTop: 10,
     alignItems: "center",
   },
-  text: {
-    color: '#FFFCF6',
-    fontSize: 18,
-    fontFamily: 'Baloo2_600SemiBold',
-    fontWeight: '400',
-    wordWrap: 'break-word',
-  },
-  textSignIn: {
-    color: '#1E1E1E',
-    fontSize: 18,
-    fontFamily: 'Baloo2_600SemiBold',
-    fontWeight: '400',
-    wordWrap: 'break-word',
-  }
 })
 
 

@@ -6,6 +6,8 @@ import LandingScreen from './screens/LandingScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
 import useAuth from './hooks/useAuth';
 import MatchedScreen from './screens/MatchedScreen';
+import SignInScreen from './screens/SignInScreen';
+import SignUpScreen from './screens/SignUpScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +30,15 @@ const StackNavigator = () => {
         <Stack.Screen name="Match" component={MatchedScreen}/>
       </Stack.Group>
       </> ) : 
-      (<Stack.Screen name="LandingScreen" component={LandingScreen} />)}
+      (
+        <Stack.Group>
+          <Stack.Screen name="GetStarted" component={LandingScreen} />
+          <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen
+          } />
+        </Stack.Group>
+      
+      )}
       
     </Stack.Navigator>
   )

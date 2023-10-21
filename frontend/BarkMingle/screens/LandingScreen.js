@@ -15,13 +15,23 @@ const LandingScreen = () => {
 
 
         <View>
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Login")}>
+          <TouchableOpacity style={styles.getStartedButton} onPress={() => navigation.navigate("SignUp")}>
             <Text style={styles.text}> Get Started </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> 
+
+          <Text style={styles.text}> 
+            Already have an account? 
+            <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+              <Text style={styles.textSignIn}> Sign In</Text>
+            </TouchableOpacity>
+          
+          </Text>
+          
+         
         </View>
       </View>
 
   )
 };
-
-export default LandingScreen
+   
+export default LandingScreen                             

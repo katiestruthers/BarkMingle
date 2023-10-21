@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { View, Text, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import styles from "../styles/signInStyles.js"
+import styles from "../styles/signUpStyles.js"
 import useAuth from '../hooks/useAuth.js';
 
-const SignInScreen = () => {
+const SignUp = () => {
 
   const { user } = useAuth();
   
@@ -33,9 +33,6 @@ const SignInScreen = () => {
             />
           </View>
   
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Login")}>
-            <Text style={styles.textInput}> Sign In </Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("GetStarted")}>
             <Text style={styles.textInput}> Back </Text>
           </TouchableOpacity>
@@ -46,4 +43,4 @@ const SignInScreen = () => {
   )
 };
 
-export default SignInScreen
+export default SignUp
