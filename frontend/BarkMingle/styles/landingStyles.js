@@ -1,19 +1,27 @@
 import { StyleSheet } from "react-native";
-import { useFonts, Baloo} from '@expo-google-fonts/baloo-2'
 
 const styles = StyleSheet.create({
   container: { 
-    marginTop: 50,
+    paddingTop: 50,
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#FFFCF6',
    },
-  background: {
-    width: '100%', 
-    height: '100%',
+   upperContainer: {
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+   },
+   textContainer: { 
+    flex: 2,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#6263AF',
+    borderRadius: 40,
+    flexShrink: 1,
+   },
   getStartedButton: {
     backgroundColor: "#A5A7FB",
     borderRadius: 30,
@@ -22,20 +30,23 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     alignItems: "center",
+    justifyContent: 'center',
   },
-  text: {
-    color: '#FFFCF6',
-    fontSize: 18,
-    fontFamily: 'Baloo2_600SemiBold',
-    fontWeight: '400',
-    wordWrap: 'break-word',
+  image: {
+    position: 'absolute',
+    bottom: 0,
+    flexShrink: 0,
+    zIndex: 2,
   },
-  textSignIn: {
-    color: '#1E1E1E',
-    fontSize: 18,
-    fontFamily: 'Baloo2_600SemiBold',
-    fontWeight: '400',
-    wordWrap: 'break-word',
+  blob: {
+    position: 'absolute',
+    bottom: 0,
+    zIndex: -1,
+  },
+  bg: {
+    position: 'absolute',
+    bottom: 0,
+    zIndex: -1,
   }
 })
 
