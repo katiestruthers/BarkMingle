@@ -20,12 +20,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cards: {
-    zIndex: 3,
-    elevation: 3,
     position: "relative",
     borderRadius: 20,
-    padding: 10,
-    paddingBottom: 20,
     alignItems: "center",
     alignSelf: "center",
     backgroundColor: "#ffffff",
@@ -41,18 +37,36 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   cardImage: {
-    height: "90%",
+    height: "100%",
     width: "100%",
-    borderRadius: 10,
+    borderRadius: 20,
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    
   },
   buttons:{
     flexDirection: "row",
     justifyContent: "space-around",
-    marginBottom: 105,
+    marginBottom: 90,
+  },
+  text: {
+    padding: 10,
+    backgroundColor: 'rgba(52, 52, 52, 0.4)',
+    borderRadius: 20,
   },
   name: {
     fontSize: 20,
     fontWeight: "500",
+    color: "#ffffff",
+  },
+  bio:{
+    color: "#ffffff",
+  },
+  spread: {
+    padding: 10,
+    alignSelf: "flex-end"
+
+
   },
   noProfiles: {
     flex: 1,
