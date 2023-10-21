@@ -18,6 +18,7 @@ const LandingScreen = () => {
       <View style={styles.upperContainer}>
         <Text>
           <Text style={appStyles.textLogoPurple}>Bark</Text>
+          <Text style={appStyles.textLogoPurple}>{' '}</Text>
           <Text style={appStyles.textLogoBlack}>Mingle</Text>
         </Text>
         <HomeSvgComponent style={styles.image} />
@@ -40,7 +41,6 @@ const LandingScreen = () => {
             <Text style={appStyles.textSignIn}> Sign In</Text>
           </TouchableOpacity>
         </Text>
-        <PurpleBGPatternSvgComponent style={styles.bg} />
       </View>
     </View>
   );
