@@ -18,8 +18,40 @@ const styles = StyleSheet.create({
   background: {
     width: '100%', 
     height: '100%',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+  },
+  nameText: {
+    fontSize: 30,
+    fontWeight: 400,
+    padding: 20,
+  },
+  textBox: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  avatar: {
+    width: 200, 
+    height: 200, 
+    borderRadius: 400/ 2,
+    marginBottom: 50,
+  },
+  textInput: {
+    height: 50,
+    flex: 1,
+    padding: 10,
+    textAlign: 'center',
+  },
+  logoutButton: {
+    backgroundColor: "#c7b6f0",
+    borderRadius: 30,
+    width: "35%",
+    height: 45,
+    marginBottom: 10,
+    marginTop: 10,
+    alignItems: "center",
   },
 
 
