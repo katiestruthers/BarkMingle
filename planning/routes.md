@@ -6,8 +6,8 @@ Method   | Path               | Purpose
 ======================================================================
 GET      | /                  | Display home screen 
 
-GET      | /users/login       | Display login form
-POST     | /users/login       | Click "Sign In", logging into an existing account
+GET      | /users/Signin      | Display login form
+POST     | /users/Signin      | Click "Sign In", logging into an existing account
 
 GET      | /users/signup      | Display account registration screen
 POST     | /users/signup      | Click "Sign Up", creating a new user 

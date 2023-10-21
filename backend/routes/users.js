@@ -55,7 +55,7 @@ router.post("/signup", (req, res) => {  // only /signup
 
 
 
-// Login route
+// Signin route
 router.post("/signin", (req, res) => {
   const { email, password } = req.body;
 
