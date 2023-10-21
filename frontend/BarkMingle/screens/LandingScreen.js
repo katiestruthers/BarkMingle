@@ -14,7 +14,7 @@ const LandingScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={appStyles.container}>
       <View style={styles.upperContainer}>
         <Text>
           <Text style={appStyles.textLogoPurple}>Bark</Text>
