@@ -60,17 +60,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: "center",
   },
-  noProfilesText: {
-    zIndex: 0,
-    elevation: 0,
-
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "400",
-    paddingBottom: 20,
-  },
-
-
 
 
   // container: { 

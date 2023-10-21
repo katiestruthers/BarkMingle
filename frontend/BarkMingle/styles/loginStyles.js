@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   loginButton: {
     backgroundColor: "#c7b6f0",
     borderRadius: 30,
-    width: "35%",
+    width: "50%",
     height: 45,
     marginBottom: 10,
     marginTop: 10,
