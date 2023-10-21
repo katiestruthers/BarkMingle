@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text, ImageBackground, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from "../components/NavBar.js";
 import styles from "../styles/chatStyles.js"
@@ -21,6 +21,7 @@ const ChatScreen = () => {
 
 
           <Text>CHAT SCREEN</Text>
+          <Image></Image>
           {console.log("QT", qtMatches)}
 
       </ImageBackground>

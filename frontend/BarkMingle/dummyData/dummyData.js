@@ -1,4 +1,4 @@
-const dogProfiles = [{
+export const dogProfiles = [{
   id: 1,
   firstName: "FIDO",
   avatar: "https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2020-04/cb.jpg?itok=zzuVtGPr",
@@ -32,8 +32,17 @@ const dogProfiles = [{
   {id: 6,
     firstName: "QT",
     avatar: "https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg",
-    bio: "BIO: Lorem ipsum dolor sit amet."
+    bio: "BIO: Lorem ipsum dolor sit amet.",
+    matches: [1,2,3,5]
   },
 ];
 
-export default dogProfiles
+export const getUserProfile = (userID) => {
+  let userProfile = {}
+  for (const p of dogProfiles) {
+    if (p.id === userID) {
+      userProfile = p;
+    };
+  };
+  return userProfile
+}

@@ -38,21 +38,29 @@ const styles = StyleSheet.create({
     borderRadius: 400/ 2,
     marginBottom: 50,
   },
-  textInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    textAlign: 'center',
-  },
-  logoutButton: {
+  button: {
     backgroundColor: "#c7b6f0",
     borderRadius: 30,
-    width: "35%",
+    width: "80%",
     height: 45,
-    marginBottom: 10,
-    marginTop: 10,
+    textAlign: "center",
+    marginTop: 70,
+    marginLeft: 10,
+    marginRight: 10,
+    justifyContent: "center",
     alignItems: "center",
   },
+  buttonText: {
+    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "500",
+  },
+  row: {
+    alignItems: 'center',
+    alignContent:"center",
+    justifyContent: "center",
+    flexDirection: "row"
+  }
 
 
 });
