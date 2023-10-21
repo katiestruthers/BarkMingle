@@ -6,23 +6,23 @@ Method   | Path               | Purpose
 ======================================================================
 GET      | /                  | Display home screen 
 
-GET      | /login             | Display login form
-POST     | /login             | Click "Sign In", logging into an existing account
+GET      | /users/login       | Display login form
+POST     | /users/login       | Click "Sign In", logging into an existing account
 
-GET      | /signup            | Display account registration screen
-POST     | /signup            | Click "Sign Up", creating a new user 
+GET      | /users/signup      | Display account registration screen
+POST     | /users/signup      | Click "Sign Up", creating a new user 
 
-GET      | /signup/dog        | Display dog profile screen
-POST     | /signup/dog        | Click arrow, creating a new dog
+GET      | /dogs/signup       | Display dog profile screen
+POST     | /dogs/signup       | Click arrow, creating a new dog
 
-GET      | /signup/traits     | Display traits screen
-POST     | /signup/traits     | Click arrow, assigning 3 traits to dog
+GET      | /dogs/traits       | Display traits screen
+POST     | /dogs/traits       | Click arrow, assigning 3 traits to dog
 
-GET      | /signup/images     | Display dog images uploading screen
-POST     | /signup/images     | Click arrow, uploading 1-6 images of dog
+GET      | /dogs/images       | Display dog images uploading screen
+POST     | /dogs/images       | Click arrow, uploading 1-6 images of dog
 
-GET      | /signup/profile    | Display user profile screen
-POST     | /signup/profile    | Click arrow, updating user account details
+GET      | /users/:id         | Display user profile screen
+PUT      | /users/:id         | Click arrow, updating user account details
 
 GET      | /feed/dog/:id      | Display dog on feed
 POST     | /feed/dog/:id      | Swipe left or right, updating the swipes table

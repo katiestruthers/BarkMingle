@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginButton: {
-    backgroundColor: "#3489eb",
+    backgroundColor: "#A5A7FB",
     borderRadius: 30,
     width: "35%",
     height: 45,

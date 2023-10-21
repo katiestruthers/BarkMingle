@@ -15,6 +15,8 @@
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		A99951F4F3984504963AD0C2 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FE852ECE446959304EFB3 /* noop-file.swift */; };
+		29D787D47F284F10AEB7FA6A /* KaushanScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 307EF45AADCE4536AD31E396 /* KaushanScript-Regular.ttf */; };
+		C1A81BE420494D44BEFA1AC4 /* KaushanScript-Regular.ttf:Zone.Identifier in Resources */ = {isa = PBXBuildFile; fileRef = 2A781315748B4E06807CE093 /* KaushanScript-Regular.ttf:Zone.Identifier */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-BarkMingle/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		7A3FE852ECE446959304EFB3 /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "BarkMingle/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 		DA100C2A94454B49BBC541BA /* BarkMingle-Bridging-Header.h */ = {isa = PBXFileReference; name = "BarkMingle-Bridging-Header.h"; path = "BarkMingle/BarkMingle-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		307EF45AADCE4536AD31E396 /* KaushanScript-Regular.ttf */ = {isa = PBXFileReference; name = "KaushanScript-Regular.ttf"; path = "../assets/fonts/KaushanScript-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2A781315748B4E06807CE093 /* KaushanScript-Regular.ttf:Zone.Identifier */ = {isa = PBXFileReference; name = "KaushanScript-Regular.ttf:Zone.Identifier"; path = "../assets/fonts/KaushanScript-Regular.ttf:Zone.Identifier"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				91CF7A61211046BDBF4324A7 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -135,6 +140,16 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		91CF7A61211046BDBF4324A7 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				307EF45AADCE4536AD31E396 /* KaushanScript-Regular.ttf */,
+				2A781315748B4E06807CE093 /* KaushanScript-Regular.ttf:Zone.Identifier */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -200,6 +215,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				9C22CB2EEF4D40DCA3F7803B /* BarkMingle-Bridging-Header.h in Resources */,
+				29D787D47F284F10AEB7FA6A /* KaushanScript-Regular.ttf in Resources */,
+				C1A81BE420494D44BEFA1AC4 /* KaushanScript-Regular.ttf:Zone.Identifier in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
