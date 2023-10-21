@@ -9,8 +9,9 @@ import { faDog } from '@fortawesome/free-solid-svg-icons/faDog';
 import { faPaw } from '@fortawesome/free-solid-svg-icons/faPaw';
 import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import Swiper from "react-native-deck-swiper";
-import dogProfiles from "../dummyData/dummyData.js"
+import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js"
 import useAuth from '../hooks/useAuth.js';
 
 
@@ -22,6 +23,8 @@ const HomeScreen = () => {
 
 
   // TEMP DATA MANIPULATION:
+
+  const userProfile = getUserProfile(user);
 
   // filter profiles based on user id
   const filteredProfiles = dogProfiles.filter((profile) => profile.id !== user);
@@ -46,8 +49,12 @@ const swipeRight = (cardIndex) => {
 
   if ((userSwiped.matches).includes(user)) {
     qtMatches.push(swipedId)
+    console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
+    navigation.navigate("Match", {userProfile, userSwiped});
   }
-  console.log(qtMatches)
+  else {
+    console.log("Not a match")
+  }
 }
 
 ////////////////////////////////////////////////////////
@@ -74,11 +81,12 @@ const swipeRight = (cardIndex) => {
         style={styles.background2}>
 
         <View style={styles.flex}>
+
           <Swiper 
             ref={swipeRef}
             containerStyle={ {backgroundColor: "transparent"} }
             cards={filteredProfiles} 
-            stackSize={5}
+            stackSize={1}
             cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
@@ -113,22 +121,34 @@ const swipeRight = (cardIndex) => {
             }}
             renderCard={(card) => card ? (
               <View style={styles.cards} key={card.id} >
-                <Image
-                  style={styles.cardImage}
-                  resizeMode="cover"
-                  source={{ uri: card.avatar }}
-                />
-                <View>
-                  <Text style={styles.name}>{card.firstName}</Text>
-                  <Text>{card.bio}</Text>
-                </View>
+                  
+                  <ImageBackground 
+                    style={styles.cardImage}
+                    imageStyle={{borderRadius:20}}
+                    source={{ uri: card.avatar }}>
+                      
+                      <View style={styles.spread}>
+                        <TouchableOpacity onPress={() => console.log(card.firstName)} >
+                          <FontAwesomeIcon icon={faCircleInfo} style={{color: "rgba(52, 52, 52, 0.9)",}} size={35} />
+                        </TouchableOpacity>
+                      </View>
+
+                    <View style={styles.text}>
+                      <Text style={styles.name}>{card.firstName}</Text>
+                      <Text style={styles.bio}>{card.bio}</Text>
+                    </View>
+
+                  </ImageBackground>
+             
+               
+
                 
               </View> ) : (
                 <View>
                 </View>
             )}
             
-            />
+            />         
         </View>
 
         <View style={styles.buttons}>
