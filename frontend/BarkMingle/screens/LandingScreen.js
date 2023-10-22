@@ -14,7 +14,7 @@ const LandingScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={appStyles.container}>
+    <View style={styles.container}>
       <View style={styles.upperContainer}>
         <Text>
           <Text style={appStyles.textLogoPurple}>Bark</Text>
@@ -35,12 +35,12 @@ const LandingScreen = () => {
         >
           <Text style={appStyles.textWhite}> Get Started </Text>
         </TouchableOpacity>
-        <Text style={appStyles.textWhite}>
-          Already have an account?
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text style={appStyles.textWhite}>Already have an account?</Text>
           <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
             <Text style={appStyles.textSignIn}> Sign In</Text>
           </TouchableOpacity>
-        </Text>
+        </View>
       </View>
     </View>
   );

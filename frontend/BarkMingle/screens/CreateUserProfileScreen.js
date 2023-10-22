@@ -32,7 +32,7 @@ const CreateUserProfileScreen = () => {
           <FontAwesomeIcon
             icon={faArrowRight}
             size={50}
-            style={appStyles.backIcon}
+            style={appStyles.forwardIcon}
           />
         </TouchableOpacity>
 

@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const appStyles = StyleSheet.create({
-  container: { 
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFCF6',
-   },
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#6263AF",
+  },
    background: {
     width: '100%', 
     height: '100%',
@@ -30,6 +30,8 @@ const appStyles = StyleSheet.create({
     color: '#1E1E1E',
     fontSize: 18,
     fontFamily: 'Baloo2_600SemiBold',
+    textAlign: 'center',
+    alignItems: 'center',
   },
   textLogoPurple: {
     color: '#6263AF',
@@ -42,27 +44,35 @@ const appStyles = StyleSheet.create({
     fontFamily: 'Baloo2_800ExtraBold',
   },
   backIcon: {
-    color: '#FFFCF6'
+    color: '#FFFCF6',
+    position: 'absolute',
+    top: -130,
+    right: 120,
+  },
+  forwardIcon: {
+    color: '#FFFCF6',
+    position: 'absolute',
+    bottom: -100,
+    right: -150,
   },
   inputView: {
     backgroundColor: "#D2D1F8",
     borderRadius: 30,
-    width: "70%",
+    width: "85%",
     height: 45,
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 10,
     alignItems: "center",
   },
   blackButton: {
     backgroundColor: "#1E1E1E",
     borderRadius: 30,
-    width: "35%",
+    width: "85%",
     height: 45,
     marginBottom: 10,
     marginTop: 10,
     alignItems: "center",
     justifyContent: 'center',
-
 }, 
 
 })
