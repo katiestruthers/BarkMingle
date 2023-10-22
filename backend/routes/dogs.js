@@ -10,15 +10,16 @@ const router = express.Router();
 // }));
 
 // Create a new dog and associate it with a user
-router.post("/signup", (req, res) => {
-  const { name, breed, gender, age, size, is_neutered, user_id } = req.body;
+router.post("/:userId/signup", (req, res) => {
+  const { name, breeds, gender, age, size, is_neutered } = req.body;
+  const user_id = req.params.userId;
 
-  if (!name || !breed || !gender || !age || !size || !is_neutered || !user_id) {
+  if (!name || !breeds || !gender || !age || !size || !is_neutered || !user_id) {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
   // Check if breed exists in the breeds table
-  database.query("SELECT id FROM breeds WHERE name = $1", [breed], (error, result) => {
+  database.query("SELECT id FROM breeds WHERE name = $1", [breeds], (error, result) => {
     if (error) {
       console.error("Error checking breed:", error);
       return res.status(500).json({ error: "Failed to create dog" });
@@ -30,7 +31,7 @@ router.post("/signup", (req, res) => {
     if (!breedId) {
       database.query(
         "INSERT INTO breeds (name) VALUES ($1) RETURNING id",
-        [breed],
+        [breeds],
         (error, result) => {
           if (error) {
             console.error("Error creating breed:", error);
@@ -108,7 +109,49 @@ router.post("/signup", (req, res) => {
 });
 
 
+// Add traits to a dog's profile
+router.put("/:dogId/traits", (req, res) => {
+  const { traits } = req.body; // Assuming traits is an array of trait IDs
+  const dogId = req.params.dogId;
 
+  if (!traits || !dogId) {
+    return res.status(400).json({ error: "Please provide the required information" });
+  }
 
+  // Check if the dog with the given ID exists
+  database.query("SELECT * FROM dogs WHERE id = $1", [dogId], (error, result) => {
+    if (error) {
+      console.error("Error checking dog:", error);
+      return res.status(500).json({ error: "Failed to add traits" });
+    }
+
+    const dog = result.rows[0];
+
+    if (!dog) {
+      return res.status(404).json({ error: "Dog not found" });
+    }
+
+    // Insert the selected traits into the dogs_traits table
+    const insertQueries = traits.map((traitId) => {
+      return database.query(
+        "INSERT INTO dogs_traits (dog_id, trait_id) VALUES ($1, $2)",
+        [dogId, traitId]
+      );
+    });
+
+    // Execute all the insert queries in parallel
+    Promise.all(insertQueries)
+      .then(() => {
+        res.json({
+          message: "Traits added successfully to the dog's profile",
+          dogId: dogId,
+        });
+      })
+      .catch((error) => {
+        console.error("Error adding traits:", error);
+        res.status(500).json({ error: "Failed to add traits" });
+      });
+  });
+});
 
 module.exports = router;
