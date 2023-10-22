@@ -1,21 +1,11 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const database = require("../db/connection");
-
 const router = express.Router();
 
-// // Sample POST route
-// router.post('/signup', (req, res) => res.json({
-//   message: "SIGNUP IS WORKING!",
-//   body: req.body
-// }));
-
-
-
-// // curl -d '{"email":"a@a.com", "password":"123"}' -H "Content-Type: application/json" -X POST http://localhost:8080/signup
-// // api = handling data
+// curl -d '{"email":"a@a.com", "password":"123"}' -H "Content-Type: application/json" -X POST http://localhost:8080/signup
 // Create a new user(human)
-router.post("/signup", (req, res) => {  // only /signup
+router.post("/users/signup", (req, res) => {  // only /signup
   const { email, password, passwordConfirmation } = req.body;
 
   if (!email || !password || !passwordConfirmation) {
@@ -49,14 +39,15 @@ router.post("/signup", (req, res) => {  // only /signup
           email: email
         },
       });
+
+      // Create a new session
+      req.session.user_id = user.id;
     }
   );
 });
 
-
-
 // Login route
-router.post("/signin", (req, res) => {
+router.post("/users/login", (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -87,6 +78,9 @@ router.post("/signin", (req, res) => {
           email: user.email,
         },
       });
+
+      // Create a new session
+      req.session.user_id = user.id;
     } else {
       // Passwords don't match, authentication failed
       res.status(401).json({ error: "Authentication failed" });
@@ -94,10 +88,8 @@ router.post("/signin", (req, res) => {
   });
 });
 
-
-
-// Update user profile   LOCATIONS????
-router.put("/:id", (req, res) => {
+// Update user profile
+router.put("/users/:id", (req, res) => {
   const userId = req.params.id;    // id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;
  
@@ -136,7 +128,5 @@ router.put("/:id", (req, res) => {
     });
   });
 });
-
-
 
 module.exports = router;
