@@ -4,16 +4,7 @@ const database = require("../db/connection");
 
 const router = express.Router();
 
-// // Sample POST route
-// router.post('/signup', (req, res) => res.json({
-//   message: "SIGNUP IS WORKING!",
-//   body: req.body
-// }));
 
-
-
-// // curl -d '{"email":"a@a.com", "password":"123"}' -H "Content-Type: application/json" -X POST http://localhost:8080/signup
-// // api = handling data
 // Create a new user(human)
 router.post("/signup", (req, res) => {  // only /signup
   const { email, password, passwordConfirmation } = req.body;
@@ -55,7 +46,7 @@ router.post("/signup", (req, res) => {  // only /signup
 
 
 
-// Login route
+// Signin route
 router.post("/signin", (req, res) => {
   const { email, password } = req.body;
 
@@ -97,8 +88,8 @@ router.post("/signin", (req, res) => {
 
 
 // Update user profile   LOCATIONS????
-router.put("/:id", (req, res) => {
-  const userId = req.params.id;    // id captured from the url
+router.put("/:userId", (req, res) => {
+  const userId = req.params.userId;    // user's id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;
  
   if (!userId) {
