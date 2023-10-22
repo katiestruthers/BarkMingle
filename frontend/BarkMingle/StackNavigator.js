@@ -8,6 +8,11 @@ import useAuth from './hooks/useAuth';
 import MatchedScreen from './screens/MatchedScreen';
 import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import CreateDogProfileScreen from './screens/CreateDogProfileScreen';
+import TraitsScreen from './screens/TraitsScreen';
+import UploadScreen from './screens/UploadScreen';
+import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
+import SwipedProfileScreen from './screens/SwipedProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,19 +28,27 @@ const StackNavigator = () => {
       }}>
       {user ? (
         <>
-      <Stack.Screen name="Home" component={HomeScreen} /> 
-      <Stack.Screen name="Chat" component={ChatScreen} />
-      <Stack.Screen name="UserProfile" component={UserProfileScreen} />
-      <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
-        <Stack.Screen name="Match" component={MatchedScreen}/>
-      </Stack.Group>
+          <Stack.Group>
+            <Stack.Screen name="Home" component={HomeScreen} /> 
+            <Stack.Screen name="Chat" component={ChatScreen} />
+            <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
+            <Stack.Screen name="Match" component={MatchedScreen}/>
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
+            <Stack.Screen name="SwipedProfile" component={SwipedProfileScreen}/>
+          </Stack.Group>
       </> ) : 
       (
         <Stack.Group>
           <Stack.Screen name="GetStarted" component={LandingScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen
-          } />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen name="CreateDogProfile" component={CreateDogProfileScreen} />
+          <Stack.Screen name="Traits" component={TraitsScreen} />
+          <Stack.Screen name="Upload" component={UploadScreen} />
+          <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
         </Stack.Group>
       
       )}

@@ -1,9 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const database = require("../db/connection");
-
 const router = express.Router();
-
 
 // Create a new user(human)
 router.post("/signup", (req, res) => {  // only /signup
@@ -40,6 +38,9 @@ router.post("/signup", (req, res) => {  // only /signup
           email: email
         },
       });
+
+      // Create a new session
+      req.session.user_id = user.id;
     }
   );
 });
@@ -78,6 +79,9 @@ router.post("/signin", (req, res) => {
           email: user.email,
         },
       });
+
+      // Create a new session
+      req.session.user_id = user.id;
     } else {
       // Passwords don't match, authentication failed
       res.status(401).json({ error: "Authentication failed" });
@@ -127,7 +131,5 @@ router.put("/:userId", (req, res) => {
     });
   });
 });
-
-
 
 module.exports = router;

@@ -1,13 +1,6 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
 const database = require("../db/connection");
-
 const router = express.Router();
-
-// router.post('/signup/dogs', (req, res) => res.json({
-//   message: "SIGNUP IS WORKING!",
-//   body: req.body
-// }));
 
 // Create a new dog and associate it with a user
 router.post("/:userId/signup", (req, res) => {
