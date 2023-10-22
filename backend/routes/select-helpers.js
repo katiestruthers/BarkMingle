@@ -29,10 +29,10 @@ const getAllSwipeableDogs = function(userId) {
       ON users.id = swipes.swiped_by_user_id
       WHERE users.id = $1);
     `;
-  const values = [userId];
+  const queryParams = [userId];
 
   return db
-    .query(queryString, values)
+    .query(queryString, queryParams)
     .then(data => {
       if (!data.rows.length) {
         return null;
@@ -44,8 +44,31 @@ const getAllSwipeableDogs = function(userId) {
     });
 };
 
-const createNewUser = function() {};
+const getSwipesReceivedForUser = function(userId) {
+  const queryString = `
+    SELECT swipes.swiped_by_user_id
+    FROM users
+    JOIN swipes
+    ON users.id = likes.swiped_user_id
+    WHERE is_liked
+    AND users.id = $1;
+  `;
+  const queryParams = [userId];
+  
+  return db
+    .query(queryString, queryParams)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 module.exports = {
-  getAllSwipeableDogs
+  getAllSwipeableDogs,
+  getSwipesReceivedForUser
 };
