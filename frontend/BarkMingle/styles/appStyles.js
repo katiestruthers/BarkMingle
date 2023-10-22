@@ -49,6 +49,12 @@ const appStyles = StyleSheet.create({
     top: -130,
     right: 120,
   },
+  forwardIcon: {
+    color: '#FFFCF6',
+    position: 'absolute',
+    bottom: -100,
+    right: -150,
+  },
   inputView: {
     backgroundColor: "#D2D1F8",
     borderRadius: 30,
