@@ -11,6 +11,9 @@ import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import appStyles from "../styles/appStyles.js";
+import SignInSvgComponent from "../svg-images/SignInSvgComponent.js";
+import styles from "../styles/signInStyles.js";
+import SignInSvgBlob from "../svg-images/SignInSvgBlob.js";
 
 const SignIn = () => {
   const { user } = useAuth();
@@ -18,40 +21,49 @@ const SignIn = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={appStyles.container}>
-      <ImageBackground
-        source={require("../assets/purple.jpg")}
-        style={appStyles.background}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("GetStarted")}
-        >
-        <FontAwesomeIcon icon={faArrowLeft} size={50} style={appStyles.backIcon}/>
+    <View style={styles.container}>
+      <View style={styles.upperContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("GetStarted")}>
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            size={50}
+            style={appStyles.backIcon}
+          />
         </TouchableOpacity>
+        <Text style={styles.textHeadingWhite}> Sign In </Text>
+        <SignInSvgComponent style={styles.image} />
+        <SignInSvgBlob style={styles.blob} />
+      </View>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.textHeaderBlack}>Email</Text>
         <View style={appStyles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Email"
-            placeholderTextColor="#003f5c"
           />
         </View>
 
+        <Text style={styles.textHeaderBlack}>Password</Text>
         <View style={appStyles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Password"
-            placeholderTextColor="#003f5c"
             secureTextEntry={true}
           />
         </View>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("")}
-          style={appStyles.blackButton} 
+          style={appStyles.blackButton}
         >
           <Text style={appStyles.textWhite}> Sign In </Text>
         </TouchableOpacity>
-      </ImageBackground>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text style={styles.textPurple}>Don't have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={appStyles.textSignIn}> Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };

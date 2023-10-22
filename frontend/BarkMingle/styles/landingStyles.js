@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  container: { 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFCF6',
+   },
    upperContainer: {
     flex: 2,
     justifyContent: 'center',
@@ -33,7 +39,7 @@ const styles = StyleSheet.create({
   },
   blob: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 60,
     zIndex: -1,
   },
   bg: {
