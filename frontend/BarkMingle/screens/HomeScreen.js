@@ -128,7 +128,7 @@ const swipeRight = (cardIndex) => {
                     source={{ uri: card.avatar }}>
                       
                       <View style={styles.spread}>
-                        <TouchableOpacity onPress={() => console.log(card.firstName)} >
+                        <TouchableOpacity onPress={() => navigation.navigate("SwipedProfile", {card})} >
                           <FontAwesomeIcon icon={faCircleInfo} style={{color: "rgba(52, 52, 52, 0.9)",}} size={35} />
                         </TouchableOpacity>
                       </View>
