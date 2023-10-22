@@ -1,28 +1,35 @@
 # Routes
 
+* /api/endpoints
+```js
+App.use("/api/users", userRoutes); // api for users routes
+App.use("/api/dogs", dogRoutes); // api for dogs routes
+```
+
+
 ```
 Method   | Path               | Purpose
 
 ======================================================================
 GET      | /                  | Display home screen 
 
-GET      | /users/Signin      | Display login form
-POST     | /users/Signin      | Click "Sign In", logging into an existing account
+GET      | /Signin            | Display login form
+POST     | /Signin            | Click "Sign In", logging into an existing account
 
-GET      | /users/signup      | Display account registration screen
-POST     | /users/signup      | Click "Sign Up", creating a new user 
+GET      | /signup            | Display account registration screen
+POST     | /signup            | Click "Sign Up", creating a new user 
 
-GET      | /dogs/signup       | Display dog profile screen
-POST     | /dogs/signup       | Click arrow, creating a new dog
+GET      | /:userId/signup    | Display dog profile screen
+POST     | /:userId/signup    | Click arrow, creating a new dog
 
-GET      | /dogs/traits       | Display traits screen
-POST     | /dogs/traits       | Click arrow, assigning 3 traits to dog
+GET      | /:dogId/traits     | Display traits screen
+PUT      | /:dogId/traits     | Click arrow, assigning 3 traits to dog
 
 GET      | /dogs/images       | Display dog images uploading screen
-POST     | /dogs/images       | Click arrow, uploading 1-6 images of dog
+PUT      | /dogs/images       | Click arrow, uploading 1-6 images of dog
 
-GET      | /users/:id         | Display user profile screen
-PUT      | /users/:id         | Click arrow, updating user account details
+GET      | /:userId           | Display user profile screen
+PUT      | /:userId           | Click arrow, updating user account details
 
 GET      | /feed/dog/:id      | Display dog on feed
 POST     | /feed/dog/:id      | Swipe left or right, updating the swipes table
