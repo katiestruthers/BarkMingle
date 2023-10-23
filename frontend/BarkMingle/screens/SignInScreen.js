@@ -3,7 +3,6 @@ import React from "react";
 import {
   View,
   Text,
-  ImageBackground,
   TextInput,
   TouchableOpacity,
 } from "react-native";
@@ -14,6 +13,7 @@ import appStyles from "../styles/appStyles.js";
 import SignInSvgComponent from "../svg-images/SignInSvgComponent.js";
 import styles from "../styles/signInStyles.js";
 import SignInSvgBlob from "../svg-images/SignInSvgBlob.js";
+import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent.js";
 
 const SignIn = () => {
   const { user } = useAuth();
@@ -63,6 +63,7 @@ const SignIn = () => {
             <Text style={appStyles.textSignIn}> Sign Up</Text>
           </TouchableOpacity>
         </View>
+        <WhiteBGPatternSvgComponent style={styles.background} />
       </View>
     </View>
   );

@@ -3,7 +3,6 @@ import React from "react";
 import {
   View,
   Text,
-  ImageBackground,
   TextInput,
   TouchableOpacity,
 } from "react-native";
@@ -11,58 +10,57 @@ import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import appStyles from "../styles/appStyles.js";
+import styles from "../styles/signUpStyles.js";
+import SignUpSvgBlob from "../svg-images/SignUpSvgBlob.js";
+import SignUpSvgComponent from "../svg-images/SignUpSvgComponent.js";
+import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent.js";
 
-const SignUp = () => {
+const SignIn = () => {
   const { user } = useAuth();
 
   const navigation = useNavigation();
 
   return (
-    <View style={appStyles.container}>
-      <ImageBackground
-        source={require("../assets/purple.jpg")}
-        style={appStyles.background}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("GetStarted")}
-        >
-        <FontAwesomeIcon icon={faArrowLeft} size={50} style={appStyles.backIcon}/>
+    <View style={styles.container}>
+      <View style={styles.upperContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("GetStarted")}>
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            size={50}
+            style={appStyles.backIcon}
+          />
         </TouchableOpacity>
+        <Text style={styles.textHeadingWhite}> Sign Up </Text>
+        <SignUpSvgComponent style={styles.image} />
+        <SignUpSvgBlob style={styles.blob} />
+      </View>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.textHeaderBlack}>Email</Text>
         <View style={appStyles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Email"
-            placeholderTextColor="#003f5c"
           />
         </View>
 
+        <Text style={styles.textHeaderBlack}>Password</Text>
         <View style={appStyles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Password"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-          />
-        </View>
-
-        <View style={appStyles.inputView}>
-          <TextInput
-            style={appStyles.textInput}
-            placeholder="Password Confirmation"
-            placeholderTextColor="#003f5c"
             secureTextEntry={true}
           />
         </View>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("CreateDogProfile")}
-          style={appStyles.blackButton} 
+          style={appStyles.blackButton}
         >
           <Text style={appStyles.textWhite}> Sign Up </Text>
         </TouchableOpacity>
-      </ImageBackground>
+        <WhiteBGPatternSvgComponent style={styles.background} />
+      </View>
     </View>
   );
 };
 
-export default SignUp;
+export default SignIn;

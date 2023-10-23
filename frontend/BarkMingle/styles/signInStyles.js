@@ -15,24 +15,25 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   textContainer: {
-    flex: 2.25,
+    flex: 2,
     borderRadius: 40,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: "#FFFCF6",
     width: "100%",
+    paddingTop: 35,
   },
   image: {
     position: "absolute",
     bottom: 30,
     right:   0,
-    width: '100%',
+    width: 270,
     zIndex: -1,
     overflow: 'visible'
   },
   blob: {
     position: "absolute",
-    bottom: 40,
+    bottom: 80,
     zIndex: -2,
   },
   textHeadingWhite: {
@@ -54,8 +55,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Baloo2_600SemiBold',
     fontSize: 18,
     textAlign: 'center',
-
-  }
+  },
+  background: {
+    position: 'absolute',
+    zIndex: -1,
+  },
 });
 
 export default styles;

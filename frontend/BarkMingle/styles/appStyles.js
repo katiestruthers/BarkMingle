@@ -70,7 +70,7 @@ const appStyles = StyleSheet.create({
     width: "85%",
     height: 45,
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: 'center',
 }, 
