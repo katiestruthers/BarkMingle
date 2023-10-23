@@ -29,12 +29,12 @@ router.post("/signup", (req, res) => {  // only /signup
         return res.status(500).json({ error: "Failed to create user" });
       }
 
-      const userId = result.rows[0].id;
-
+      const user = result.rows[0];
+      
       res.json({
         message: "User created successfully",
         user: {
-          id: userId,
+          id: user.id,
           email: email
         },
       });
@@ -75,7 +75,7 @@ router.post("/signin", (req, res) => {
       res.json({
         message: "Login successful",
         user: {
-          id: user.userIdid,
+          id: user.id,
           email: user.email,
         },
       });
@@ -91,11 +91,11 @@ router.post("/signin", (req, res) => {
 
 
 
-// Update user profile   LOCATIONS????
+// Update user profile
 router.put("/:userId", (req, res) => {
   const userId = req.params.userId;    // user's id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;
- 
+
   if (!userId) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
