@@ -27,7 +27,7 @@ const SignIn = () => {
           <FontAwesomeIcon
             icon={faArrowLeft}
             size={50}
-            style={appStyles.backIcon}
+            style={appStyles.backIconWhite}
           />
         </TouchableOpacity>
         <Text style={styles.textHeadingWhite}> Sign Up </Text>
