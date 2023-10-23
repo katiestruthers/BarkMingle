@@ -1,4 +1,4 @@
-const db = require('../db/connection.js');
+const db = require('../../db/connection.js');
 
 const getAllSwipeableDogs = function(userId) {
   const queryString = `
@@ -46,10 +46,10 @@ const getAllSwipeableDogs = function(userId) {
 
 const getSwipesReceivedForUser = function(userId) {
   const queryString = `
-    SELECT swipes.swiped_by_user_id
+    SELECT DISTINCT swipes.swiped_by_user_id
     FROM users
     JOIN swipes
-    ON users.id = likes.swiped_user_id
+    ON users.id = swipes.swiped_user_id
     WHERE is_liked
     AND users.id = $1;
   `;
@@ -61,7 +61,8 @@ const getSwipesReceivedForUser = function(userId) {
       if (!data.rows.length) {
         return null;
       }
-      return data.rows;
+      const result = data.rows.map(a => a.swiped_by_user_id);
+      return result;
     })
     .catch((err) => {
       console.error(err);
