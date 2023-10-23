@@ -22,12 +22,27 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: "center",
   },
+  inputViewBio: {
+    backgroundColor: "#D2D1F8",
+    borderRadius: 30,
+    width: "85%",
+    height: 150,
+    marginBottom: 5,
+    marginTop: 5,
+    alignItems: "center",
+  },
   textHeaderBlack: {
     color: '#1E1E1E',
     fontSize: 18,
     fontFamily: 'Baloo2_800ExtraBold',
     alignSelf: "flex-start",
     left: 30,
+  },
+  textPurple: {
+    color: '#6263AF',
+    fontFamily: 'Baloo2_600SemiBold',
+    fontSize: 18,
+    textAlign: 'center',
   },
   backgroundTop: {
     position: 'absolute',
