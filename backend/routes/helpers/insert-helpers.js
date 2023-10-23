@@ -1,4 +1,4 @@
-const db = require('../db/connection.js');
+const db = require('../../db/connection.js');
 
 const addNewSwipe = function(loggedInUserId, swipedUserId, is_liked) {
   const queryString = `

@@ -1,4 +1,4 @@
-const db = require('../db/connection.js');
+const db = require('../../db/connection.js');
 
 const getAllSwipeableDogs = function(userId) {
   const queryString = `
