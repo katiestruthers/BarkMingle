@@ -17,12 +17,12 @@ const addNewSwipe = function(loggedInUserId, swipedUserId, is_liked) {
     });
 };
 
-const addNewMatch = function(loggedInUserId, swipedUserId, is_liked) {
+const addNewMatch = function(loggedInUserId, swipedUserId) {
   const queryString = `
-    INSERT INTO swipes (first_liked_user_id, second_liked_user_id, is_liked)
-    VALUES ($1, $2, $3);
+    INSERT INTO matches (first_liked_user_id, second_liked_user_id)
+    VALUES ($1, $2);
     `;
-  const queryParams = [loggedInUserId, swipedUserId, is_liked];
+  const queryParams = [loggedInUserId, swipedUserId];
 
   return db
     .query(queryString, queryParams)

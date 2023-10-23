@@ -19,6 +19,7 @@ App.use(session({
 // const apiRoutes = require("./routes/NAME!!"); // one table
 const userRoutes = require('./routes/users'); // 
 const dogRoutes = require('./routes/dogs');
+const feedRoutes = require('./routes/feed');
 
 
 // Sample GET route
@@ -29,7 +30,7 @@ App.get('/api/data', (req, res) => res.json({
 // /api/endpoitns
 App.use("/api/users", userRoutes); // userRoutes is nested in /signup : /signup is handled by userRoutes
 App.use("/api/dogs", dogRoutes); // api for dogs route
-
+App.use("/api/feed", feedRoutes); // api for feed, incl. swipes & matches
 
 
 
