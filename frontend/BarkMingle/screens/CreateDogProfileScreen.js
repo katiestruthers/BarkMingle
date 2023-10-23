@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import BonePatternSvg from "../svg-images/BonePatternSvg.js";
-import StatusBarSvg from "../svg-images/StatusBarSvg.js";
+import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 
 const CreateDogProfileScreen = () => {
   const { user } = useAuth();
@@ -24,7 +24,7 @@ const CreateDogProfileScreen = () => {
   return (
     <View style={styles.container}>
       <BonePatternSvg style={styles.backgroundTop} />
-      <StatusBarSvg style={appStyles.statusBar} />
+      <StatusBarSvg1 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
         <FontAwesomeIcon
           icon={faArrowLeft}
