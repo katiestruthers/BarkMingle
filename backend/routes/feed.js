@@ -1,10 +1,9 @@
 const express = require("express");
-const database = require("../db/connection");
-const { addNewSwipe, addNewMatch } = require("./insert-helpers");
-const { getSwipesReceivedForUser } = require("./select-helpers");
+const { addNewSwipe, addNewMatch } = require("./helpers/insert-helpers");
+const { getSwipesReceivedForUser } = require("./helpers/select-helpers");
 const router = express.Router();
 
-router.post("/feed/dog/:id", (req, res) => {
+router.post("/dog/:id", (req, res) => {
   const swipedUserId = req.params.id;
   const loggedInUserId = req.session.user_id;
   const is_liked = req.body.is_liked;
@@ -50,3 +49,5 @@ router.post("/feed/match/:id", (req, res) => {
       res.status(500);
     });
 });
+
+module.exports = router;

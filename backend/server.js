@@ -20,6 +20,7 @@ App.use(Express.json());
 // const apiRoutes = require("./routes/NAME!!"); // one table
 const userRoutes = require('./routes/users'); // 
 const dogRoutes = require('./routes/dogs');
+const feedRoutes = require('./routes/feed');
 
 
 // Sample GET route
@@ -27,9 +28,10 @@ App.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
 }));
 
-// /api/endpoitns
+// /api/endpoints
 App.use("/api/users", userRoutes); // userRoutes is nested in /signup : /signup is handled by userRoutes
 App.use("/api/dogs", dogRoutes); // api for dogs route
+App.use("/api/feed", feedRoutes);
 
 
 

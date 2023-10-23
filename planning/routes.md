@@ -1,9 +1,10 @@
 # Routes
 
-* /api/endpoints
+### /api/endpoints
 ```js
 App.use("/api/users", userRoutes); // api for users routes
 App.use("/api/dogs", dogRoutes); // api for dogs routes
+App.use("api/feed", feedRoutes); // api for feed routes
 ```
 
 
