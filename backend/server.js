@@ -1,5 +1,6 @@
 require('dotenv').config(); // load .env data into process.env
 const Express = require('express');
+const cookieSession = require('cookie-session');
 const App = Express();
 const PORT = 8080;
 
@@ -7,14 +8,13 @@ const PORT = 8080;
 // Express Configuration
 App.use(Express.urlencoded({ extended: false }));
 App.use(Express.json()); 
+App.use(cookieSession({
+  name: 'session',
+  keys: ['sksmsgkftndltekvhrlsmsdjqtdj', 'rjsrkdgkwkgyehgkwkghkdlxldok'],
+
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 //App.use(Express.static('public'));
-
-// App.use(cookieSession({
-//   name: 'session',
-//   keys: ['sksmsgkftndltekvhrlsmsdjqtdj', 'rjsrkdgkwkgyehgkwkghkdlxldok'],
-
-//   maxAge: 24 * 60 * 60 * 1000 // 24 hours
-// }));
 
 // Breakdown routes
 // const apiRoutes = require("./routes/NAME!!"); // one table

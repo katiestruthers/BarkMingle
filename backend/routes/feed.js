@@ -31,7 +31,7 @@ router.post("/dog/:id", (req, res) => {
     });
 });
 
-router.post("/feed/match/:id", (req, res) => {
+router.post("/match/:id", (req, res) => {
   const loggedInUserId = req.params.id;
   const swipedUserId = req.session.user_id;
 
