@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, { Rect } from "react-native-svg"
-const StatusBarSvg = (props) => (
+const StatusBarSvg1 = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={151}
@@ -51,4 +51,4 @@ const StatusBarSvg = (props) => (
     />
   </Svg>
 )
-export default StatusBarSvg
+export default StatusBarSvg1

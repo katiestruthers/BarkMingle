@@ -45,6 +45,13 @@ const appStyles = StyleSheet.create({
     left: 30,
     paddingEnd: 40,
   },
+  textHeaderBlack: {
+    color: '#1E1E1E',
+    fontSize: 30,
+    fontFamily: 'Baloo2_800ExtraBold',
+    left: 30,
+    paddingEnd: 50,
+  },
   textLogoBlack: {
     color: '#1E1E1E',
     fontSize: 30,
@@ -56,10 +63,16 @@ const appStyles = StyleSheet.create({
     fontFamily: 'Baloo2_800ExtraBold',
     alignSelf: "center",
   },
+  textWhiteButton: {
+    color: '#FFFCF6',
+    fontSize: 18,
+    fontFamily: 'Baloo2_800ExtraBold',
+    alignSelf: "center",
+  },
   backIconWhite: {
     color: '#FFFCF6',
     position: 'absolute',
-    top: -130,
+    top: -120,
     right: 120,
   },
   forwardIconWhite: {
@@ -100,8 +113,8 @@ const appStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   statusBar: {
-    position: 'fixed',
-    top: -60,
+    position: 'absolute',
+    top: 60,
   },
   button: {
     flex: 1,
