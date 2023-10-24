@@ -13,38 +13,48 @@ const UserProfileScreen = () => {
   const { user } = useAuth();
 
   const userProfile = getUserProfile(user)
-  
+ 
   return (
     <SafeAreaView style={styles.flex}>
-      <View style={styles.navBar}>
+      
         <NavBar />
-      </View>
+
       <ImageBackground 
-        source={require('../assets/pale.jpg')}
-        style={styles.background}>
-          <View style={styles.textBox}>
-            <Text style={styles.nameText}>{userProfile.firstName}</Text>
-          </View>
-          <View>
-            <Image source={userProfile.avatar} style={styles.avatar} />
-          </View>
-          <View>
-            <Text> {userProfile.bio}</Text>
-          </View>
+        source={require("../assets/bone-pattern.png")}
+        style={styles.background}
+        imageStyle={{opacity: 0.3}}>
 
-          <View style={styles.row}>
-          <TouchableOpacity style={styles.button} >
-            <Text style={styles.buttonText}> Edit Profile </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} >
-            <Text style={styles.buttonText}> Sign Out </Text>
-          </TouchableOpacity>
-          </View>
-          
+          <View style={styles.textBox}> 
+            <Text style={styles.nameText}>
+              {userProfile.firstName}
+            </Text>
 
-          
+            <View>
+              <Image 
+                source={{uri: userProfile.avatar}}
+                style={styles.avatar} />
+            </View>
+
+            <View>
+              <Text> {userProfile.bio}</Text>
+            </View>
+
+            <View style={styles.buttonGroup}>
+              <TouchableOpacity style={styles.button} >
+                <Text style={styles.buttonText}> Edit Profile </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.button} >
+                <Text style={styles.buttonText}> Sign Out </Text>
+              </TouchableOpacity>
+
+            </View>
+
+
+          </View>
 
       </ImageBackground>
+
     </SafeAreaView>
   )
 };

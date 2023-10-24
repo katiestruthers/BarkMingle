@@ -1,34 +1,27 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-
-  navBar: {
-    width: "100%",
-    height: 75,
-    paddingBottom: 10,
-    backgroundColor: "#6a63c9",
-    flexDirection: "row",
-    alignContent: "center",
-    alignItems: "flex-end",
-    justifyContent: "space-evenly",
-  },
+  
   flex: {
     flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "space-between",
   },
   background: {
-    width: '100%', 
-    height: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    width: "100%", 
+    height: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   nameText: {
     fontSize: 30,
-    fontWeight: 400,
+    fontWeight: "400",
     padding: 20,
   },
   textBox: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
     marginTop: 20,
     marginBottom: 20,
   },
@@ -39,12 +32,12 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   button: {
-    backgroundColor: "#c7b6f0",
+    backgroundColor: "#6263AF",
     borderRadius: 30,
-    width: "80%",
+    width: 300,
     height: 45,
     textAlign: "center",
-    marginTop: 70,
+    marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
     justifyContent: "center",
@@ -54,12 +47,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     fontWeight: "500",
+    color: "#ffffff"
   },
-  row: {
-    alignItems: 'center',
+  buttonGroup: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
     alignContent:"center",
-    justifyContent: "center",
-    flexDirection: "row"
+    marginVertical: 100,
   }
 
 

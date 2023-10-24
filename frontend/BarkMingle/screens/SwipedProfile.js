@@ -15,30 +15,33 @@ const SwipedProfileScreen = () => {
   const { user } = useAuth();
 
   const { params } = useRoute();
-  const { card } = params;
+  const { profile } = params;
+
+
 
   return (
     <SafeAreaView style={styles.flex}>
       <ImageBackground 
-        source={require('../assets/purple.jpg')}
-        style={[styles.background, {opacity: 0.9}]}>
+        source={require('../assets/bone-pattern.png')}
+        imageStyle={{opacity: 0.3}}
+        style={styles.background}>
 
       <View style={styles.spread}>
         <TouchableOpacity onPress={() => navigation.goBack()} >
-          <FontAwesomeIcon icon={faCircleXmark} style={{color: "rgba(240, 240, 240, 0.9)",}} size={30} />
+          <FontAwesomeIcon icon={faCircleXmark} style={{color: "rgba(0, 0, 0, 0.9)",}} size={35} />
         </TouchableOpacity>
 
       </View>
 
       <View style={styles.textBox}>
         <View>
-          <Image source={card.avatar} style={styles.avatar} />
+          <Image source={{uri: profile.avatar}} style={styles.avatar} />
         </View>
         <View >
-            <Text style={styles.nameText}>{card.firstName}</Text>
+            <Text style={styles.nameText}>{profile.firstName}</Text>
           </View>
           <View>
-            <Text style={styles.bio}> {card.bio}</Text>
+            <Text style={styles.bio}> {profile.bio} </Text>
           </View>
       </View>
 
