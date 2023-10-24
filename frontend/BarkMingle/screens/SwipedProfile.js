@@ -17,7 +17,7 @@ const SwipedProfileScreen = () => {
   const { params } = useRoute();
   const { profile } = params;
 
-  const background = '../assets/purple.jpg';
+
 
   return (
     <SafeAreaView style={styles.flex}>

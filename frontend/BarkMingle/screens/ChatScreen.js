@@ -8,26 +8,28 @@ import Header from '../components/Header.js';
 import ChatList from '../components/ChatList.js';
 
 //DATA
-import { usersMatchArray, filteredProfiles } from './HomeScreen.js';
+import { userMatchDetailsArray, usersMatchArray, swipedUser, appData } from './HomeScreen.js';
 import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js"
 
 
 const ChatScreen = () => {
 
+  const {userProfile, filteredProfiles} = appData;  
 
-  // filter profiles to only matched profiles
-  const matchedProfiles = (matchArray) => {
-    const matchProfiles = [];
-    for (const m of matchArray) {
-      for (const p of filteredProfiles) {
-        if (m === p.id) {
-          matchProfiles.push(p);
-        };
-      };
-    };
-    return matchProfiles;
-  };
-  
+
+  // // filter profiles to only matched profiles
+  // const matchedProfiles = (matchArray) => {
+  //   const matchProfiles = [];
+  //   for (const m of matchesIds) {
+  //     for (const p of filteredProfiles) {
+  //       if (m === p.id) {
+  //         matchProfiles.push(p);
+  //       };
+  //     };
+  //   };
+  //   return matchProfiles;
+  // };
+
 
   const navigation = useNavigation();
 
@@ -38,7 +40,11 @@ const ChatScreen = () => {
      
       <View 
         style={styles.background}>
-          <ChatList style={styles.list}/>
+          <ChatList  />
+
+
+
+
 
       </View>
     </SafeAreaView>

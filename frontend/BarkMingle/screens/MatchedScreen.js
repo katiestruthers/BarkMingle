@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/core';
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from "../styles/matchedStyles.js"
-import { usersMatchArray } from './HomeScreen.js';
+import { usersMatchArray, userMatchDetailsArray } from './HomeScreen.js';
 import useAuth from '../hooks/useAuth';
 import {dogProfiles, getUserProfile} from '../dummyData/dummyData.js';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -13,13 +13,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const MatchedScreen = () => {
   const navigation = useNavigation();
   const { params } = useRoute();
-  const { userSwiped, userProfile, filterProfiles } = params;
+  const { userProfile, userSwiped, filteredProfiles } = params;
 
 
   // const { user } = useAuth();
   // const userProfile = getUserProfile(user);
 
-  console.log("QT from matches", {usersMatchArray})
 
   return (
     <SafeAreaView style={styles.background} >
@@ -50,7 +49,7 @@ const MatchedScreen = () => {
           <TouchableOpacity 
             onPress={() => {
               navigation.goBack();
-              navigation.navigate("Chat", {userProfile, userSwiped, filterProfiles, usersMatchArray});
+              navigation.navigate("Chat", {userProfile, userSwiped, filteredProfiles});
             }}>
             <Text style={styles.buttonText}>Send a message</Text>
           </TouchableOpacity>

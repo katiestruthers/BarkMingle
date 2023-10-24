@@ -6,37 +6,15 @@ import ChatRow from './ChatRow.js';
 import styles from '../styles/chatListStyles.js';
 
 //DATA
-import { usersMatchArray, filteredProfiles } from '../screens/HomeScreen.js';
+import { userMatchDetailsArray, usersMatchArray, swipedUser, appData } from '../screens/HomeScreen.js';
 import {dogProfiles, getUserProfile, matchedProfiles } from "../dummyData/dummyData.js"
 
 
 const ChatList = () => {
 
+  const {userProfile, filteredProfiles} = appData;  
   const { user } = useAuth();
-
-  /*
-  const [matches, setMatches] = useState([]);
-
-  useEffect(() => 
-    onSnapshot(
-      query(
-        collection(db, 'matches'), 
-        where('usersMatched', 'array-contains', user)
-      ), 
-      (snapshot) =>  setMatches(
-        snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-    )
-  );
-, [user])
-
-   */
-
-
-    // filter profiles to only matched profiles
-    const matches = matchedProfiles(usersMatchArray, filteredProfiles)
+  const matches = userMatchDetailsArray
   
 
   return (
@@ -45,7 +23,7 @@ const ChatList = () => {
         contentContainerStyle={styles.list}
         data={matches}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <ChatRow matchDetails={item} dogName={item.firstName} avatar={item.avatar} />}
+        renderItem={({item}) => <ChatRow matchDetails={item} dogName={item.firstName} avatar={item.avatar} humanName={item.humanName}/>}
       
       /> ) :
       (<View>

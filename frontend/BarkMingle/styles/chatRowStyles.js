@@ -2,17 +2,16 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
 
   },
   card: {
     backgroundColor: "#D2D1F8",
-    width: "80%",
+    width: "100%",
     borderRadius: 20,
     margin: 10,
+    flexDirection: "row",
   },
   avatar: {
     width: 30, 
@@ -23,7 +22,8 @@ const styles = StyleSheet.create({
   },
   text: {
     alignItems: "flex-start",
-
+    paddingRight: 120,
+    justifyContent: "center",
   },
   name: {
     textAlign: "center"
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   info: {
     padding: 10,
+    marginLeft: 15,
   }
 
 

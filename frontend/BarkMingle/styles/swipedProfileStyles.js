@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     width: 350, 
-    height: "80%", 
+    height: "80%", // not showing on web with %
+    height: 400, 
     borderRadius: 10,
   },
   button: {

@@ -17,42 +17,70 @@ import NavBar from '../components/NavBar.js';
 
 
 export const usersMatchArray = [];
-export let filteredProfiles;
+export const userMatchDetailsArray = [];
+export const swipedUser = [];
 
+export let appData = {};
 
 const HomeScreen = () => {
 
+  // to get user info from useAuth Context
   const { user } = useAuth();
+  
+
+  // to set state of user profile
+  const [userProfile, setUserProfile] = useState([]);
+  
+  // to set state of non-user profiles
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+
+  // to set array of match ids
+  const [matchesIds, setMatchesIds] = useState([]);
+
+  // to set array of match info objects
+  const [matchesDetails, setMatchesDetails] = useState([])
+
+  appData = {userProfile, filteredProfiles}
 
 
-  // TEMP DATA MANIPULATION:
+  // set state of profiles when user changes
+  useEffect(() => {
+    setUserProfile(getUserProfile(user));
+    setFilteredProfiles(filterProfiles(user));
+  },[user])
 
-  const userProfile = getUserProfile(user);
 
-  // filter profiles based on user id
-  filteredProfiles = filterProfiles(user);
- 
   const navigation = useNavigation();
   const swipeRef = useRef(null);
 
+
 // use to add to matches / passes tables
+
 const swipeLeft = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;
+  if (!filteredProfiles[cardIndex]) return;   // if no cards just return
 
   const userSwiped = filteredProfiles[cardIndex];
   console.log(`You swiped PASS on ${userSwiped.firstName}`)
 }
 
 const swipeRight = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;
+  if (!filteredProfiles[cardIndex]) return;  // if no cards just return
 
   const userSwiped = filteredProfiles[cardIndex];
   console.log(`You swiped MATCH on ${userSwiped.firstName}`)
   const swipedId = userSwiped.id
 
   if ((userSwiped.matches).includes(user)) {
-    usersMatchArray.push(swipedId)
+    
+    usersMatchArray.push(swipedId);
+    userMatchDetailsArray.push(userSwiped);
+    swipedUser.push(userSwiped);
+
+    setMatchesIds((prev) => ([...prev, swipedId]));
+    setMatchesDetails((prev) => ([...prev, userSwiped]));
+
     console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
+
     navigation.navigate("Match", {userProfile, userSwiped});
   }
   else {
@@ -61,12 +89,22 @@ const swipeRight = (cardIndex) => {
 }
 
 
-////////////////////////////////////////////////////////
-
   return (
     <SafeAreaView style={styles.flex}> 
+    
+      <View style={styles.navBar}>
+        <TouchableOpacity  onPress={() => navigation.navigate("Chat", {matchesDetails, matchesIds})}>
+          <FontAwesomeIcon icon={ faPaw } size={50} />
+        </TouchableOpacity>
 
-        <NavBar />
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <FontAwesomeIcon icon={ faDog } size={50}/>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("UserProfile", {userProfile})}>
+          <FontAwesomeIcon icon={ faUser } size={50}/>
+        </TouchableOpacity>
+      </View>
       
       <ImageBackground 
         source={require('../assets/bone-pattern.png')}
@@ -135,7 +173,7 @@ const swipeRight = (cardIndex) => {
 
                   <View style={styles.humanProfileBox} >
                     <Image source={{uri: card.human}} style={styles.avatar}/>
-                    <Text style={styles.humanProfile}>Human Profile</Text>
+                    <Text style={styles.humanProfile}>{card.humanName}</Text>
                     
                   </View>
     

@@ -6,6 +6,7 @@ const AuthContext = createContext({});
 // Change user value to null (not a string to 'logout'/get to login screen)
 
 export const AuthProvider = ( { children } ) => {
+  
   return (
     <AuthContext.Provider 
       value={{user: 6}}> 
