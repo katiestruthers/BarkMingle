@@ -14,7 +14,7 @@ const Uploading = ({image, progress}) => {
           />
         )}
         <Text>Uploading...</Text>
-        <ProgressBar progress={60} />
+        <ProgressBar progress={progress} />
         <View
           style={styles.divider}
         />

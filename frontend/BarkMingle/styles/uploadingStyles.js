@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     width: 250,
-    height: 100,
     alignItems: "center",
     paddingVertical: 16,
     rowGap: 12,
@@ -13,7 +12,7 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    resizeMode: "contain",
+    resizeMode: "cover",
     borderRadius: 6,
   },
   divider: {
