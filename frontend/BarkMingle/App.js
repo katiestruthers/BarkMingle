@@ -6,6 +6,7 @@ import { useFonts, Baloo2_400Regular, Baloo2_500Medium, Baloo2_600SemiBold, Balo
 import Axios from "axios";
 
 export default function App() {
+  // Sample connection
   Axios({
     method: "GET",
     url: "http://localhost:8080/api/data",

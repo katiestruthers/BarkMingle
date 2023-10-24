@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -14,12 +14,24 @@ import styles from "../styles/signUpStyles.js";
 import SignUpSvgBlob from "../svg-images/SignUpSvgBlob.js";
 import SignUpSvgComponent from "../svg-images/SignUpSvgComponent.js";
 import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent.js";
+import Axios from "axios";
 
 const SignIn = () => {
   const { user } = useAuth();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const onSubmit = () => {
+    Axios.post("http://localhost:8080/api/users/signup", {
+      email,
+      password,
+      passwordConfirmation: password
+    }).then(res => {
+      console.log(res.data.message);
+      navigation.navigate("CreateDogProfile");
+    }).catch(err => console.log(err));
+  }
 
   const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <View style={styles.upperContainer}>
@@ -40,6 +52,7 @@ const SignIn = () => {
         <View style={appStyles.inputView}>
           <TextInput
             style={appStyles.textInput}
+            onChangeText={(text)=>setEmail(text)}
           />
         </View>
 
@@ -47,12 +60,13 @@ const SignIn = () => {
         <View style={appStyles.inputView}>
           <TextInput
             style={appStyles.textInput}
+            onChangeText={(text)=>setPassword(text)}
             secureTextEntry={true}
           />
         </View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("CreateDogProfile")}
+          onPress={onSubmit}
           style={appStyles.blackButton}
         >
           <Text style={appStyles.textWhite}> Sign Up </Text>
