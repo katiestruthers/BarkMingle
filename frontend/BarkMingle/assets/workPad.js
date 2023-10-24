@@ -1,0 +1,1 @@
+<Image source={{uri: card.human}} style={styles.avatar}/>
