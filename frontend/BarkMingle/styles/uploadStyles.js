@@ -32,27 +32,41 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textHeaderBlack: {
-    color: '#1E1E1E',
+    color: "#1E1E1E",
     fontSize: 18,
-    fontFamily: 'Baloo2_800ExtraBold',
+    fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "flex-start",
     left: 30,
   },
   textPurple: {
-    color: '#6263AF',
-    fontFamily: 'Baloo2_600SemiBold',
+    color: "#6263AF",
+    fontFamily: "Baloo2_600SemiBold",
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
   },
   backgroundTop: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: -1,
     top: 0,
   },
   backgroundBottom: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: -1,
     bottom: -48,
+  },
+  imageIcon: {
+    justifyContent: "center",
+    color: "#6263AF",
+    alignItems: "center",
+    borderRadius: 25,
+  },
+  imageHolder: {
+    justifyContent: "center",
+    backgroundColor: "#D2D1F8",
+    alignItems: "center",
+    width: 100,
+    height: 100,
+    borderRadius: 25,
   },
 });
 

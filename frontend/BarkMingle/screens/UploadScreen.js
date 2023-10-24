@@ -1,15 +1,20 @@
-import { useNavigation } from '@react-navigation/core';
-import React from 'react';
-import { View, Text, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import appStyles from '../styles/appStyles.js';
-import styles from '../styles/uploadStyles.js';
-import useAuth from '../hooks/useAuth.js';
+import { useNavigation } from "@react-navigation/core";
+import React from "react";
+import {
+  View,
+  Text,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import appStyles from "../styles/appStyles.js";
+import styles from "../styles/uploadStyles.js";
+import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import { faImage, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import BonePatternSvg from "../svg-images/BonePatternSvg.js";
-import StatusBarSvg3 from '../svg-images/StatusBarSvg3.js';
-
+import StatusBarSvg3 from "../svg-images/StatusBarSvg3.js";
+import Uploading from "../components/Uploading.js";
 
 const UploadScreen = () => {
   const { user } = useAuth();
@@ -18,31 +23,46 @@ const UploadScreen = () => {
 
   return (
     <View style={styles.container}>
-    <BonePatternSvg style={styles.backgroundTop} />
-    <StatusBarSvg3 style={appStyles.statusBar} />
-    <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
-      <FontAwesomeIcon
-        icon={faArrowLeft}
-        size={50}
-        style={appStyles.backIconPurple}
-      />
-    </TouchableOpacity>
-    <View>
-      <Text style={appStyles.textHeaderPurple}>
-        Upload a photo of your dog
-      </Text>
-    </View>
+      <BonePatternSvg style={styles.backgroundTop} />
+      <StatusBarSvg3 style={appStyles.statusBar} />
+      <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
+        <FontAwesomeIcon
+          icon={faArrowLeft}
+          size={50}
+          style={appStyles.backIconPurple}
+        />
+      </TouchableOpacity>
+      <View>
+        <Text style={appStyles.textHeaderPurple}>
+          Upload a photo of your dog
+        </Text>
+      </View>
 
-    <TouchableOpacity onPress={() => navigation.navigate("CreateUserProfile")}>
+      <TouchableOpacity
+        // onPress={pickImage}
+        style={styles.imageHolder}
+      >
       <FontAwesomeIcon
-        icon={faArrowRight}
+        icon={faImage}
         size={50}
-        style={appStyles.forwardIconPurple}
+        style={styles.imageIcon}
       />
-    </TouchableOpacity>
-    <BonePatternSvg style={styles.backgroundBottom} />
-  </View>
-);
+      </TouchableOpacity>
+
+      <Uploading />
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("CreateUserProfile")}
+      >
+        <FontAwesomeIcon
+          icon={faArrowRight}
+          size={50}
+          style={appStyles.forwardIconPurple}
+        />
+      </TouchableOpacity>
+      <BonePatternSvg style={styles.backgroundBottom} />
+    </View>
+  );
 };
 
-export default UploadScreen
+export default UploadScreen;
