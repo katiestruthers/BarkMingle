@@ -1,5 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const verifyToken = require("../middlewares/verifyToken");
 const database = require("../db/connection");
 const router = express.Router();
 
@@ -31,16 +33,11 @@ router.post("/signup", (req, res) => {  // only /signup
 
       const user = result.rows[0];
       
+
       res.json({
         message: "User created successfully",
-        user: {
-          id: user.id,
-          email: email
-        },
       });
 
-      // Create a new session
-      req.session.user_id = user.id;
     }
   );
 });
@@ -72,16 +69,14 @@ router.post("/signin", (req, res) => {
     // Compare the provided password with the hashed password in the database
     if (bcrypt.compareSync(password, user.password)) {
       // Passwords match, user is authenticated
+      delete user.password;
+      const token = jwt.sign(user, process.env.JWT_SECRET);
+
       res.json({
         message: "Login successful",
-        user: {
-          id: user.id,
-          email: user.email,
-        },
+        token
       });
 
-      // Create a new session
-      req.session.user_id = user.id;
     } else {
       // Passwords don't match, authentication failed
       res.status(401).json({ error: "Authentication failed" });
@@ -92,12 +87,13 @@ router.post("/signin", (req, res) => {
 
 
 // Update user profile
-router.put("/:userId", (req, res) => {
-  const userId = req.params.userId;    // user's id captured from the url
+router.put("/:id", verifyToken, (req, res) => {
+  const userId = req.params.id;    // user's id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;
+  console.log('user', req.user_id, userId);
 
-  if (!userId) {
-    return res.status(401).json({ message: 'User is not logged in' });
+  if (Number(userId) !== req.user_id) {
+    return res.send("You're not the authourized to modify the user")
   }
 
   if (!first_name || !last_name) {
