@@ -17,6 +17,7 @@
     "@react-native-firebase/app": "^18.5.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.15",
+    "axios": "^1.5.1",
     "eas": "^0.1.0",
     "expo": "~49.0.13",
     "expo-dev-client": "~2.4.11",
