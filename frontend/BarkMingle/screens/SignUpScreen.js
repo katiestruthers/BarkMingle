@@ -18,6 +18,8 @@ import Axios from "axios";
 
 const SignIn = () => {
   const { user } = useAuth();
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const onSubmit = () => {
@@ -29,9 +31,8 @@ const SignIn = () => {
       console.log(res.data.message);
       navigation.navigate("CreateDogProfile");
     }).catch(err => console.log(err));
-  }
-
-  const navigation = useNavigation();
+  };
+  
   return (
     <View style={styles.container}>
       <View style={styles.upperContainer}>
