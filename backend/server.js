@@ -3,6 +3,7 @@ const Express = require('express');
 const session = require('express-session');
 const App = Express();
 const PORT = 8080;
+const cors = require('cors');
 
 
 // Express Configuration
@@ -13,6 +14,7 @@ App.use(session({
   resave: false,
   saveUninitialized: true
 }));
+App.use(cors());
 
 
 // Breakdown routes
