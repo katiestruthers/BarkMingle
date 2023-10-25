@@ -23,7 +23,7 @@ router.post("/signup", (req, res) => {  // only /signup
 
   // Insert the user into the database
   database.query(
-    "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id", // or * ?
+    "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *", // or * ?
     [email, hashedPassword],
     (error, result) => {
       if (error) {
@@ -32,10 +32,12 @@ router.post("/signup", (req, res) => {  // only /signup
       }
 
       const user = result.rows[0];
-      
+      delete user.password;
+      const token = jwt.sign(user, process.env.JWT_SECRET); // generate token
 
       res.json({
         message: "User created successfully",
+        token
       });
 
     }
@@ -90,9 +92,9 @@ router.post("/signin", (req, res) => {
 router.put("/:id", verifyToken, (req, res) => {
   const userId = req.params.id;    // user's id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;
-  console.log('user', req.user_id, userId);
+  console.log('user:', 'req.user_id(token id):', req.user_id, ', req.params.id:', userId);
 
-  if (Number(userId) !== req.user_id) {
+  if (Number(userId) !== req.user_id) { // checks the same user is logged in
     return res.send("You're not the authourized to modify the user")
   }
 
@@ -105,7 +107,7 @@ router.put("/:id", verifyToken, (req, res) => {
     UPDATE users
     SET first_name = $1, last_name = $2, bio = $3, profile_img = $4
     WHERE id = $5
-    RETURNING id, first_name, last_name, bio, profile_img, email
+    RETURNING *
   `;
 
   // Execute the query
@@ -120,10 +122,12 @@ router.put("/:id", verifyToken, (req, res) => {
     }
 
     const updatedUser = result.rows[0];
+    // delete updatedUser.password;
+    // const token = jwt.sign(updatedUser, process.env.JWT_SECRET);
 
     res.json({
       message: "User profile updated successfully",
-      user: updatedUser
+      // token // sending it to the front end
     });
   });
 });
