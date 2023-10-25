@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
@@ -14,10 +15,21 @@ import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
+
+import ChannelListScreen from './screens/ChannelListScreen';
+
 import { useChatClient } from './hooks/useChatClient';
 import { Text } from 'react-native';
 
-const Stack = createNativeStackNavigator();
+import { Chat } from 'stream-chat-expo';
+import { StreamChat } from 'stream-chat';
+import { chatApiKey } from './chatConfig';
+import ChannelScreen from './screens/ChannelScreen';
+
+const chatClient = StreamChat.getInstance(chatApiKey);
+
+
+const Stack = createStackNavigator();
 
 const StackNavigator = () => {
 
@@ -30,6 +42,7 @@ const StackNavigator = () => {
   }
 
   return (
+    <Chat client={chatClient}>
     <Stack.Navigator 
       screenOptions={{
         // To remove default header on every screen:
@@ -39,10 +52,19 @@ const StackNavigator = () => {
         <>
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
-            <Stack.Screen name="Chat" component={ChatScreen} />
-            <Stack.Screen name="Message" component={MessageScreen} />
             <Stack.Screen name="UserProfile" component={UserProfileScreen} />
           </Stack.Group>
+
+          <Stack.Group screenOptions={{headerShown: true}} >
+            <Stack.Screen name="Matches" component={ChannelListScreen} />
+            <Stack.Screen name="ChannelScreen" component={ChannelScreen} />
+          </Stack.Group>
+          
+          <Stack.Group>
+            <Stack.Screen name="Chat" component={ChatScreen} />
+            <Stack.Screen name="Message" component={MessageScreen} />
+          </Stack.Group>
+
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
             <Stack.Screen name="Match" component={MatchedScreen}/>
           </Stack.Group>
@@ -64,6 +86,7 @@ const StackNavigator = () => {
       )}
       
     </Stack.Navigator>
+    </Chat>
   )
 }
 

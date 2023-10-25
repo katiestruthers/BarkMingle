@@ -49,7 +49,7 @@ const MatchedScreen = () => {
           <TouchableOpacity 
             onPress={() => {
               navigation.goBack();
-              navigation.navigate("Chat", {userProfile, userSwiped, filteredProfiles});
+              navigation.navigate("Matches", {userProfile, userSwiped, filteredProfiles});
             }}>
             <Text style={styles.buttonText}>Send a message</Text>
           </TouchableOpacity>

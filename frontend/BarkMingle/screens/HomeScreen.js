@@ -93,7 +93,7 @@ const swipeRight = (cardIndex) => {
     <SafeAreaView style={styles.flex}> 
     
       <View style={styles.navBar}>
-        <TouchableOpacity  onPress={() => navigation.navigate("Chat", {matchesDetails, matchesIds})}>
+        <TouchableOpacity  onPress={() => navigation.navigate("Matches", {matchesDetails, matchesIds})}>
           <FontAwesomeIcon icon={ faPaw } size={50} />
         </TouchableOpacity>
 
