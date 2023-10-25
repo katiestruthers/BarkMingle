@@ -1,7 +1,10 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const verifyToken = require("../middlewares/verifyToken");
 const database = require("../db/connection");
 const router = express.Router();
+const selectHelpers = require("./helpers/select-helpers");
 
 // Create a new user(human)
 router.post("/signup", (req, res) => {  // only /signup
@@ -21,7 +24,7 @@ router.post("/signup", (req, res) => {  // only /signup
 
   // Insert the user into the database
   database.query(
-    "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id", // or * ?
+    "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *", // or * ?
     [email, hashedPassword],
     (error, result) => {
       if (error) {
@@ -30,22 +33,17 @@ router.post("/signup", (req, res) => {  // only /signup
       }
 
       const user = result.rows[0];
-      
+      delete user.password;
+      const token = jwt.sign(user, process.env.JWT_SECRET); // generate token
+
       res.json({
         message: "User created successfully",
-        user: {
-          id: user.id,
-          email: email
-        },
+        token
       });
 
-      // Create a new session
-      req.session.user_id = user.id;
     }
   );
 });
-
-
 
 // Signin route
 router.post("/signin", (req, res) => {
@@ -72,16 +70,14 @@ router.post("/signin", (req, res) => {
     // Compare the provided password with the hashed password in the database
     if (bcrypt.compareSync(password, user.password)) {
       // Passwords match, user is authenticated
+      delete user.password;
+      const token = jwt.sign(user, process.env.JWT_SECRET);
+
       res.json({
         message: "Login successful",
-        user: {
-          id: user.id,
-          email: user.email,
-        },
+        token
       });
 
-      // Create a new session
-      req.session.user_id = user.id;
     } else {
       // Passwords don't match, authentication failed
       res.status(401).json({ error: "Authentication failed" });
@@ -89,15 +85,29 @@ router.post("/signin", (req, res) => {
   });
 });
 
+// Get logged-in user profile info from database
+router.get("/:id", (req, res) => {
+  const userId = req.params.id;    // user's id captured from the url
 
+  selectHelpers
+    .getUserDetails(userId)
+    .then(items => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
 
-// Update user profile
-router.put("/:userId", (req, res) => {
-  const userId = req.params.userId;    // user's id captured from the url
+// Update logged-in user profile
+router.put("/:id", verifyToken, (req, res) => {
+  const userId = req.params.id;    // user's id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;
+  console.log('user:', 'req.user_id(token id):', req.user_id, ', req.params.id:', userId);
 
-  if (!userId) {
-    return res.status(401).json({ message: 'User is not logged in' });
+  if (Number(userId) !== req.user_id) { // checks the same user is logged in
+    return res.send("You're not the authourized to modify the user")
   }
 
   if (!first_name || !last_name) {
@@ -109,7 +119,7 @@ router.put("/:userId", (req, res) => {
     UPDATE users
     SET first_name = $1, last_name = $2, bio = $3, profile_img = $4
     WHERE id = $5
-    RETURNING id, first_name, last_name, bio, profile_img, email
+    RETURNING *
   `;
 
   // Execute the query
@@ -124,10 +134,12 @@ router.put("/:userId", (req, res) => {
     }
 
     const updatedUser = result.rows[0];
+    // delete updatedUser.password;
+    // const token = jwt.sign(updatedUser, process.env.JWT_SECRET);
 
     res.json({
       message: "User profile updated successfully",
-      user: updatedUser
+      // token // sending it to the front end
     });
   });
 });

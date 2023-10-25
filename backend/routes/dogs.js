@@ -1,13 +1,21 @@
 const express = require("express");
 const database = require("../db/connection");
+const verifyToken = require("../middlewares/verifyToken");
 const router = express.Router();
+const selectHelpers = require("./helpers/select-helpers");
 
-// Create a new dog and associate it with a user
-router.post("/:userId/signup", (req, res) => {
+// Create a new dog and associate it with a logged in user => user id/signup
+router.post("/:id/signup", verifyToken, (req, res) => {
   const { name, breeds, gender, age, size, is_neutered } = req.body;
-  const user_id = req.params.userId;
+  const userId = req.params.id;
+  const loggedInUserId = req.user_id;
+  console.log('user:', 'req.user_id(token id):', req.user_id, ', req.params.id:', userId);
+  
+  if (Number(userId) !== loggedInUserId) {
+    return res.status(403).json({ error: "You're not authorized to modify the user" });
+  }
 
-  if (!name || !breeds || !gender || !age || !size || !is_neutered || !user_id) {
+  if (!name || !breeds || !gender || !age || !size || !is_neutered || !userId) {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
@@ -36,7 +44,7 @@ router.post("/:userId/signup", (req, res) => {
           // Insert the dog into the dogs table
           database.query(
             "INSERT INTO dogs (name, gender, age, size, is_neutered, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
-            [name, gender, age, size, is_neutered, user_id],
+            [name, gender, age, size, is_neutered, userId],
             (error, result) => {
               if (error) {
                 console.error("Error creating dog:", error);
@@ -70,7 +78,7 @@ router.post("/:userId/signup", (req, res) => {
       // If the breed exists, insert the dog into the dogs table
       database.query(
         "INSERT INTO dogs (name, gender, age, size, is_neutered, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
-        [name, gender, age, size, is_neutered, user_id],
+        [name, gender, age, size, is_neutered, userId],
         (error, result) => {
           if (error) {
             console.error("Error creating dog:", error);
@@ -101,11 +109,23 @@ router.post("/:userId/signup", (req, res) => {
   });
 });
 
+// Get list of all traits from database
+router.get("/traits", (req, res) => {
+  selectHelpers
+    .getAllTraits(req.query)
+    .then(items => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
 
-// Add traits to a dog's profile
-router.put("/:dogId/traits", (req, res) => {
+// Add traits to a dog's profile => dog id/traits
+router.post("/:id/traits", verifyToken, (req, res) => {
   const { traits } = req.body; // Assuming traits is an array of trait IDs
-  const dogId = req.params.dogId;
+  const dogId = req.params.id;
 
   if (!traits || !dogId) {
     return res.status(400).json({ error: "Please provide the required information" });
@@ -137,7 +157,7 @@ router.put("/:dogId/traits", (req, res) => {
       .then(() => {
         res.json({
           message: "Traits added successfully to the dog's profile",
-          dogId: dogId,
+          dogId
         });
       })
       .catch((error) => {

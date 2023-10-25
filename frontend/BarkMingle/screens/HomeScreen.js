@@ -11,45 +11,76 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import Swiper from "react-native-deck-swiper";
-import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js"
+import {dogProfiles, getUserProfile, filterProfiles } from "../dummyData/dummyData.js"
 import useAuth from '../hooks/useAuth.js';
+import NavBar from '../components/NavBar.js';
 
 
-export const qtMatches = [];
+export const usersMatchArray = [];
+export const userMatchDetailsArray = [];
+export const swipedUser = [];
+
+export let appData = {};
 
 const HomeScreen = () => {
 
+  // to get user info from useAuth Context
   const { user } = useAuth();
+  
+
+  // to set state of user profile
+  const [userProfile, setUserProfile] = useState([]);
+  
+  // to set state of non-user profiles
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+
+  // to set array of match ids
+  const [matchesIds, setMatchesIds] = useState([]);
+
+  // to set array of match info objects
+  const [matchesDetails, setMatchesDetails] = useState([])
+
+  appData = {userProfile, filteredProfiles}
 
 
-  // TEMP DATA MANIPULATION:
+  // set state of profiles when user changes
+  useEffect(() => {
+    setUserProfile(getUserProfile(user));
+    setFilteredProfiles(filterProfiles(user));
+  },[user])
 
-  const userProfile = getUserProfile(user);
 
-  // filter profiles based on user id
-  const filteredProfiles = dogProfiles.filter((profile) => profile.id !== user);
- 
   const navigation = useNavigation();
   const swipeRef = useRef(null);
 
+
 // use to add to matches / passes tables
+
 const swipeLeft = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;
+  if (!filteredProfiles[cardIndex]) return;   // if no cards just return
 
   const userSwiped = filteredProfiles[cardIndex];
   console.log(`You swiped PASS on ${userSwiped.firstName}`)
 }
 
 const swipeRight = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;
+  if (!filteredProfiles[cardIndex]) return;  // if no cards just return
 
   const userSwiped = filteredProfiles[cardIndex];
   console.log(`You swiped MATCH on ${userSwiped.firstName}`)
   const swipedId = userSwiped.id
 
   if ((userSwiped.matches).includes(user)) {
-    qtMatches.push(swipedId)
+    
+    usersMatchArray.push(swipedId);
+    userMatchDetailsArray.push(userSwiped);
+    swipedUser.push(userSwiped);
+
+    setMatchesIds((prev) => ([...prev, swipedId]));
+    setMatchesDetails((prev) => ([...prev, userSwiped]));
+
     console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
+
     navigation.navigate("Match", {userProfile, userSwiped});
   }
   else {
@@ -57,13 +88,12 @@ const swipeRight = (cardIndex) => {
   }
 }
 
-////////////////////////////////////////////////////////
 
   return (
     <SafeAreaView style={styles.flex}> 
-      
+    
       <View style={styles.navBar}>
-        <TouchableOpacity  onPress={() => navigation.navigate("Chat")}>
+        <TouchableOpacity  onPress={() => navigation.navigate("Chat", {matchesDetails, matchesIds})}>
           <FontAwesomeIcon icon={ faPaw } size={50} />
         </TouchableOpacity>
 
@@ -71,14 +101,15 @@ const swipeRight = (cardIndex) => {
           <FontAwesomeIcon icon={ faDog } size={50}/>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
+        <TouchableOpacity onPress={() => navigation.navigate("UserProfile", {userProfile})}>
           <FontAwesomeIcon icon={ faUser } size={50}/>
         </TouchableOpacity>
       </View>
-
+      
       <ImageBackground 
-        source={require('../assets/pale.jpg')}
-        style={styles.background2}>
+        source={require('../assets/bone-pattern.png')}
+        style={styles.background2}
+        imageStyle={{opacity: 0.3}}>
 
         <View style={styles.flex}>
 
@@ -128,7 +159,7 @@ const swipeRight = (cardIndex) => {
                     source={{ uri: card.avatar }}>
                       
                       <View style={styles.spread}>
-                        <TouchableOpacity onPress={() => navigation.navigate("SwipedProfile", {card})} >
+                        <TouchableOpacity onPress={() => navigation.navigate("SwipedProfile", {profile: card})} >
                           <FontAwesomeIcon icon={faCircleInfo} style={{color: "rgba(52, 52, 52, 0.9)",}} size={35} />
                         </TouchableOpacity>
                       </View>
@@ -139,10 +170,13 @@ const swipeRight = (cardIndex) => {
                     </View>
 
                   </ImageBackground>
-             
-               
 
-                
+                  <View style={styles.humanProfileBox} >
+                    <Image source={{uri: card.human}} style={styles.avatar}/>
+                    <Text style={styles.humanProfile}>{card.humanName}</Text>
+                    
+                  </View>
+    
               </View> ) : (
                 <View>
                 </View>

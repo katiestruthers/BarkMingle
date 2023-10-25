@@ -9,25 +9,25 @@ const styles = StyleSheet.create({
     width: '100%', 
     height: '100%',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignContent: "center",
+    backgroundColor: "#ffffff"
   },
   nameText: {
     fontSize: 30,
-    fontWeight: 400,
+    fontWeight: "400",
     padding: 20,
-    color: "#ffffff",
+    color: "#000000",
   },
   textBox: {
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 50,
   },
   avatar: {
-    width: 300, 
-    height: 300, 
+    width: 350, 
+    height: "80%", // not showing on web with %
+    height: 400, 
     borderRadius: 10,
-    marginBottom: 50,
   },
   button: {
     backgroundColor: "#c7b6f0",
@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
   spread: {
     padding: 10,
     margin: 10,
-    marginBottom: 90,
+    marginBottom: 10,
     alignSelf: "flex-end"
   },
   bio: {
-    color: "#ffffff",
+    color: "#000000",
   }
 
 });

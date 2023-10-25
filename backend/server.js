@@ -1,18 +1,19 @@
 require('dotenv').config(); // load .env data into process.env
 const Express = require('express');
-const session = require('express-session');
 const App = Express();
 const PORT = 8080;
+const cors = require('cors');
 
 
 // Express Configuration
 App.use(Express.urlencoded({ extended: false }));
 App.use(Express.json()); 
-App.use(session({
-  secret: 'barkmingle', 
-  resave: false,
-  saveUninitialized: true
-}));
+// App.use(session({
+//   secret: 'barkmingle', 
+//   resave: false,
+//   saveUninitialized: true
+// }));
+App.use(cors());
 
 
 // Breakdown routes

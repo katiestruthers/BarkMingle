@@ -13,6 +13,7 @@ import TraitsScreen from './screens/TraitsScreen';
 import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
+import MessageScreen from './screens/MessageScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,12 +32,13 @@ const StackNavigator = () => {
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
             <Stack.Screen name="Chat" component={ChatScreen} />
+            <Stack.Screen name="Message" component={MessageScreen} />
             <Stack.Screen name="UserProfile" component={UserProfileScreen} />
           </Stack.Group>
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
             <Stack.Screen name="Match" component={MatchedScreen}/>
           </Stack.Group>
-          <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
+          <Stack.Group screenOptions={{ presentation: "modal"}}>
             <Stack.Screen name="SwipedProfile" component={SwipedProfileScreen}/>
           </Stack.Group>
       </> ) : 

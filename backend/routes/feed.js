@@ -2,8 +2,24 @@ const express = require("express");
 const { addNewSwipe, addNewMatch } = require("./helpers/insert-helpers");
 const { getSwipesReceivedForUser } = require("./helpers/select-helpers");
 const router = express.Router();
+const selectHelpers = require("./helpers/select-helpers");
 
-router.post("/dog/:id", (req, res) => {
+// Get all swipeable dogs from database
+router.get("/dogs/:id", (req, res) => {
+  const userId = req.params.id;
+  selectHelpers
+    .getAllSwipeableDogs(userId)
+    .then(items => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
+
+// Swipe left or right, updating the swipes table & creating a new match with two mutual likes
+router.post("/dogs/:id", (req, res) => {
   const swipedUserId = req.params.id;
   const loggedInUserId = req.session.user_id;
   const is_liked = req.body.is_liked;
