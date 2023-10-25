@@ -43,7 +43,7 @@ const appStyles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'Baloo2_800ExtraBold',
     left: 30,
-    paddingEnd: 40,
+    paddingEnd: 50,
   },
   textHeaderBlack: {
     color: '#1E1E1E',

@@ -7,11 +7,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#FFFCF6",
   },
-  textContainer: {
+  contentContainer: {
     alignItems: "center",
     justifyContent: "flex-start",
+    height: '60%',
     width: "100%",
-    paddingTop: 35,
+    paddingTop: 5,
   },
   inputView: {
     backgroundColor: "#D2D1F8",
@@ -60,21 +61,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 25,
   },
-  imageHolder: {
+  imageIconHolder: {
     justifyContent: "center",
     backgroundColor: "#D2D1F8",
     alignItems: "center",
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: 25,
+    marginBottom: 40,
   },
   flatlist: {
     width: '34%',
     height: '80%',
   },
   image: {
-    width: '34%',
-    height: 100,
+    width: "95%",
+    height: "95%",
+    borderRadius: 10,
+  },
+  imageContainer: {
+    backgroundColor: '#D2D1F8',
+    width: "85%",
+    height: "80%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
   }
 });
 

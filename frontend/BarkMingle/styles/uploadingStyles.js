@@ -2,29 +2,25 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: 250,
+    width: 200,
+    height: 80,
     alignItems: "center",
-    paddingVertical: 16,
+    paddingVertical: 15,
+    marginBottom: 40,
     rowGap: 12,
     backgroundColor: "#D2D1F8",
     borderRadius: 6,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
     resizeMode: "cover",
     borderRadius: 6,
   },
-  divider: {
-    height: 1,
-    borderWidth: StyleSheet.hairlineWidth,
-    width: "100%",
-    borderColor: "#00000020",
-  },
-  cancelText: {
-    fontWeight: "500",
-    color: "#3478F6",
-    fontSize: 17,
+  text: {
+    color: "#1E1E1E",
+    fontSize: 13,
+    fontFamily: "Baloo2_500Medium",
     alignSelf: "center",
   },
 });

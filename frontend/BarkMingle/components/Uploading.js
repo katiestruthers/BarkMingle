@@ -1,26 +1,15 @@
-import { Image, Text, View, TouchableOpacity} from "react-native";
+import { Text, View } from "react-native";
 import ProgressBar from "./ProgressBar";
 import styles from "../styles/uploadingStyles";
 
-const Uploading = ({image, progress}) => {
+const Uploading = ({ progress}) => {
   return (
       <View 
         style={styles.container}
       >
-        {image && (
-          <Image 
-            source={{ uri: image }}
-            style={styles.image}
-          />
-        )}
-        <Text>Uploading...</Text>
+        <Text style={styles.text}>Uploading . . .</Text>
         <ProgressBar progress={progress} />
-        <View
-          style={styles.divider}
-        />
-          <TouchableOpacity>
-            <Text style={styles.cancelText}>Cancel</Text>
-          </TouchableOpacity>
+
       </View>
   )
 }

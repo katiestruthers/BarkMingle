@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/uploadStyles.js";
@@ -16,17 +16,11 @@ import Uploading from "../components/Uploading.js";
 import useFileUpload from "../hooks/useFileUpload.js";
 
 const UploadScreen = () => {
-
   const { user } = useAuth();
 
   const navigation = useNavigation();
 
-  const {
-    pickImage,
-    image,
-    progress,
-    files
-  } = useFileUpload();
+  const { pickImage, image, progress, files } = useFileUpload();
 
   return (
     <View style={styles.container}>
@@ -45,31 +39,34 @@ const UploadScreen = () => {
         </Text>
       </View>
 
-      {image ? (
-        <Uploading image={image} progress={progress} />
-      ) : (
-      <TouchableOpacity onPress={pickImage} style={styles.imageHolder}>
-        <FontAwesomeIcon icon={faImage} size={50} style={styles.imageIcon} />
-      </TouchableOpacity>
-      )}
-      
-    <View style={styles.textContainer}>
-      <FlatList
-        data={files}
-        keyExtractor={(item) => item.url}
-        renderItem={({ item }) => {
-          return (
+      <View style={styles.contentContainer}>
+        <View>
+          {image ? (
+            <Uploading image={image} progress={progress} />
+          ) : (
+            <TouchableOpacity
+              onPress={pickImage}
+              style={styles.imageIconHolder}
+            >
+              <FontAwesomeIcon
+                icon={faImage}
+                size={30}
+                style={styles.imageIcon}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+
+        <View style={styles.imageContainer}>
+          {files.map((item) => (
             <Image
+              key={item.url}
               source={{ uri: item.url }}
-              style={{ width: 200, height: 200 }}
+              style={styles.image}
             />
-          );
-        }}
-        numColumns={3}
-        contentContainerStyle={{ gap: 2 }}
-        columnWrapperStyle={{ gap: 2 }}
-      />
-    </View>
+          ))}
+        </View>
+      </View>
 
       <TouchableOpacity
         onPress={() => navigation.navigate("CreateUserProfile")}
