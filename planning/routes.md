@@ -4,38 +4,35 @@
 ```js
 App.use("/api/users", userRoutes); // api for users routes
 App.use("/api/dogs", dogRoutes); // api for dogs routes
-App.use("api/feed", feedRoutes); // api for feed routes
+App.use("/api/feed", feedRoutes); // api for feed routes
+App.use("/api/matches", matchRoutes); // api for match routes
 ```
 
 
 ```
-Method   | Path               | Purpose
+Method   | Path                        | Action 
 
 ======================================================================
-GET      | /                  | Display home screen 
+POST     | /api/users/signin           | Click "Sign In", logging into an existing account
 
-GET      | /signin            | Display login form
-POST     | /signin            | Click "Sign In", logging into an existing account
+POST     | /api/users/signup           | Click "Sign Up", creating a new user 
 
-GET      | /signup            | Display account registration screen
-POST     | /signup            | Click "Sign Up", creating a new user 
+POST     | /api/dogs/:id/signup        | Click arrow, creating a new dog
 
-GET      | /:id/signup        | Display dog profile screen
-POST     | /:id/signup        | Click arrow, creating a new dog
+GET      | /api/dogs/:id/traits        | Get list of all traits from db
+PUT      | /api/dogs/:id/traits        | Click arrow, assigning 3 traits to dog
 
-GET      | /:id/traits        | Display traits screen
-PUT      | /:id/traits        | Click arrow, assigning 3 traits to dog
+PUT      | /dogs/images                | Click arrow, uploading 1 image of dog
 
-GET      | /dogs/images       | Display dog images uploading screen
-PUT      | /dogs/images       | Click arrow, uploading 1-6 images of dog
+GET      | /api/users/:id              | Get logged-in user profile info from db
+PUT      | /api/users/:id              | Click arrow, updating user account details
 
-GET      | /:id               | Display user profile screen
-PUT      | /:id               | Click arrow, updating user account details
+GET      | /api/feed/dog/:id           | Get swipeable dog info from db
+POST     | /api/feed/dog/:id           | Swipe left or right, updating the swipes table 
 
-GET      | /feed/dog/:id      | Display dog on feed
-POST     | /feed/dog/:id      | Swipe left or right, updating the swipes table and updating matches table automatically with two mutual likes
+POST     | /api/feed/match/:id         | Create new match automatically with two mutual likes from swipes table
 
-GET      | /feed/match/:id    | Display new match screen
+GET      | /api/matches/               | Get list of matches for logged-in user from db
 
 Stretch (if we do more than one image per dog):
 GET      | /dogs/images       | Display dog images uploading screen
