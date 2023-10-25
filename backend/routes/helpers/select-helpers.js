@@ -1,5 +1,21 @@
 const db = require('../../db/connection.js');
 
+const getAllTraits = function() {
+  const queryString = `SELECT * FROM traits;`;
+
+return db
+  .query(queryString)
+  .then(data => {
+    if (!data.rows.length) {
+      return null;
+    }
+    return data.rows;
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+};
+
 const getAllSwipeableDogs = function(userId) {
   const queryString = `
     SELECT DISTINCT
@@ -70,6 +86,7 @@ const getSwipesReceivedForUser = function(userId) {
 };
 
 module.exports = {
+  getAllTraits,
   getAllSwipeableDogs,
   getSwipesReceivedForUser
 };

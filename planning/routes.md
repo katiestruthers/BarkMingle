@@ -19,7 +19,7 @@ POST     | /api/users/signup           | Click "Sign Up", creating a new user
 
 POST     | /api/dogs/:id/signup        | Click arrow, creating a new dog
 
-GET      | /api/dogs/:id/traits        | Get list of all traits from db
+GET      | /api/dogs/traits            | Get list of all traits from db
 PUT      | /api/dogs/:id/traits        | Click arrow, assigning 3 traits to dog
 
 PUT      | /dogs/images                | Click arrow, uploading 1 image of dog
