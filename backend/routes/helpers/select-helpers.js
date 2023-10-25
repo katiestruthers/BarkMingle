@@ -1,5 +1,6 @@
 const db = require('../../db/connection.js');
 
+// Get all traits
 const getAllTraits = function() {
   const queryString = `SELECT * FROM traits;`;
 
@@ -16,6 +17,33 @@ const getAllTraits = function() {
     });
 };
 
+// Get traits for specific dog
+const getTraitsForDog = function(dogId) {
+  const queryString = `
+    SELECT traits.name AS trait
+    FROM dogs
+    JOIN dogs_traits
+    ON dogs.id = dogs_traits.dog_id
+    JOIN traits
+    ON dogs_traits.trait_id = traits.id
+    WHERE dogs.id = $1;
+  `;
+  const queryParams = [dogId];
+
+  return db
+    .query(queryString, queryParams)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+// Get user PROFILE details (not account details)
 const getUserDetails = function(userId) {
   const queryString = `
     SELECT first_name, last_name, bio
@@ -37,9 +65,29 @@ const getUserDetails = function(userId) {
     });
 };
 
+// Helper function for getAllSwipeableDogs
+const combineTraitsForDogs = function(dogs) {
+  const promises = [];
+
+  dogs.map((dog) => {
+    let promise = getTraitsForDog(dog.dog_id)
+      .then((traits) => {
+        for (let i = 0; i < traits.length; i++) {
+          dog[`trait_${i + 1}`] = traits[i].trait;
+        }
+        return dog;
+      });
+    promises.push(promise);
+  });
+
+  return Promise.all(promises);
+};
+
+// Get all dogs that can appear on a user's fed
 const getAllSwipeableDogs = function(userId) {
   const queryString = `
     SELECT DISTINCT
+      dogs.id AS dog_id,
       dogs.name AS dog_name,
       dogs.age AS dog_age, 
       dogs.is_neutered, 
@@ -74,13 +122,15 @@ const getAllSwipeableDogs = function(userId) {
       if (!data.rows.length) {
         return null;
       }
-      return data.rows;
+      const dogs = data.rows;
+      return combineTraitsForDogs(dogs);
     })
     .catch((err) => {
       console.error(err);
     });
 };
 
+// Get swipes received for user from other users to facilitate matching
 const getSwipesReceivedForUser = function(userId) {
   const queryString = `
     SELECT DISTINCT swipes.swiped_by_user_id
@@ -108,6 +158,7 @@ const getSwipesReceivedForUser = function(userId) {
 
 module.exports = {
   getAllTraits,
+  getTraitsForDog,
   getUserDetails,
   getAllSwipeableDogs,
   getSwipesReceivedForUser
