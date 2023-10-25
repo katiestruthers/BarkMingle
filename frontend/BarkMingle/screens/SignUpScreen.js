@@ -17,8 +17,13 @@ import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent
 import Axios from "axios";
 
 const SignIn = () => {
-  const { user } = useAuth();
+  const { token, setToken } = useAuth();
+  console.log(token);
   const navigation = useNavigation();
+
+  const headers = {
+    authorization: `Bearer ${token}`,   // Make sure you add this!!! 
+  };
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,7 +32,9 @@ const SignIn = () => {
       email,
       password,
       passwordConfirmation: password
-    }).then(res => {
+    }, { headers }).then(res => {
+      setToken(res.data.token);
+      console.log('res.data.token', res.data.token);
       console.log(res.data.message);
       navigation.navigate("CreateDogProfile");
     }).catch(err => console.log(err));

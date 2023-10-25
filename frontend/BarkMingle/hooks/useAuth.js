@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext({});
 
@@ -6,9 +6,10 @@ const AuthContext = createContext({});
 // Change user value to null (not a string to 'logout'/get to login screen)
 
 export const AuthProvider = ( { children } ) => {
+  const [token, setToken] = useState('');
   return (
     <AuthContext.Provider 
-      value={{user: 6}}> 
+      value={{token, setToken}}> 
       { children }
     </AuthContext.Provider>
   );

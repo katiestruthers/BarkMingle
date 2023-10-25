@@ -17,8 +17,8 @@ import BonePatternSvg from "../svg-images/BonePatternSvg.js";
 import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 
 const CreateDogProfileScreen = () => {
-  const { user } = useAuth();
-
+  const { token, setToken } = useAuth();
+  console.log('CreateDogProfileToken: ', token);
   const navigation = useNavigation();
 
   return (
