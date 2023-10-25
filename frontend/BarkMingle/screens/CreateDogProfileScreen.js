@@ -8,10 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import appStyles from "../styles/appStyles.js";
+import styles from "../styles/createDogProfileStyles.js";
 import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 
 const CreateDogProfileScreen = () => {
   const { user } = useAuth();
@@ -19,80 +22,81 @@ const CreateDogProfileScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={appStyles.container}>
-      <ImageBackground
-        source={require("../assets/purple.jpg")}
-        style={appStyles.background}
-      >
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            size={50}
-            style={appStyles.backIcon}
-          />
-        </TouchableOpacity>
-        <View style={appStyles.inputView}>
+    <View style={styles.container}>
+      <BonePatternSvg style={styles.backgroundTop} />
+      <StatusBarSvg1 style={appStyles.statusBar} />
+      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <FontAwesomeIcon
+          icon={faArrowLeft}
+          size={50}
+          style={appStyles.backIconPurple}
+        />
+      </TouchableOpacity>
+      <View>
+        <Text style={appStyles.textHeaderPurple}>
+          Let's get a profile started for your dog
+        </Text>
+      </View>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.textHeaderBlack}>Dog Name *</Text>
+        <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Dog Name"
-            placeholderTextColor="#003f5c"
           />
         </View>
 
-        <View style={appStyles.inputView}>
+        <Text style={styles.textHeaderBlack}>Breed * </Text>
+        <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Breed"
-            placeholderTextColor="#003f5c"
             secureTextEntry={true}
           />
         </View>
 
-        <View style={appStyles.inputView}>
+        <Text style={styles.textHeaderBlack}>Gender * </Text>
+        <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Gender"
-            placeholderTextColor="#003f5c"
             secureTextEntry={true}
           />
         </View>
 
-        <View style={appStyles.inputView}>
+        <Text style={styles.textHeaderBlack}>Age * </Text>
+        <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Age"
-            placeholderTextColor="#003f5c"
             secureTextEntry={true}
           />
         </View>
 
-        <View style={appStyles.inputView}>
+        <Text style={styles.textHeaderBlack}>Size * </Text>
+        <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            placeholder="Size"
-            placeholderTextColor="#003f5c"
             secureTextEntry={true}
           />
         </View>
 
-        <View style={appStyles.inputView}>
-          <TextInput
-            style={appStyles.textInput}
-            placeholder="Fixed Status"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-          />
+        <Text style={styles.textHeaderBlack}>Spayed / Neutered? * </Text>
+        <View style={appStyles.buttonContainer}>
+          <TouchableOpacity style={appStyles.button}>
+            <Text style={appStyles.textBlackButton}>Yes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={appStyles.button}>
+            <Text style={appStyles.textBlackButton}>No</Text>
+          </TouchableOpacity>
         </View>
+      </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
-          <FontAwesomeIcon
-            icon={faArrowRight}
-            size={50}
-            style={appStyles.forwardIcon}
-          />
-        </TouchableOpacity>
-
-      </ImageBackground>
+      <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
+        <FontAwesomeIcon
+          icon={faArrowRight}
+          size={50}
+          style={appStyles.forwardIconPurple}
+        />
+      </TouchableOpacity>
+      <BonePatternSvg style={styles.backgroundBottom} />
     </View>
   );
 };

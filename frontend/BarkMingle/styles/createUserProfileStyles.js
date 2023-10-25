@@ -5,43 +5,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6263AF",
-  },
-  upperContainer: {
-    flex: 2.5,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#6263AF",
-    width: "100%",
+    backgroundColor: "#FFFCF6",
   },
   textContainer: {
-    flex: 2,
-    borderRadius: 40,
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "#FFFCF6",
     width: "100%",
     paddingTop: 35,
   },
-  image: {
-    position: "absolute",
-    bottom: 30,
-    right:   0,
-    width: 270,
-    zIndex: -1,
-    overflow: 'visible'
+  inputView: {
+    backgroundColor: "#D2D1F8",
+    borderRadius: 30,
+    width: "85%",
+    height: 40,
+    marginBottom: 5,
+    marginTop: 5,
+    alignItems: "center",
   },
-  blob: {
-    position: "absolute",
-    bottom: 80,
-    zIndex: -2,
-  },
-  textHeadingWhite: {
-    color: '#FFFCF6',
-    fontSize: 30,
-    fontFamily: 'Baloo2_800ExtraBold',
-    left: -100,
-    top: -40,
+  inputViewBio: {
+    backgroundColor: "#D2D1F8",
+    borderRadius: 30,
+    width: "85%",
+    height: 150,
+    marginBottom: 5,
+    marginTop: 5,
+    alignItems: "center",
   },
   textHeaderBlack: {
     color: '#1E1E1E',
@@ -56,9 +44,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-  background: {
+  backgroundTop: {
     position: 'absolute',
     zIndex: -1,
+    top: 0,
+  },
+  backgroundBottom: {
+    position: 'absolute',
+    zIndex: -1,
+    bottom: -48,
   },
 });
 

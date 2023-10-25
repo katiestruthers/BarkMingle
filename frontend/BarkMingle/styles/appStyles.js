@@ -38,22 +38,60 @@ const appStyles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'Baloo2_800ExtraBold',
   },
+  textHeaderPurple: {
+    color: '#6263AF',
+    fontSize: 30,
+    fontFamily: 'Baloo2_800ExtraBold',
+    left: 30,
+    paddingEnd: 40,
+  },
+  textHeaderBlack: {
+    color: '#1E1E1E',
+    fontSize: 30,
+    fontFamily: 'Baloo2_800ExtraBold',
+    left: 30,
+    paddingEnd: 50,
+  },
   textLogoBlack: {
     color: '#1E1E1E',
     fontSize: 30,
     fontFamily: 'Baloo2_800ExtraBold',
   },
-  backIcon: {
+  textBlackButton: {
+    color: '#1E1E1E',
+    fontSize: 18,
+    fontFamily: 'Baloo2_800ExtraBold',
+    alignSelf: "center",
+  },
+  textWhiteButton: {
+    color: '#FFFCF6',
+    fontSize: 18,
+    fontFamily: 'Baloo2_800ExtraBold',
+    alignSelf: "center",
+  },
+  backIconWhite: {
     color: '#FFFCF6',
     position: 'absolute',
-    top: -130,
+    top: -120,
     right: 120,
   },
-  forwardIcon: {
+  forwardIconWhite: {
     color: '#FFFCF6',
     position: 'absolute',
     bottom: -100,
     right: -150,
+  },
+  backIconPurple: {
+    color: '#6263AF',
+    position: 'absolute',
+    top: -80,
+    right: 120,
+  },
+  forwardIconPurple: {
+    color: '#6263AF',
+    position: 'absolute',
+    bottom: -90,
+    right: -160,
   },
   inputView: {
     backgroundColor: "#D2D1F8",
@@ -70,11 +108,29 @@ const appStyles = StyleSheet.create({
     width: "85%",
     height: 45,
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: 'center',
-}, 
-
+  },
+  statusBar: {
+    position: 'absolute',
+    top: 60,
+  },
+  button: {
+    flex: 1,
+    margin: 10,
+    width: "50%",
+    backgroundColor: "#D2D1F8",
+    borderRadius: 30,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    paddingEnd: 20,
+    paddingStart: 20,
+  },
 })
 
 export default appStyles;

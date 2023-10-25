@@ -6,14 +6,20 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 75,
     paddingBottom: 10,
-    backgroundColor: "#6a63c9",
+    backgroundColor: "#D2D1F8",
     flexDirection: "row",
     alignContent: "center",
     alignItems: "flex-end",
     justifyContent: "space-evenly",
   },
+
   flex: {
     flex: 1,
+    width: '100%', 
+    height: '100%',
+    alignItems: "center",
+    justifyContent: "space-between",
+
   },
   background2: {
     width: '100%', 
@@ -25,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     backgroundColor: "#ffffff",
-    height: "75%",
+    height: "65%",
     width: "90%",
     shadowColor: "#000",
     shadowOffset: {
@@ -65,14 +71,26 @@ const styles = StyleSheet.create({
   spread: {
     padding: 10,
     alignSelf: "flex-end"
-
-
   },
-  noProfiles: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: "center",
+  humanProfileBox: {
+    marginVertical: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: 10,
+    backgroundColor: 'rgb(252, 252, 252)',
+    borderRadius: 30,
+    width: "100%",
+  },
+  humanProfile: {
+    textAlign: "center",
+  },
+  avatar: {
+    width: 70, 
+    height: 70, 
+    borderRadius: 400/ 2,
+    marginRight: 10,
+    marginLeft: 5,
   },
 
 

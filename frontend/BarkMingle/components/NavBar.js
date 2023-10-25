@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faDog } from '@fortawesome/free-solid-svg-icons/faDog';
 import { faPaw } from '@fortawesome/free-solid-svg-icons/faPaw';
+import styles from "../styles/navBarStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 const NavBar = () => {
@@ -12,7 +14,7 @@ const NavBar = () => {
   const navigation = useNavigation();
 
   return (
-    <>
+    <SafeAreaView style={styles.navBar}>  
       <TouchableOpacity onPress={() => navigation.navigate("Chat")}>
       <FontAwesomeIcon icon={ faPaw } size={50}/>
       </TouchableOpacity>
@@ -24,7 +26,7 @@ const NavBar = () => {
       <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
         <FontAwesomeIcon icon={ faUser } size={50}/>
       </TouchableOpacity>
-    </>
+    </SafeAreaView>
       
   )
 }

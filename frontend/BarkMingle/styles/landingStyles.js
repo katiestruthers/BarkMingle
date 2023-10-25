@@ -13,13 +13,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
    },
    textContainer: { 
-    flex: 2,
+    flex: 1.75,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#6263AF',
     borderRadius: 40,
     flexShrink: 1,
+   },
+   textDescription: {
+    width: '80%',
+    top: -60,
    },
   getStartedButton: {
     backgroundColor: "#A5A7FB",
@@ -39,14 +43,18 @@ const styles = StyleSheet.create({
   },
   blob: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 10,
     zIndex: -1,
   },
   bg: {
     position: 'absolute',
     bottom: 0,
     zIndex: -1,
-  }
+  },
+  background: {
+    position: 'absolute',
+    zIndex: -1,
+  },
 })
 
 

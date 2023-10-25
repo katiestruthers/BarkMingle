@@ -18,17 +18,19 @@ const LandingScreen = () => {
       <View style={styles.upperContainer}>
         <Text>
           <Text style={appStyles.textLogoPurple}>Bark</Text>
-          <Text style={appStyles.textLogoPurple}>{' '}</Text>
+          <Text style={appStyles.textLogoPurple}> </Text>
           <Text style={appStyles.textLogoBlack}>Mingle</Text>
         </Text>
         <HomeSvgComponent style={styles.image} />
         <HomeBlobSvgComponent style={styles.blob} />
       </View>
       <View style={styles.textContainer}>
-        <Text style={appStyles.textWhite}>
-          Bringing together dogs and owners for [fun, connection, adventures,
-          friends, smiles, laughter, play]
-        </Text>
+        <View style={styles.textDescription}>
+          <Text style={appStyles.textWhite}>
+            Bringing together dogs and owners for [fun, connection, adventures,
+            friends, smiles, laughter, play]
+          </Text>
+        </View>
         <TouchableOpacity
           style={styles.getStartedButton}
           onPress={() => navigation.navigate("SignUp")}
@@ -41,6 +43,7 @@ const LandingScreen = () => {
             <Text style={appStyles.textSignIn}> Sign In</Text>
           </TouchableOpacity>
         </View>
+        <PurpleBGPatternSvgComponent style={styles.background} />
       </View>
     </View>
   );
