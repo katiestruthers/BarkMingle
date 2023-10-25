@@ -14,12 +14,20 @@ import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
+import { useChatClient } from './hooks/useChatClient';
+import { Text } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
 
   const { user } = useAuth();
+
+  const { clientIsReady } = useChatClient();
+
+  if (!clientIsReady) {
+    return <Text>Loading chat ...</Text>
+  }
 
   return (
     <Stack.Navigator 
