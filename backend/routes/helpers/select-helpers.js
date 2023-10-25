@@ -3,17 +3,38 @@ const db = require('../../db/connection.js');
 const getAllTraits = function() {
   const queryString = `SELECT * FROM traits;`;
 
-return db
-  .query(queryString)
-  .then(data => {
-    if (!data.rows.length) {
-      return null;
-    }
-    return data.rows;
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+  return db
+    .query(queryString)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const getUserDetails = function(userId) {
+  const queryString = `
+    SELECT first_name, last_name, bio
+    FROM users
+    WHERE id = $1;
+  `;
+  const queryParams = [userId];
+
+  return db
+    .query(queryString, queryParams)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const getAllSwipeableDogs = function(userId) {
@@ -87,6 +108,7 @@ const getSwipesReceivedForUser = function(userId) {
 
 module.exports = {
   getAllTraits,
+  getUserDetails,
   getAllSwipeableDogs,
   getSwipesReceivedForUser
 };

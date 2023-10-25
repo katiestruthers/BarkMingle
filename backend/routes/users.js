@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const verifyToken = require("../middlewares/verifyToken");
 const database = require("../db/connection");
 const router = express.Router();
+const selectHelpers = require("./helpers/select-helpers");
 
 // Create a new user(human)
 router.post("/signup", (req, res) => {  // only /signup
@@ -43,8 +44,6 @@ router.post("/signup", (req, res) => {  // only /signup
     }
   );
 });
-
-
 
 // Signin route
 router.post("/signin", (req, res) => {
@@ -86,9 +85,22 @@ router.post("/signin", (req, res) => {
   });
 });
 
+// Get logged-in user profile info from database
+router.get("/:id", (req, res) => {
+  const userId = req.params.id;    // user's id captured from the url
 
+  selectHelpers
+    .getUserDetails(userId)
+    .then(items => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
 
-// Update user profile
+// Update logged-in user profile
 router.put("/:id", verifyToken, (req, res) => {
   const userId = req.params.id;    // user's id captured from the url
   const { first_name, last_name, bio, profile_img } = req.body;

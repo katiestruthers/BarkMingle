@@ -27,10 +27,8 @@ PUT      | /dogs/images                | Click arrow, uploading 1 image of dog
 GET      | /api/users/:id              | Get logged-in user profile info from db
 PUT      | /api/users/:id              | Click arrow, updating user account details
 
-GET      | /api/feed/dog/:id           | Get swipeable dog info from db
-POST     | /api/feed/dog/:id           | Swipe left or right, updating the swipes table 
-
-POST     | /api/feed/match/:id         | Create new match automatically with two mutual likes from swipes table
+GET      | /api/feed/dog               | Get swipeable dog info from db
+POST     | /api/feed/dog/:id           | Swipe left or right, updating the swipes table & creating a new match with two mutual likes
 
 GET      | /api/matches/               | Get list of matches for logged-in user from db
 
