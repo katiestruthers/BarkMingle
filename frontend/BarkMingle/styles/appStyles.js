@@ -42,8 +42,9 @@ const appStyles = StyleSheet.create({
     color: '#6263AF',
     fontSize: 30,
     fontFamily: 'Baloo2_800ExtraBold',
+    paddingRight: 40,
     left: 30,
-    paddingEnd: 50,
+    alignSelf: 'center',
   },
   textHeaderBlack: {
     color: '#1E1E1E',
