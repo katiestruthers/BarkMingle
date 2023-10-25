@@ -68,6 +68,14 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 25,
   },
+  flatlist: {
+    width: '34%',
+    height: '80%',
+  },
+  image: {
+    width: '34%',
+    height: 100,
+  }
 });
 
 export default styles;
