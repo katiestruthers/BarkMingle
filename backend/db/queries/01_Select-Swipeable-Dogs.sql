@@ -3,6 +3,7 @@
   - 03_Select-Images-For-Dog.sql */
 
 SELECT DISTINCT
+  dogs.id AS dog_id,
   dogs.name AS dog_name,
   dogs.age AS dog_age, 
   dogs.is_neutered, 

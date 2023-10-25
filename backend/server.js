@@ -8,11 +8,11 @@ const cors = require('cors');
 // Express Configuration
 App.use(Express.urlencoded({ extended: false }));
 App.use(Express.json()); 
-App.use(session({
-  secret: 'barkmingle', 
-  resave: false,
-  saveUninitialized: true
-}));
+// App.use(session({
+//   secret: 'barkmingle', 
+//   resave: false,
+//   saveUninitialized: true
+// }));
 App.use(cors());
 
 

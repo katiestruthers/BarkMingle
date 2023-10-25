@@ -2,6 +2,7 @@ const express = require("express");
 const database = require("../db/connection");
 const verifyToken = require("../middlewares/verifyToken");
 const router = express.Router();
+const selectHelpers = require("./helpers/select-helpers");
 
 // Create a new dog and associate it with a logged in user => user id/signup
 router.post("/:id/signup", verifyToken, (req, res) => {
@@ -108,6 +109,18 @@ router.post("/:id/signup", verifyToken, (req, res) => {
   });
 });
 
+// Get list of all traits from database
+router.get("/traits", (req, res) => {
+  selectHelpers
+    .getAllTraits(req.query)
+    .then(items => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
 
 // Add traits to a dog's profile => dog id/traits
 router.post("/:id/traits", verifyToken, (req, res) => {
