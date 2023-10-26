@@ -1,17 +1,23 @@
-<TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Message", {profile: matchDetails})}> 
-<View style={styles.card}>
-  <View style={styles.left}>
-    <Image style={styles.avatar} source={{uri: avatar}} />
-    <View style={styles.text}>
-      <Text style={styles.name}> {dogName} & Human Name</Text>
-      <Text> Click to say hello!</Text>
-    </View>
-  </View>
-</View>
+/* 
 
-<View>
-  <TouchableOpacity style={styles.info} onPress={() => navigation.navigate("SwipedProfile", {profile: matchDetails})} >
-    <FontAwesomeIcon icon={faCircleInfo} style={{color: "rgba(0, 0, 0, 0.9)",}} size={30} />
-  </TouchableOpacity>
-</View>
-</TouchableOpacity>
+Generating Tokens For Stream Chat App
+
+
+You can generate tokens on the server by creating a Server Client and then using the Create Token method.
+
+If generating a token to use client side, the token must include the userID claim in the token payload, 
+where as server tokens do not. When using the create token method, pass the user_ID parameter to generate 
+a client-side token.
+
+// Define values.
+const api_key = 'example'
+const api_secret = 'example'
+const user_id = 'john'
+
+// Initialize a Server Client
+const serverClient = StreamChat.getInstance( api_key, api_secret);
+// Create User Token
+const token = serverClient.createToken(user_id);
+
+
+*/
