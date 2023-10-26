@@ -6,10 +6,10 @@ const selectHelpers = require("./helpers/select-helpers");
 const verifyToken = require("../middlewares/verifyToken");
 
 // Get all swipeable dogs from database
-router.get("/dogs/:id", (req, res) => {
-  const userId = req.params.id;
+router.get("/dogs", verifyToken, (req, res) => {
+  const loggedInUserId = req.user_id; // token id 
   selectHelpers
-    .getAllSwipeableDogs(userId)
+    .getAllSwipeableDogs(loggedInUserId)
     .then(items => {
       res.json(items);
     })
