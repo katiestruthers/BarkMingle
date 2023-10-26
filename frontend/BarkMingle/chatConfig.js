@@ -2,7 +2,8 @@
 import {CHAT_API_KEY, 
         CHAT_USER_ID, 
         CHAT_USER_TOKEN, 
-        CHAT_USER_NAME, } from "@env";
+        CHAT_USER_NAME,
+        STREAM_SECRET, } from "@env";
 
 // import {dogProfiles, getUserProfile, filterProfiles } from "./dummyData/dummyData.js"
 
@@ -15,3 +16,4 @@ export const chatApiKey = CHAT_API_KEY;
 export const chatUserId = CHAT_USER_ID;
 export const chatUserToken = CHAT_USER_TOKEN;
 export const chatUserName = CHAT_USER_NAME;
+export const api_secret = STREAM_SECRET;

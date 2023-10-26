@@ -11,7 +11,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import Swiper from "react-native-deck-swiper";
-import { getUserProfile } from "../dummyData/dummyData.js"
+import { filterProfiles, getUserProfile } from "../dummyData/dummyData.js"
 import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 import Axios from "axios";
@@ -29,12 +29,19 @@ export let appData = {};
 const HomeScreen = () => {
 
   // to get user info from useAuth Context
-  const { user } = useAuth();
-  
+  //const { user } = useAuth();
+
+  //////HARD CODED/////////////////
+  const user = 6;
+
+  const tempfilteredProfiles = filterProfiles(user);
+
+ 
 
   // to set state of user profile
   const [userProfile, setUserProfile] = useState([]);
-  
+
+
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
 

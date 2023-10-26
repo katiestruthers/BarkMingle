@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
 import LandingScreen from './screens/LandingScreen';
@@ -17,32 +17,26 @@ import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
 
 import ChannelListScreen from './screens/ChannelListScreen';
+import ChannelScreen from './screens/ChannelScreen';
 
 import { useChatClient } from './hooks/useChatClient';
 import { Text } from 'react-native';
-
 import { Chat } from 'stream-chat-expo';
 import { StreamChat } from 'stream-chat';
-import { chatApiKey } from './chatConfig';
-import ChannelScreen from './screens/ChannelScreen';
+//import { api_secret, chatApiKey, chatUserName } from './chatConfig';
 
-const chatClient = StreamChat.getInstance(chatApiKey);
 
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
 
-  const { user } = useAuth();
+  //const { user } = useAuth();
 
-  const { clientIsReady } = useChatClient();
-
-  if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>
-  }
+  const user = true;
 
   return (
-    <Chat client={chatClient}>
+  
     <Stack.Navigator 
       screenOptions={{
         // To remove default header on every screen:
@@ -86,7 +80,7 @@ const StackNavigator = () => {
       )}
       
     </Stack.Navigator>
-    </Chat>
+
   )
 }
 
