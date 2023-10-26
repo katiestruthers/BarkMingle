@@ -17,6 +17,8 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(403).send({ message: 'Token is not valid' });
     }
+
+    console.log("Decoded JWT:", decoded.id);
     // if the token is valid the decoded object caontains the payload of the token(id and etc property)
     req.user_id = decoded.id; // the user's id is assigned to req.user_id(request object)
     next();

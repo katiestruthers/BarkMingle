@@ -35,10 +35,12 @@ router.post("/signup", (req, res) => {  // only /signup
       const user = result.rows[0];
       delete user.password;
       const token = jwt.sign(user, process.env.JWT_SECRET); // generate token
+      console.log(token)
 
       res.json({
         message: "User created successfully",
-        token
+        token,
+        userId: req.user_id
       });
 
     }
@@ -139,7 +141,8 @@ router.put("/:id", verifyToken, (req, res) => {
 
     res.json({
       message: "User profile updated successfully",
-      // token // sending it to the front end
+      token, // sending it to the front end
+      userId: req.user_id
     });
   });
 });

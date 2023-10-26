@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -15,11 +15,37 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import BonePatternSvg from "../svg-images/BonePatternSvg.js";
 import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
+import Axios from "axios";
 
 const CreateDogProfileScreen = () => {
   const { token, setToken } = useAuth();
   console.log('CreateDogProfileToken: ', token);
   const navigation = useNavigation();
+
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
+
+  const [name, setName] = useState('')
+  const [breeds, setBreeds] = useState('')
+  const [gender, setGender] = useState('')
+  const [age, setAge] = useState('')
+  const [size, setSize] = useState('')
+  const [is_neutered, setIsNeutered] = useState('')
+
+  const onSubmit = () => {
+    Axios.post("http://localhost:8080/api/dogs/signup", {
+      name,
+      breeds,
+      gender,
+      age,
+      size,
+      is_neutered
+    }, { headers }).then(res => {
+      setToken(res.data.token);
+      navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
+    }).catch(err => console.log(err));
+  };
 
   return (
     <View style={styles.container}>
@@ -43,6 +69,7 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
+            onChangeText={(text)=>setName(text)}
           />
         </View>
 
@@ -51,6 +78,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             secureTextEntry={true}
+            onChangeText={(text)=>setBreeds(text)}
           />
         </View>
 
@@ -59,6 +87,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             secureTextEntry={true}
+            onChangeText={(text)=>setGender(text)}
           />
         </View>
 
@@ -67,6 +96,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             secureTextEntry={true}
+            onChangeText={(text)=>setAge(text)}
           />
         </View>
 
@@ -75,21 +105,26 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             secureTextEntry={true}
+            onChangeText={(text)=>setSize(text)}
           />
         </View>
 
         <Text style={styles.textHeaderBlack}>Spayed / Neutered? * </Text>
         <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={appStyles.button}>
+          <TouchableOpacity style={appStyles.button}
+          onPress={() => setIsNeutered('Yes')}
+          >
             <Text style={appStyles.textBlackButton}>Yes</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={appStyles.button}>
+          <TouchableOpacity style={appStyles.button}
+          onPress={() => setIsNeutered('No')}
+          >
             <Text style={appStyles.textBlackButton}>No</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
+      <TouchableOpacity onPress={onSubmit}>
         <FontAwesomeIcon
           icon={faArrowRight}
           size={50}
