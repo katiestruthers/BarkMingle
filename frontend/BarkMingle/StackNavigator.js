@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useState } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
 import LandingScreen from './screens/LandingScreen';
@@ -32,8 +31,11 @@ const chatClient = StreamChat.getInstance(chatApiKey);
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-
-  const { user } = useAuth();
+  //const { user } = useAuth();
+  const [token, setToken] = useState('');
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
 
   const { clientIsReady } = useChatClient();
 
@@ -48,7 +50,7 @@ const StackNavigator = () => {
         // To remove default header on every screen:
         headerShown: false,
       }}>
-      {user ? (
+      {token ? (
         <>
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
