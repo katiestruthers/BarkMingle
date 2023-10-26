@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { View, Text, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Platform } from 'react-native';
 import appStyles from '../styles/appStyles.js';
 import styles from '../styles/createUserProfileStyles.js';
 import useAuth from '../hooks/useAuth.js';
@@ -16,7 +16,10 @@ const CreateUserProfileScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == "ios" ? "padding" : "height"} 
+    >
     <BonePatternSvg style={styles.backgroundTop} />
     <StatusBarSvg4 style={appStyles.statusBar} />
     <TouchableOpacity onPress={() => navigation.navigate("Upload")}>
@@ -44,7 +47,6 @@ const CreateUserProfileScreen = () => {
       <View style={styles.inputView}>
         <TextInput
           style={appStyles.textInput}
-          secureTextEntry={true}
         />
       </View>
 
@@ -54,7 +56,7 @@ const CreateUserProfileScreen = () => {
       <View style={styles.inputViewBio}>
         <TextInput
           style={appStyles.textInput}
-          secureTextEntry={true}
+          multiline={true}
         />
       </View>
 
@@ -68,7 +70,7 @@ const CreateUserProfileScreen = () => {
       />
     </TouchableOpacity>
     <BonePatternSvg style={styles.backgroundBottom} />
-  </View>
+  </KeyboardAvoidingView>
 );
 };
 

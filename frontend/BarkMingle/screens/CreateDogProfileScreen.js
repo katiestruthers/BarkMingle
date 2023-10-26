@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  ImageBackground,
+  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
+  Platform
 } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/createDogProfileStyles.js";
@@ -48,7 +49,10 @@ const CreateDogProfileScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == "ios" ? "padding" : "height"} 
+    >
       <BonePatternSvg style={styles.backgroundTop} />
       <StatusBarSvg1 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
@@ -77,7 +81,6 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setBreeds(text)}
           />
         </View>
@@ -86,7 +89,6 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setGender(text)}
           />
         </View>
@@ -95,7 +97,6 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setAge(text)}
           />
         </View>
@@ -104,7 +105,6 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setSize(text)}
           />
         </View>
@@ -132,7 +132,7 @@ const CreateDogProfileScreen = () => {
         />
       </TouchableOpacity>
       <BonePatternSvg style={styles.backgroundBottom} />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
