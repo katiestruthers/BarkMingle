@@ -7,6 +7,7 @@ SELECT DISTINCT
   dogs.size AS dog_size, 
   dogs.img AS dog_img,
   breeds.name AS breed, 
+  users.id AS user_id,
   users.first_name, users.last_name,
   users.bio AS user_bio,
   users.profile_img
