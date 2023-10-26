@@ -17,7 +17,9 @@ const appStyles = StyleSheet.create({
     height: 50,
     flex: 1,
     padding: 10,
-    textAlign: 'center',
+    marginHorizontal: 10,
+    fontFamily: 'Baloo2_400Regular',
+    width: "90%",
   },
   textWhite: {
     color: '#FFFCF6',
@@ -101,7 +103,7 @@ const appStyles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     marginTop: 10,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   blackButton: {
     backgroundColor: "#1E1E1E",

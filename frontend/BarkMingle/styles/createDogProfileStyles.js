@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 5,
     marginTop: 5,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   textHeaderBlack: {
     color: '#1E1E1E',
