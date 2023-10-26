@@ -14,6 +14,7 @@ const filters = {
 };
 
 
+
 const sort = {
   last_message_at: -1,
 };
@@ -25,7 +26,6 @@ const ChannelListScreen = (props) => {
   return (
         <>
           <ChannelList
-
             onSelect={(channel) => {
             const { navigation } = props;
             setChannel(channel);
