@@ -11,9 +11,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import Swiper from "react-native-deck-swiper";
-import {dogProfiles, getUserProfile, filterProfiles } from "../dummyData/dummyData.js"
+import { getUserProfile } from "../dummyData/dummyData.js"
 import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
+import Axios from "axios";
 
 
 export const usersMatchArray = [];
@@ -46,9 +47,12 @@ const HomeScreen = () => {
   // set state of profiles when user changes
   useEffect(() => {
     setUserProfile(getUserProfile(user));
-    setFilteredProfiles(filterProfiles(user));
+    Axios
+      .get("http://localhost:8080/api/feed/dogs")
+      .then((response) => {
+        setFilteredProfiles(response.data);
+      });
   },[user])
-
 
   const navigation = useNavigation();
   const swipeRef = useRef(null);
@@ -152,6 +156,7 @@ const swipeRight = (cardIndex) => {
             }}
             renderCard={(card) => card ? (
               <View style={styles.cards} key={card.id} >
+                { console.log(card) }
                   
                   <ImageBackground 
                     style={styles.cardImage}
@@ -165,15 +170,15 @@ const swipeRight = (cardIndex) => {
                       </View>
 
                     <View style={styles.text}>
-                      <Text style={styles.name}>{card.firstName}</Text>
-                      <Text style={styles.bio}>{card.bio}</Text>
+                      <Text style={styles.name}>{card.dog_name}</Text>
+                      <Text style={styles.bio}>{/* Do not have dog bio in db */}</Text>
                     </View>
 
                   </ImageBackground>
 
                   <View style={styles.humanProfileBox} >
-                    <Image source={{uri: card.human}} style={styles.avatar}/>
-                    <Text style={styles.humanProfile}>{card.humanName}</Text>
+                    <Image source={{uri: card.profile_img}} style={styles.avatar}/>
+                    <Text style={styles.humanProfile}>{`${card.first_name} ${card.last_name}`}</Text>
                     
                   </View>
     
