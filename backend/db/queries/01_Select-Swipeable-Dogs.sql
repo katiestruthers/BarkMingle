@@ -1,7 +1,3 @@
-/* Need to call for each dog:
-  - 02_Select-Traits-For-Dog.sql 
-  - 03_Select-Images-For-Dog.sql */
-
 SELECT DISTINCT
   dogs.id AS dog_id,
   dogs.name AS dog_name,
@@ -9,9 +5,11 @@ SELECT DISTINCT
   dogs.is_neutered, 
   dogs.gender AS dog_gender, 
   dogs.size AS dog_size, 
+  dogs.img AS dog_img,
   breeds.name AS breed, 
   users.first_name, users.last_name,
-  users.bio AS user_bio
+  users.bio AS user_bio,
+  users.profile_img
   
 FROM dogs
 JOIN dogs_breeds
