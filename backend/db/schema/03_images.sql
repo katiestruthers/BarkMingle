@@ -1,8 +1,0 @@
-DROP TABLE IF EXISTS images CASCADE;
-
-CREATE TABLE images (
-  id SERIAL PRIMARY KEY NOT NULL,
-  img text NOT NULL,
-  dog_id int NOT NULL,
-  FOREIGN KEY (dog_id) REFERENCES dogs(id)
-);

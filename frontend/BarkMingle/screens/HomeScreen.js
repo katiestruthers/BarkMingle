@@ -161,7 +161,7 @@ const swipeRight = (cardIndex) => {
                   <ImageBackground 
                     style={styles.cardImage}
                     imageStyle={{borderRadius:20}}
-                    source={{ uri: card.avatar }}>
+                    source={{ uri: card.dog_img }}>
                       
                       <View style={styles.spread}>
                         <TouchableOpacity onPress={() => navigation.navigate("SwipedProfile", {profile: card})} >
