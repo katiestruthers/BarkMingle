@@ -57,7 +57,7 @@ const StackNavigator = () => {
 
           <Stack.Group screenOptions={{headerShown: true}} >
             <Stack.Screen name="Matches" component={ChannelListScreen} />
-            <Stack.Screen name="ChannelScreen" component={ChannelScreen} />
+            <Stack.Screen name="Chatting" component={ChannelScreen} />
           </Stack.Group>
           
           <Stack.Group>

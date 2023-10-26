@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, Text } from 'react-native';
 import { ChannelList } from 'stream-chat-expo';
-import { chatApiKey, chatUserId } from '../chatConfig';
+import { chatApiKey, chatUserId, chatUserName } from '../chatConfig';
 
 import { useAppContext } from '../AppContext';
 
@@ -13,6 +13,7 @@ const filters = {
   },
 };
 
+
 const sort = {
   last_message_at: -1,
 };
@@ -22,17 +23,20 @@ const ChannelListScreen = (props) => {
   const { setChannel } = useAppContext();
 
   return (
+        <>
           <ChannelList
 
             onSelect={(channel) => {
             const { navigation } = props;
             setChannel(channel);
-            navigation.navigate('ChannelScreen');
+            navigation.navigate('Chatting');
           }}
 
             filters={filters}
             sort={sort}
           />
+
+        </>
 
 
     )

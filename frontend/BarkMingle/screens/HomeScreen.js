@@ -16,6 +16,9 @@ import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 
 
+
+import { AuthProvider } from "../hooks/useAuth.js";
+
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
 export const swipedUser = [];
@@ -92,19 +95,7 @@ const swipeRight = (cardIndex) => {
   return (
     <SafeAreaView style={styles.flex}> 
     
-      <View style={styles.navBar}>
-        <TouchableOpacity  onPress={() => navigation.navigate("Matches", {matchesDetails, matchesIds})}>
-          <FontAwesomeIcon icon={ faPaw } size={50} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <FontAwesomeIcon icon={ faDog } size={50}/>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("UserProfile", {userProfile})}>
-          <FontAwesomeIcon icon={ faUser } size={50}/>
-        </TouchableOpacity>
-      </View>
+      <NavBar />
       
       <ImageBackground 
         source={require('../assets/bone-pattern.png')}
