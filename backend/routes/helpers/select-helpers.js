@@ -95,8 +95,7 @@ const getAllSwipeableDogs = function(userId) {
       dogs.size AS dog_size, 
       breeds.name AS breed, 
       users.first_name, users.last_name,
-      users.bio AS user_bio, 
-      users.profile_img
+      users.bio AS user_bio
     FROM dogs
     JOIN dogs_breeds
     ON dogs.id = dogs_breeds.dog_id
