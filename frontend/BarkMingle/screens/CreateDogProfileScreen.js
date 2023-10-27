@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -34,6 +34,16 @@ const CreateDogProfileScreen = () => {
   const [size, setSize] = useState('')
   const [is_neutered, setIsNeutered] = useState('')
 
+  // useEffect( () => { // for testing
+  //   console.log("ddd")
+  //   setName("donut")
+  //   setBreeds("Poodle")
+  //   setGender("male")
+  //   setAge("2")
+  //   setSize("small")
+  //   setIsNeutered(true)
+  // }, []);
+
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/dogs/signup", {
       name,
@@ -43,7 +53,6 @@ const CreateDogProfileScreen = () => {
       size,
       is_neutered
     }, { headers }).then(res => {
-      setToken(res.data.token);
       navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
     }).catch(err => console.log(err));
   };
@@ -74,6 +83,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setName(text)}
+            // value={name} FOR TESTING(with hardcoded)
           />
         </View>
 
@@ -82,6 +92,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setBreeds(text)}
+            // value={breeds}
           />
         </View>
 
@@ -90,6 +101,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setGender(text)}
+            // value={gender}
           />
         </View>
 
@@ -98,6 +110,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setAge(text)}
+            // value={age}
           />
         </View>
 
@@ -106,6 +119,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setSize(text)}
+            // value={size}
           />
         </View>
 

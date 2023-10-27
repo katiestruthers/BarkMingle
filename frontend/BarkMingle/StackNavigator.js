@@ -32,8 +32,8 @@ const chatClient = StreamChat.getInstance(chatApiKey);
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-  //const { user } = useAuth();
-  const [token, setToken] = useState('');
+  //const { user } = useAuth(); or  // or const token = true  to visit other pages
+  const [token ] = useState('');
   const headers = {
     authorization: `Bearer ${token}`,
   };
