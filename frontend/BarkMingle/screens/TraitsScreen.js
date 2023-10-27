@@ -60,7 +60,7 @@ const TraitsScreen = () => {
     Axios.post("http://localhost:8080/api/dogs/traits", {
     traits: selectedTraits
     }, { headers }).then(res => {
-      navigation.navigate("Upload"); // Navigato to the "Traits" screen on success
+      navigation.navigate("Upload"); // Navigato to the "Upload" screen on success
     }).catch(err => console.log("error", err));
   };
 
