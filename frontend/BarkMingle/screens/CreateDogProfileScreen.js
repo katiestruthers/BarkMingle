@@ -133,7 +133,7 @@ const CreateDogProfileScreen = () => {
         <View style={styles.dropDownView1}>
           <SelectList
             data={dataBreed}
-            setSelected={(val) => setBreeds(val)}
+            setSelected={(text) => setBreeds(text)}
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
             dropdownStyles={styles.dropDownScroll1}
@@ -144,7 +144,7 @@ const CreateDogProfileScreen = () => {
         <View style={styles.dropDownView2}>
           <SelectList
             data={dataGender}
-            setSelected={(val) => setGender(val)}
+            setSelected={(text) => setGender(text)}
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
             dropdownStyles={styles.dropDownScroll2}
@@ -167,7 +167,7 @@ const CreateDogProfileScreen = () => {
         <View style={styles.dropDownView1}>
           <SelectList
             data={dataSize}
-            setSelected={(val) => setSize(val)}
+            setSelected={(text) => setSize(text)}
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
             dropdownStyles={styles.dropDownScroll3}
