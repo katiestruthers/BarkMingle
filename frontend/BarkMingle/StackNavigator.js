@@ -19,14 +19,21 @@ import MessageScreen from './screens/MessageScreen';
 import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
 
-import { useChatClient } from './hooks/useChatClient';
-import { Text } from 'react-native';
-import { Chat } from 'stream-chat-expo';
+// import { useChatClient } from './hooks/useChatClient';
+// import { Text } from 'react-native';
 import { StreamChat } from 'stream-chat';
+import { Chat, OverlayProvider } from 'stream-chat-expo';
 import ChatIndex from './chat/ChatIndex';
-//import { api_secret, chatApiKey, chatUserName } from './chatConfig';
 
+import {
+  CHAT_API_KEY, 
+  // CHAT_USER_ID, 
+  // CHAT_USER_TOKEN, 
+  // CHAT_USER_NAME,
+  // STREAM_SECRET, 
+} from "@env";
 
+export const client = StreamChat.getInstance(CHAT_API_KEY)
 
 const Stack = createStackNavigator();
 
@@ -37,31 +44,44 @@ const StackNavigator = () => {
   const user = true;
 
   return (
+    <OverlayProvider>
+      <Chat client={client}>
   
-    <Stack.Navigator 
-      screenOptions={{
-        // To remove default header on every screen:
-        headerShown: false,
-      }}>
-      {user ? (
-        <>
+        <Stack.Navigator 
+          screenOptions={{
+            // To remove default header on every screen:
+            headerShown: false,
+          }}>
+
+
+          <Stack.Group screenOptions={{headerShown: true}} >
+
+                <Stack.Screen name="Matches" component={ChannelListScreen} />
+                <Stack.Screen name="Chatting" component={ChannelScreen} />
+
+                <Stack.Screen name="Chat Screen" component={ChatIndex} options={{title: "Matches"}}/>
+
+          </Stack.Group>
+
+          
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
             <Stack.Screen name="UserProfile" component={UserProfileScreen} />
           </Stack.Group>
 
-          <Stack.Group screenOptions={{headerShown: true}} >
-            <Stack.Screen name="Chat Screen" component={ChatIndex} options={{title: "Matches"}}/>
 
-
-            <Stack.Screen name="Matches" component={ChannelListScreen} />
-            <Stack.Screen name="Chatting" component={ChannelScreen} />
-          </Stack.Group>
-          
           <Stack.Group>
-            <Stack.Screen name="Chat" component={ChatScreen} />
-            <Stack.Screen name="Message" component={MessageScreen} />
+              <Stack.Screen name="GetStarted" component={LandingScreen} />
+              <Stack.Screen name="SignIn" component={SignInScreen} />
+              <Stack.Screen name="SignUp" component={SignUpScreen} />
+              <Stack.Screen name="CreateDogProfile" component={CreateDogProfileScreen} />
+              <Stack.Screen name="Traits" component={TraitsScreen} />
+              <Stack.Screen name="Upload" component={UploadScreen} />
+              <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
           </Stack.Group>
+      
+
+
 
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
             <Stack.Screen name="Match" component={MatchedScreen}/>
@@ -69,21 +89,18 @@ const StackNavigator = () => {
           <Stack.Group screenOptions={{ presentation: "modal"}}>
             <Stack.Screen name="SwipedProfile" component={SwipedProfileScreen}/>
           </Stack.Group>
-      </> ) : 
-      (
-        <Stack.Group>
-          <Stack.Screen name="GetStarted" component={LandingScreen} />
-          <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="CreateDogProfile" component={CreateDogProfileScreen} />
-          <Stack.Screen name="Traits" component={TraitsScreen} />
-          <Stack.Screen name="Upload" component={UploadScreen} />
-          <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
-        </Stack.Group>
-      
-      )}
-      
-    </Stack.Navigator>
+
+          
+              
+              <Stack.Group>
+                <Stack.Screen name="Chat" component={ChatScreen} />
+                <Stack.Screen name="Message" component={MessageScreen} />
+              </Stack.Group>
+
+        </Stack.Navigator>
+
+      </Chat>
+    </OverlayProvider>
 
   )
 }

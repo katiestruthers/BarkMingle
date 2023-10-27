@@ -1,17 +1,14 @@
-// useChatClient.js
+// useclient.js
 import { useEffect, useState } from 'react';
 import { StreamChat } from 'stream-chat';
 // import { chatApiKey, chatUserId, chatUserName, chatUserToken } from '../chatConfig';
-
+import { client } from '../StackNavigator'
 const user =  {
-  id: "1",
-  name: "Fido & Alan",
-  image: 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg'
+  id: "doggo1",
+  name: "Reg Setter",
+  image: "https://www.dailypaws.com/thmb/j9_OHBJASDmmZP_q7EXzCP9QLsc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/irish-setter-lying-on-fence-145076420-2000-9c4dd89e0964492f92e9915bb71a4038.jpg"
 };
 
-const chatApiKey = "9qpe5c2hwyun"
-
-const chatClient = StreamChat.getInstance(chatApiKey);
 
 export const useChatClient = () => {
   const [clientIsReady, setClientIsReady] = useState(false);
@@ -19,7 +16,7 @@ export const useChatClient = () => {
   useEffect(() => {
     const setupClient = async () => {
       try {
-        chatClient.connectUser(user, chatClient.devToken("1"));
+        client.connectUser(user, client.devToken(user.id));
         setClientIsReady(true);
 
         // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
@@ -35,7 +32,7 @@ export const useChatClient = () => {
 
     // If the chat client has a value in the field `userID`, a user is already connected
     // and we can skip trying to connect the user again.
-    if (!chatClient.userID) {
+    if (!client.userID) {
       setupClient();
     }
   }, []);

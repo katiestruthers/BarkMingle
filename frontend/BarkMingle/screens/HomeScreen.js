@@ -15,11 +15,16 @@ import { filterProfiles, getUserProfile } from "../dummyData/dummyData.js"
 import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 import Axios from "axios";
+// import { client } from '../StackNavigator.js';
 
 
 
 import { AuthProvider } from "../hooks/useAuth.js";
 import { StreamChat } from 'stream-chat';
+import { connectUser, createChannel } from '../chat/ChatIndex.js';
+import { useChatClient } from '../hooks/useChatClientDev';
+
+
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -27,52 +32,35 @@ export const swipedUser = [];
 
 export let appData = {};
 
-const chatApiKey = "9qpe5c2hwyun"
-const client = StreamChat.getInstance(chatApiKey);
+// const chatApiKey = "9qpe5c2hwyun"
+// const client = StreamChat.getInstance(chatApiKey);
 
 const HomeScreen = () => {
   
 
-  console.log("CREATE CHANNEL 1")
+// function call to connect the user to Stream Chat
+
+/*
+const { user } = useAuth();
+
+const userID = `${user.id}`
+const userFullName = `${user.dogName} & ${user.firstName} ${user.lastName}`
+const userImageURL = `${user.img}`
+
+
+const userID = `101`
+const userFullName = `Rosie & Flora Brown`
+const userImageURL = `https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/07/top-20-small-dog-breeds.jpeg.jpg`
+
   useEffect(() => {
-    // connect the user 
-    
-    const connectUser = async () => {
-      
-      await client.connectUser({
-        id: "doggo1",
-        name: "Reg Setter",
-        image: "https://www.dailypaws.com/thmb/j9_OHBJASDmmZP_q7EXzCP9QLsc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/irish-setter-lying-on-fence-145076420-2000-9c4dd89e0964492f92e9915bb71a4038.jpg"
-      }, 
-      client.devToken("doggo1")
-      );
-
-      const channel = client.channel("messaging", "doggo1-2", 
-        {name: "Goldie Locks and John",
-        image: "https://www.vidavetcare.com/wp-content/uploads/sites/234/2022/04/golden-retriever-dog-breed-info.jpeg",
-        members: ["doggo1", "dogWalker"],
-        text: "Click to chat"
-        });
-      console.log("CREATE CHANNEL 2")
-      
-    await channel.watch();
-    console.log("CREATE CHANNEL 3")
-   };
-
-    connectUser();
+    connectUser(userID, userFullName, userImageURL);
 
     return () => {
       client.disconnectUser();
     }
-  }, [])
+  }, []);
+*/
 
-  // to get user info from useAuth Context
-  //const { user } = useAuth();
-
-  //////HARD CODED/////////////////
-  const user = 6;
-
-  const tempfilteredProfiles = filterProfiles(user);
 
  
 
@@ -123,7 +111,18 @@ const swipeRight = (cardIndex) => {
   const swipedId = userSwiped.id
 
   if ((userSwiped.matches).includes(user)) {
-    
+
+    //// CREATE NEW STREAM CHAT CHANNEL IF USERS MATCH ////
+/*
+    const swipedUserID = `${userSwiped.id}`  // needs to be a string
+    const swipedUserName = `${userSwiped.dogName} & ${userSwiped.firstName} ${userSwiped.lastName}`
+    const swipedUserImage = `${userSwiped.img}`
+
+    createChannel(userID, swipedUserID, swipedUserName, swipedUserImage);
+*/
+    /////////////////////////////////////////////////
+
+
     usersMatchArray.push(swipedId);
     userMatchDetailsArray.push(userSwiped);
     swipedUser.push(userSwiped);
