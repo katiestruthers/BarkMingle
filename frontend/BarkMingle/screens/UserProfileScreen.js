@@ -10,9 +10,14 @@ import useAuth from "../hooks/useAuth.js";
 const UserProfileScreen = () => {
 
   const navigation = useNavigation();
-  const { user } = useAuth();
+  const { user, setToken } = useAuth();
 
-  const userProfile = getUserProfile(user)
+  const signOut = () => {
+    setToken("");
+    navigation.navigate("GetStarted");
+  }
+
+  const userProfile = getUserProfile(user);
  
   return (
     <SafeAreaView style={styles.flex}>
@@ -45,7 +50,10 @@ const UserProfileScreen = () => {
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText}> Sign Out </Text>
+                <Text 
+                  style={styles.buttonText}
+                  onPress={signOut}
+                > Sign Out </Text>
               </TouchableOpacity>
 
             </View>
