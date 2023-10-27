@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 5,
     marginTop: 5,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   inputViewBio: {
     backgroundColor: "#D2D1F8",
@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
     height: 150,
     marginBottom: 5,
     marginTop: 5,
-    alignItems: "center",
+    paddingTop: 5,
+    textAlignVertical: "top",
+    alignItems: "flex-start",
   },
   textHeaderBlack: {
     color: '#1E1E1E',

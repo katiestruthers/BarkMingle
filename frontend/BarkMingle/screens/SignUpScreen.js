@@ -5,6 +5,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -39,7 +41,10 @@ const SignIn = () => {
   };
   
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == "ios" ? "padding" : "height"} 
+    >
       <View style={styles.upperContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("GetStarted")}>
           <FontAwesomeIcon
@@ -79,7 +84,7 @@ const SignIn = () => {
         </TouchableOpacity>
         <WhiteBGPatternSvgComponent style={styles.background} />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -15,11 +15,54 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import BonePatternSvg from "../svg-images/BonePatternSvg.js";
 import StatusBarSvg2 from "../svg-images/StatusBarSvg2.js";
+import Axios from "axios";
 
 const TraitsScreen = () => {
-  const { user } = useAuth();
-
+  const { token, setToken } = useAuth();
+  console.log('Traits Token: ', token);
   const navigation = useNavigation();
+
+  const [ traits, setTraits ] = useState([]);
+  const [ selectedTraits, setSelectedTraits] = useState([]);
+  useEffect( () => {
+    Axios
+      .get ("http://localhost:8080/api/dogs/traits")
+      .then((response) => {
+        setTraits(response.data);
+      });
+  }, []);
+
+  const clickTrait = (trait) => {
+    if ( selectedTraits.includes(trait.id)){
+      setSelectedTraits(selectedTraits.filter((t)=> {
+        if (trait.id === t) {
+          console.log("REMOVE")
+          return false
+        } else {
+          console.log("KEEP")
+          return true
+        }
+      }))
+    } else {
+      if ( selectedTraits.length === 3 ) {
+        return
+      } 
+      setSelectedTraits([...selectedTraits, trait.id])
+    }
+  }
+
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
+  state = { selectedItems : [] };
+
+  const onSubmit = () => {
+    Axios.post("http://localhost:8080/api/dogs/traits", {
+    traits: selectedTraits
+    }, { headers }).then(res => {
+      navigation.navigate("Upload"); // Navigato to the "Traits" screen on success
+    }).catch(err => console.log("error", err));
+  };
 
   return (
     <View style={styles.container}>
@@ -41,91 +84,15 @@ const TraitsScreen = () => {
 
       <View style={styles.buttonContainer}>
         <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Playful</Text>
+          {traits.map((trait, index) => {
+            return <TouchableOpacity onPress={() => clickTrait(trait)} key={trait.id} style={styles.button}>
+            <Text style={appStyles.textWhiteButton}>{ trait.name }</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Energetic</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Clever</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Shy</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Reactive</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Sleepy</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Curious</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Goofy</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Friendly</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Adventurous</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Chatty</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Lazy</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Fluffy</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Loyal</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Affectionate</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Protective</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Spoiled</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Foodie</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={appStyles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Dopey</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Slobbery</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={appStyles.textWhiteButton}>Trickster</Text>
-          </TouchableOpacity>
+          })}
         </View>
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate("Upload")}>
+      <TouchableOpacity onPress={onSubmit}>
         <FontAwesomeIcon
           icon={faArrowRight}
           size={50}

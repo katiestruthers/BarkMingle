@@ -1,11 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  ImageBackground,
+  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
+  Platform
 } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/createDogProfileStyles.js";
@@ -33,6 +34,16 @@ const CreateDogProfileScreen = () => {
   const [size, setSize] = useState('')
   const [is_neutered, setIsNeutered] = useState('')
 
+  // useEffect( () => { // for testing
+  //   console.log("ddd")
+  //   setName("donut")
+  //   setBreeds("Poodle")
+  //   setGender("male")
+  //   setAge("2")
+  //   setSize("small")
+  //   setIsNeutered(true)
+  // }, []);
+
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/dogs/signup", {
       name,
@@ -42,13 +53,15 @@ const CreateDogProfileScreen = () => {
       size,
       is_neutered
     }, { headers }).then(res => {
-      setToken(res.data.token);
       navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
     }).catch(err => console.log(err));
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == "ios" ? "padding" : "height"} 
+    >
       <BonePatternSvg style={styles.backgroundTop} />
       <StatusBarSvg1 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
@@ -70,6 +83,7 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setName(text)}
+            // value={name} FOR TESTING(with hardcoded)
           />
         </View>
 
@@ -77,8 +91,8 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setBreeds(text)}
+            // value={breeds}
           />
         </View>
 
@@ -86,8 +100,8 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setGender(text)}
+            // value={gender}
           />
         </View>
 
@@ -95,8 +109,8 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setAge(text)}
+            // value={age}
           />
         </View>
 
@@ -104,8 +118,8 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            secureTextEntry={true}
             onChangeText={(text)=>setSize(text)}
+            // value={size}
           />
         </View>
 
@@ -132,7 +146,7 @@ const CreateDogProfileScreen = () => {
         />
       </TouchableOpacity>
       <BonePatternSvg style={styles.backgroundBottom} />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

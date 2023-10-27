@@ -123,16 +123,16 @@ router.get("/traits", (req, res) => {
 });
 
 // Add traits to a dog's profile => dog id/traits
-router.post("/:id/traits", verifyToken, (req, res) => {
+router.post("/traits", verifyToken, (req, res) => {
   const { traits } = req.body; // Assuming traits is an array of trait IDs
-  const dogId = req.params.id;
+  const loggedInUserId = req.user_id;
 
-  if (!traits || !dogId) {
+  if (!traits || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide the required information" });
   }
 
-  // Check if the dog with the given ID exists
-  database.query("SELECT * FROM dogs WHERE id = $1", [dogId], (error, result) => {
+  // Check if the dog with the given ID exists => WHERE user_id instead of id to link to the user_id
+  database.query("SELECT * FROM dogs WHERE user_id = $1", [loggedInUserId], (error, result) => {
     if (error) {
       console.error("Error checking dog:", error);
       return res.status(500).json({ error: "Failed to add traits" });
@@ -148,7 +148,7 @@ router.post("/:id/traits", verifyToken, (req, res) => {
     const insertQueries = traits.map((traitId) => {
       return database.query(
         "INSERT INTO dogs_traits (dog_id, trait_id) VALUES ($1, $2)",
-        [dogId, traitId]
+        [loggedInUserId, traitId]
       );
     });
 
@@ -157,7 +157,7 @@ router.post("/:id/traits", verifyToken, (req, res) => {
       .then(() => {
         res.json({
           message: "Traits added successfully to the dog's profile",
-          dogId
+          dogId: dog.id
         });
       })
       .catch((error) => {
