@@ -64,17 +64,25 @@ const HomeScreen = () => {
 // use to add to matches / passes tables
 
 const swipeLeft = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;   // if no cards just return
-
   const userSwiped = filteredProfiles[cardIndex];
-  console.log(`You swiped PASS on ${userSwiped.firstName}`)
+
+  if (!userSwiped) return;   // if no cards, just return
+
+  // Add to swipes table
+  Axios.post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+    swiped_by_user_id: userProfile.id,
+    swiped_user_id: userSwiped.user_id,
+    is_liked: false
+  });
+
+  console.log(`You swiped PASS on ${userSwiped.dog_name}`)
 }
 
 const swipeRight = (cardIndex) => {
   if (!filteredProfiles[cardIndex]) return;  // if no cards just return
 
   const userSwiped = filteredProfiles[cardIndex];
-  console.log(`You swiped MATCH on ${userSwiped.firstName}`)
+  console.log(`You swiped MATCH on ${userSwiped.dog_name}`)
   const swipedId = userSwiped.id
 
   if ((userSwiped.matches).includes(user)) {
