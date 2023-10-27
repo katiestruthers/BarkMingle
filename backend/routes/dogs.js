@@ -122,10 +122,12 @@ router.get("/traits", (req, res) => {
     });
 });
 
-// Add traits to a dog's profile => dog id/traits
+// Add traits to a dog's profile 
 router.post("/traits", verifyToken, (req, res) => {
   const { traits } = req.body; // Assuming traits is an array of trait IDs
+  console.log("traits", traits);
   const loggedInUserId = req.user_id;
+  console.log("loggedinuserid", loggedInUserId);
 
   if (!traits || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide the required information" });
@@ -148,7 +150,7 @@ router.post("/traits", verifyToken, (req, res) => {
     const insertQueries = traits.map((traitId) => {
       return database.query(
         "INSERT INTO dogs_traits (dog_id, trait_id) VALUES ($1, $2)",
-        [loggedInUserId, traitId]
+        [dog.id, traitId] // linked to dog id not user id!!!!!!!
       );
     });
 
