@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, Text } from 'react-native';
-import { ChannelList } from 'stream-chat-expo';
+import { Channel, ChannelList } from 'stream-chat-expo';
 import { chatUserId, chatUserName } from '../chatConfig';
 import { Chat } from 'stream-chat-expo';
 import { StreamChat } from 'stream-chat';
-import { useChatClient } from '../hooks/useChatClient';
+import { useChatClient } from '../hooks/useChatClientDev';
 import { useAppContext } from '../AppContext';
 
 
 const chatApiKey = "9qpe5c2hwyun"
 const chatClient = StreamChat.getInstance(chatApiKey);
+
 console.log("OKAY")
 
 
@@ -29,41 +30,42 @@ const sort = {
 const ChannelListScreen = (props) => {
   const { setChannel } = useAppContext();
 
-  useEffect(() => {
-    // connect the user to chat stream
+  // useEffect(() => {
+  //   // connect the user to chat stream
   
-    const connectUser = async () => {
-      await chatClient.connectUser(
-        {
-          id: "1",
-          name: "Fido & Alan",
-          image: 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg'
-        }, 
-        chatClient.devToken("1")
-      );
+  //   const creatChannel = async () => {
+  //     await chatClient.connectUser(
+  //       {
+  //         id: "1",
+  //         name: "Fido & Alan",
+  //         image: 'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg'
+  //       }, 
+  //       chatClient.devToken("1")
+  //     );
 
-      const channel = chatClient.channel("messaging", "match", {name: "Match"});
+  //     const channel = chatClient.channel("messaging", "match", 
+  //     {name: "Match",
+  //     image: "https://i.cbc.ca/1.4026455.1491334629!/fileImage/httpImage/image.JPG_gen/derivatives/16x9_780/magic-8-cea-sunrise-person.JPG"});
 
-      await channel.create();
-    };
+  //     await channel.create();
+  //     setChannel(channel)
+  //   };
 
-    connectUser();
   
-    return () => {
-      chatClient.disconnectUser();
-    };
-  }, [])
+  // }, [])
 
-  // const { clientIsReady } = useChatClient();
+  const { clientIsReady } = useChatClient();
 
-  // console.log("IS CLIENT READY:", clientIsReady)
+  console.log("IS CLIENT READY:", clientIsReady)
 
-  // if (!clientIsReady) {
-  //   return <Text>Loading chat ...</Text>
-  // }
+  if (!clientIsReady) {
+    return <Text>Loading chat ...</Text>
+  }
 
   return (
       <Chat client={chatClient}>
+        <Text>CHANNEL LIST</Text>
+          <Channel channel={channel}>
           <ChannelList
             onSelect={(channel) => {
             const { navigation } = props;
@@ -74,7 +76,7 @@ const ChannelListScreen = (props) => {
             filters={filters}
             sort={sort}
           />
-
+        </Channel>    
         </Chat>
 
 

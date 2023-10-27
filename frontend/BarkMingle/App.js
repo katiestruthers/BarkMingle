@@ -3,7 +3,6 @@ import StackNavigator from './StackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './hooks/useAuth';
 import { AppProvider } from "./AppContext";
-import { Chat, OverlayProvider} from 'stream-chat-expo'; // causing errors on web
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts, Baloo2_400Regular, Baloo2_500Medium, Baloo2_600SemiBold, Baloo2_800ExtraBold } from '@expo-google-fonts/baloo-2';
 import Axios from "axios";
@@ -39,11 +38,11 @@ export default function App() {
       <AppProvider>
         <SafeAreaView style={{ flex: 1 }}>
           <NavigationContainer>
-            <OverlayProvider>
+           
               <AuthProvider>
                 <StackNavigator />
               </AuthProvider>
-            </OverlayProvider>
+            
           </NavigationContainer>
         </SafeAreaView>
       </AppProvider>

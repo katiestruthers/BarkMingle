@@ -23,6 +23,7 @@ import { useChatClient } from './hooks/useChatClient';
 import { Text } from 'react-native';
 import { Chat } from 'stream-chat-expo';
 import { StreamChat } from 'stream-chat';
+import ChatIndex from './chat/ChatIndex';
 //import { api_secret, chatApiKey, chatUserName } from './chatConfig';
 
 
@@ -50,6 +51,9 @@ const StackNavigator = () => {
           </Stack.Group>
 
           <Stack.Group screenOptions={{headerShown: true}} >
+            <Stack.Screen name="Chat Screen" component={ChatIndex} options={{title: "Matches"}}/>
+
+
             <Stack.Screen name="Matches" component={ChannelListScreen} />
             <Stack.Screen name="Chatting" component={ChannelScreen} />
           </Stack.Group>
