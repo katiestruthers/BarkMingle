@@ -12,7 +12,7 @@ import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent
 import Axios from "axios";
 
 const SignIn = () => {
-  const { token, setToken } = useAuth();
+  const { token, setToken, setUser } = useAuth();
   const navigation = useNavigation();
 
   const headers = {
@@ -28,7 +28,8 @@ const SignIn = () => {
       passwordConfirmation: password
     }, { headers }).then(res => {
       setToken(res.data.token);
-      console.log(res.data.message);
+      setUser(res.data.user);
+      console.log(res.data);
       navigation.navigate("Home"); // Navigate to the "Home" screen on success
     }).catch(err => console.log(err));
   };
