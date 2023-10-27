@@ -18,9 +18,7 @@ import Axios from "axios";
 
 const SignIn = () => {
   const { token, setToken } = useAuth();
-  console.log(token);
   const navigation = useNavigation();
-
   const headers = {
     authorization: `Bearer ${token}`,   // Make sure you add this!!! 
   };
