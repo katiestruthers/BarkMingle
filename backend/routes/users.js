@@ -103,14 +103,14 @@ router.get("/:id", (req, res) => {
 });
 
 // Update logged-in user profile
-router.put("/:id", verifyToken, (req, res) => {
-  const userId = req.params.id;    // user's id captured from the url
-  const { first_name, last_name, bio, profile_img } = req.body;
-  console.log('user:', 'req.user_id(token id):', req.user_id, ', req.params.id:', userId);
+router.post("/", verifyToken, (req, res) => {
+  const loggedInUserId = req.user_id;
+  const { first_name, last_name, bio} = req.body;
+  console.log('Profileuser:', 'req.user_id(token id):', req.user_id);
 
-  if (Number(userId) !== req.user_id) { // checks the same user is logged in
-    return res.send("You're not the authourized to modify the user")
-  }
+  // if (Number(userId) !== req.user_id) { // checks the same user is logged in
+  //   return res.send("You're not the authourized to modify the user")
+  // }
 
   if (!first_name || !last_name) {
     return res.status(400).json({ error: "First and last name required" });
@@ -119,13 +119,13 @@ router.put("/:id", verifyToken, (req, res) => {
   // Build the SQL query for updating the user's profile
   const query = `
     UPDATE users
-    SET first_name = $1, last_name = $2, bio = $3, profile_img = $4
-    WHERE id = $5
+    SET first_name = $1, last_name = $2, bio = $3
+    WHERE id = $4
     RETURNING *
   `;
 
   // Execute the query
-  database.query(query, [first_name, last_name, bio, profile_img, userId], (error, result) => {
+  database.query(query, [first_name, last_name, bio, loggedInUserId], (error, result) => {
     if (error) {
       console.error("Error updating user profile:", error);
       return res.status(500).json({ error: "Failed to update user profile" });
@@ -141,7 +141,6 @@ router.put("/:id", verifyToken, (req, res) => {
 
     res.json({
       message: "User profile updated successfully",
-      token, // sending it to the front end
       userId: req.user_id
     });
   });
