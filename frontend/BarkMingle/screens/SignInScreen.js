@@ -29,7 +29,7 @@ const SignIn = () => {
     }, { headers }).then(res => {
       setToken(res.data.token);
       console.log(res.data.message);
-      navigation.navigate("CreateDogProfile"); // // Navigato to the "Traits" screen on success
+      navigation.navigate("Home"); // Navigate to the "Home" screen on success
     }).catch(err => console.log(err));
   };
 
