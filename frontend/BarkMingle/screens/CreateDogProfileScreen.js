@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -76,24 +76,27 @@ const CreateDogProfileScreen = () => {
     { value: "large" },
   ];
 
+  // useEffect( () => { // for testing
+  //   console.log("ddd")
+  //   setName("donut")
+  //   setBreeds("Poodle")
+  //   setGender("male")
+  //   setAge("2")
+  //   setSize("small")
+  //   setIsNeutered(true)
+  // }, []);
+
   const onSubmit = () => {
-    Axios.post(
-      "http://localhost:8080/api/dogs/signup",
-      {
-        name,
-        breeds,
-        gender,
-        age,
-        size,
-        is_neutered,
-      },
-      { headers }
-    )
-      .then((res) => {
-        setToken(res.data.token);
-        navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
-      })
-      .catch((err) => console.log(err));
+    Axios.post("http://localhost:8080/api/dogs/signup", {
+      name,
+      breeds,
+      gender,
+      age,
+      size,
+      is_neutered
+    }, { headers }).then(res => {
+      navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
+    }).catch(err => console.log(err));
   };
 
   return (
@@ -121,7 +124,8 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            onChangeText={(text) => setName(text)}
+            onChangeText={(text)=>setName(text)}
+            // value={name} FOR TESTING(with hardcoded)
           />
         </View>
 
@@ -154,7 +158,8 @@ const CreateDogProfileScreen = () => {
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
-            onChangeText={(text) => setAge(text)}
+            onChangeText={(text)=>setAge(text)}
+            // value={age}
           />
         </View>
 

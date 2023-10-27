@@ -12,22 +12,25 @@ import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent
 import Axios from "axios";
 
 const SignIn = () => {
-  const { user } = useAuth();
+  const { token, setToken } = useAuth();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/users/signin", {
       email,
       password,
-      passwordConfirmation: password,
-    })
-      .then((res) => {
-        console.log(res.data.message);
-        navigation.navigate("");
-      })
-      .catch((err) => console.log(err));
+      passwordConfirmation: password
+    }, { headers }).then(res => {
+      setToken(res.data.token);
+      console.log(res.data.message);
+      navigation.navigate("CreateDogProfile"); // // Navigato to the "Traits" screen on success
+    }).catch(err => console.log(err));
   };
 
   return (
