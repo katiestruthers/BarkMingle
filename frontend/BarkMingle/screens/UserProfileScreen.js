@@ -10,20 +10,17 @@ import useAuth from "../hooks/useAuth.js";
 const UserProfileScreen = () => {
 
   const navigation = useNavigation();
-  const { user, setToken } = useAuth();
+  const { user, setUser } = useAuth();
 
   const signOut = () => {
-    setToken("");
     navigation.navigate("GetStarted");
+    setUser('');
   }
-
-  const userProfile = getUserProfile(user);
  
   return (
     <SafeAreaView style={styles.flex}>
       
-        <NavBar />
-
+      <NavBar />
       <ImageBackground 
         source={require("../assets/bone-pattern.png")}
         style={styles.background}
@@ -31,17 +28,17 @@ const UserProfileScreen = () => {
 
           <View style={styles.textBox}> 
             <Text style={styles.nameText}>
-              {userProfile.firstName}
+              {`${user.first_name} ${user.last_name}`}
             </Text>
 
             <View>
               <Image 
-                source={{uri: userProfile.avatar}}
+                source={{uri: user.profile_img}}
                 style={styles.avatar} />
             </View>
 
             <View>
-              <Text> {userProfile.bio}</Text>
+              <Text> {user.bio}</Text>
             </View>
 
             <View style={styles.buttonGroup}>

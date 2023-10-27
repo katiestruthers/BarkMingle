@@ -24,8 +24,7 @@ PUT      | /api/dogs/:id/traits        | Click arrow, assigning 3 traits to dog
 
 PUT      | /dogs/images                | Click arrow, uploading 1 image of dog
 
-GET      | /api/users/:id              | Get logged-in user profile info from db
-PUT      | /api/users/:id              | Click arrow, updating user account details
+PUT      | /api/users/edit             | Click arrow, updating user account details
 
 GET      | /api/feed/dog               | Get swipeable dog info from db
 POST     | /api/feed/dog/:id           | Swipe left or right, updating the swipes table & creating a new match with two mutual likes
