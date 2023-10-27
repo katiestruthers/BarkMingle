@@ -51,7 +51,6 @@ const StackNavigator = () => {
         // To remove default header on every screen:
         headerShown: false,
       }}>
-      {token ? (
         <>
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
@@ -74,9 +73,8 @@ const StackNavigator = () => {
           <Stack.Group screenOptions={{ presentation: "modal"}}>
             <Stack.Screen name="SwipedProfile" component={SwipedProfileScreen}/>
           </Stack.Group>
-      </> ) : 
-      (
-        <Stack.Group>
+
+          <Stack.Group>
           <Stack.Screen name="GetStarted" component={LandingScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
@@ -85,8 +83,7 @@ const StackNavigator = () => {
           <Stack.Screen name="Upload" component={UploadScreen} />
           <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
         </Stack.Group>
-      
-      )}
+      </>
       
     </Stack.Navigator>
     </Chat>

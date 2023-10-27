@@ -11,13 +11,9 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import Swiper from "react-native-deck-swiper";
-import { getUserProfile } from "../dummyData/dummyData.js"
 import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 import Axios from "axios";
-
-
-
 import { AuthProvider } from "../hooks/useAuth.js";
 
 export const usersMatchArray = [];
@@ -28,12 +24,11 @@ export let appData = {};
 
 const HomeScreen = () => {
 
-  // to get user info from useAuth Context
-  const { user } = useAuth();
-  
-
-  // to set state of user profile
-  const [userProfile, setUserProfile] = useState([]);
+  // Get user and JWT token from useAuth
+  const { user, token } = useAuth();
+  const headers = {
+    authorization: `Bearer ${token}`  
+  };
   
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
@@ -44,55 +39,75 @@ const HomeScreen = () => {
   // to set array of match info objects
   const [matchesDetails, setMatchesDetails] = useState([])
 
-  appData = {userProfile, filteredProfiles}
-
+  appData = {user, filteredProfiles};
 
   // set state of profiles when user changes
   useEffect(() => {
-    setUserProfile(getUserProfile(user));
     Axios
-      .get("http://localhost:8080/api/feed/dogs")
+      .get("http://localhost:8080/api/feed/dogs", { headers })
       .then((response) => {
         setFilteredProfiles(response.data);
-      });
-  },[user])
+      })
+      .catch(err => console.log(err));
+  },[user]);
 
   const navigation = useNavigation();
   const swipeRef = useRef(null);
 
 
-// use to add to matches / passes tables
+// Helper functions to add to swipes & matches table //
 
 const swipeLeft = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;   // if no cards just return
-
   const userSwiped = filteredProfiles[cardIndex];
-  console.log(`You swiped PASS on ${userSwiped.firstName}`)
-}
+
+  if (!userSwiped) return;   // if no cards, just return
+
+  // Add pass to swipes table
+  Axios
+  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+    swiped_by_user_id: user.id,
+    swiped_user_id: 3,
+    is_liked: false
+    }, { headers })
+  .then((res) => {
+    console.log(`You swiped PASS on ${userSwiped.dog_name}`);
+  });
+};
 
 const swipeRight = (cardIndex) => {
-  if (!filteredProfiles[cardIndex]) return;  // if no cards just return
-
   const userSwiped = filteredProfiles[cardIndex];
-  console.log(`You swiped MATCH on ${userSwiped.firstName}`)
-  const swipedId = userSwiped.id
 
-  if ((userSwiped.matches).includes(user)) {
+  if (!userSwiped) return;  // if no cards, just return
+
+  // Add like to swipes table
+  Axios
+  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+    swiped_by_user_id: user.id,
+    swiped_user_id: userSwiped.user_id,
+    is_liked: true
+    }, { headers })
+  .then((res) => {
+    console.log(`You swiped LIKE on ${userSwiped.dog_name}`);
+  });
+
+  // const swipedId = userSwiped.id
+
+  // if ((userSwiped.matches).includes(user)) {
     
-    usersMatchArray.push(swipedId);
-    userMatchDetailsArray.push(userSwiped);
-    swipedUser.push(userSwiped);
+  //   usersMatchArray.push(swipedId);
+  //   userMatchDetailsArray.push(userSwiped);
+  //   swipedUser.push(userSwiped);
 
-    setMatchesIds((prev) => ([...prev, swipedId]));
-    setMatchesDetails((prev) => ([...prev, userSwiped]));
+  //   setMatchesIds((prev) => ([...prev, swipedId]));
+  //   setMatchesDetails((prev) => ([...prev, userSwiped]));
 
-    console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
+  //   console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
 
-    navigation.navigate("Match", {userProfile, userSwiped});
-  }
-  else {
-    console.log("Not a match")
-  }
+  //   navigation.navigate("Match", {userProfile, userSwiped});
+  // }
+  // else {
+  //   console.log("Not a match")
+  // }
 }
 
 
@@ -147,7 +162,6 @@ const swipeRight = (cardIndex) => {
             }}
             renderCard={(card) => card ? (
               <View style={styles.cards} key={card.id} >
-                { console.log(card) }
                   
                   <ImageBackground 
                     style={styles.cardImage}
