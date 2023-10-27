@@ -35,7 +35,6 @@ router.post("/signup", (req, res) => {  // only /signup
       const user = result.rows[0];
       delete user.password;
       const token = jwt.sign(user, process.env.JWT_SECRET); // generate token
-      console.log(token)
 
       res.json({
         message: "User created successfully",
