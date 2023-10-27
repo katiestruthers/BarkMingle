@@ -22,7 +22,7 @@ router.get("/dogs", verifyToken, (req, res) => {
 // Swipe left or right, updating the swipes table & creating a new match with two mutual likes
 router.post("/dogs/:id", verifyToken, (req, res) => {
   const swipedUserId = req.params.id;
-  const loggedInUserId = req.session.user_id;
+  const loggedInUserId = req.user_id; // token id 
   const is_liked = req.body.is_liked;
  
   if (!loggedInUserId) {
@@ -34,7 +34,7 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
       if (newSwipe) {
         const swipesReceived = getSwipesReceivedForUser(loggedInUserId);
         if (!swipesReceived) {
-          res.json(newSwipe);
+          return res.json(newSwipe);
         }
         return swipesReceived;
       } else {
@@ -42,7 +42,7 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
       }
     })
     .then((swipesReceived) => {
-      if (swipesReceived.includes(Number(swipedUserId))) {
+      if (swipesReceived && swipesReceived.includes(Number(swipedUserId))) {
         addNewMatch(swipedUserId, loggedInUserId)
           .then((newMatch) => {
             if (newMatch) {
