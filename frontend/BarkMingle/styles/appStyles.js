@@ -18,6 +18,7 @@ const appStyles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginHorizontal: 10,
+    fontSize: 14,
     fontFamily: 'Baloo2_400Regular',
     width: "90%",
   },
