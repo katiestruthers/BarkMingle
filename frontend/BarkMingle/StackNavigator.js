@@ -18,15 +18,13 @@ import MessageScreen from './screens/MessageScreen';
 
 import ChannelListScreen from './screens/ChannelListScreen';
 
-import { useChatClient } from './hooks/useChatClient';
+import { useChatClient, client } from './hooks/useChatClientDev';
 import { Text } from 'react-native';
 
 import { Chat } from 'stream-chat-expo';
 import { StreamChat } from 'stream-chat';
 import { chatApiKey } from './chatConfig';
 import ChannelScreen from './screens/ChannelScreen';
-
-const chatClient = StreamChat.getInstance(chatApiKey);
 
 
 const Stack = createStackNavigator();
@@ -41,11 +39,11 @@ const StackNavigator = () => {
   const { clientIsReady } = useChatClient();
 
   if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>
+    return <Text>Loading chat...</Text>
   }
 
   return (
-    <Chat client={chatClient}>
+    <Chat client={client}>
     <Stack.Navigator 
       screenOptions={{
         // To remove default header on every screen:
