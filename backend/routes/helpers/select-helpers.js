@@ -106,14 +106,12 @@ const getAllSwipeableDogs = function(userId) {
     ON dogs_breeds.breed_id = breeds.id
     JOIN users
     ON dogs.user_id = users.id
-    JOIN likes
-    ON users.id = likes.liked_by_user_id
     WHERE NOT users.id = $1
-    AND NOT users.id IN (
-      SELECT swipes.swiped_user_id
-      FROM users
-      JOIN swipes
-      ON users.id = swipes.swiped_by_user_id
+    AND users.id NOT IN (
+      SELECT swipes.swiped_by_user_id
+      FROM swipes
+      JOIN users
+      ON swipes.swiped_user_id = users.id
       WHERE users.id = $1);
     `;
   const queryParams = [userId];
