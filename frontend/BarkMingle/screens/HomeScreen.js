@@ -64,9 +64,9 @@ const swipeLeft = (cardIndex) => {
 
   // Add pass to swipes table
   Axios
-  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+  .post(`http://localhost:8080/api/feed/dogs/${userSwiped.user_id}`, {
     swiped_by_user_id: user.id,
-    swiped_user_id: 3,
+    swiped_user_id: userSwiped.user_id,
     is_liked: false
     }, { headers })
   .then((res) => {
@@ -81,14 +81,14 @@ const swipeRight = (cardIndex) => {
 
   // Add like to swipes table
   Axios
-  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+  .post(`http://localhost:8080/api/feed/dogs/${userSwiped.user_id}`, {
     swiped_by_user_id: user.id,
     swiped_user_id: userSwiped.user_id,
     is_liked: true
     }, { headers })
   .then((res) => {
     console.log(`You swiped LIKE on ${userSwiped.dog_name}`);
-  });
+  }).catch((err) => console.log(err));
 
   // const swipedId = userSwiped.id
 

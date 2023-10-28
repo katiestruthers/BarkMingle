@@ -28,21 +28,16 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
   if (!loggedInUserId) {
     return res.status(401).json({ message: 'User is not logged in.' });
   }
+  console.log('loggedInUserId:', loggedInUserId);
+  console.log('swipedUserId:', swipedUserId);
 
   addNewSwipe(swipedUserId, loggedInUserId, is_liked)
-    .then((newSwipe) => {
-      if (newSwipe) {
-        const swipesReceived = getSwipesReceivedForUser(loggedInUserId);
-        if (!swipesReceived) {
-          return res.json(newSwipe);
-        }
-        return swipesReceived;
-      } else {
-        res.status(404).json({ error: 'Swipe not found.' });
-      }
+    .then(() => {
+      return getSwipesReceivedForUser(loggedInUserId);
     })
     .then((swipesReceived) => {
-      if (swipesReceived && swipesReceived.includes(Number(swipedUserId))) {
+      console.log('swipesReceived:', swipesReceived);
+      if (swipesReceived.includes(Number(swipedUserId))) {
         addNewMatch(swipedUserId, loggedInUserId)
           .then((newMatch) => {
             if (newMatch) {

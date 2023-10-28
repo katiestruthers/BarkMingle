@@ -133,22 +133,22 @@ const getAllSwipeableDogs = function(userId) {
 // Get swipes received for user from other users to facilitate matching
 const getSwipesReceivedForUser = function(userId) {
   const queryString = `
-    SELECT DISTINCT swipes.swiped_by_user_id
-    FROM users
-    JOIN swipes
-    ON users.id = swipes.swiped_user_id
+    SELECT swipes.swiped_user_id
+    FROM swipes
+    JOIN users
+    ON swipes.swiped_by_user_id = users.id
     WHERE is_liked
     AND users.id = $1;
   `;
   const queryParams = [userId];
-  
+
   return db
     .query(queryString, queryParams)
     .then(data => {
       if (!data.rows.length) {
-        return null;
+        return [];
       }
-      const result = data.rows.map(a => a.swiped_by_user_id);
+      const result = data.rows.map(a => a.swiped_user_id);
       return result;
     })
     .catch((err) => {
