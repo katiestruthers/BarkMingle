@@ -19,7 +19,7 @@ VALUES
   ('Cavalier King Charles Spaniel'),
   ('Great Dane'),
   ('Miniature Schnauzer'),
-  ('Doberman Pincher'),
+  ('Doberman Pinscher'),
   ('Shih Tzu'),
   ('Chihuahua'),
   ('English Cocker Spaniel'),
