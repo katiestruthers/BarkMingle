@@ -1,15 +1,21 @@
 // useclient.js
 import { useEffect, useState } from 'react';
 import { StreamChat } from 'stream-chat';
-// import { client } from '../StackNavigator'
-// import { chatApiKey, chatUserId, chatUserName, chatUserToken } from '../chatConfig';
 
 import { chatApiKey } from '../chatConfig';
-import useAuth from './useAuth';
 
-// const { user } = useAuth();
 
 export const client = StreamChat.getInstance(chatApiKey);
+
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+/// NEED TO CONFIRM FORMAT OF USER OBJECT
+// - get a set user object 
+// - extract info to userInfo object and devToken
+
+// import { user } from './useAuth';
 
 /*
 const userInfo = {
@@ -18,12 +24,20 @@ const userInfo = {
   image: `${user.img}`
 }
 
+const devToken = `${user.id}`
 */
+
+// EXAMPLE CASE TO AVOID THROWING ERRORS
 const userInfo =  {
   id: "doggo4",
   name: "Jane Doe",
   image: "https://media.npr.org/assets/img/2022/11/23/russian-toy-2-3-_custom-fd300880a9643efca73031d33f38ca7f4054b710.jpg"
 };
+
+const devToken = `${userInfo.id}`
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 
 export const useChatClient = () => {
@@ -32,7 +46,7 @@ export const useChatClient = () => {
   useEffect(() => {
     const setupClient = async () => {
       try {
-        client.connectUser(userInfo, client.devToken("doggo4"));
+        client.connectUser(userInfo, client.devToken(devToken));
         setClientIsReady(true);
 
         // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
