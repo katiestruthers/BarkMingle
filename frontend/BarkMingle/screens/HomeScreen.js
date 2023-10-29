@@ -82,7 +82,15 @@ const swipeRight = (cardIndex) => {
 
   // Get all likes received for current user
   // If received a like for userSwipedId, redirect to matches page
-  // Axios.get(`http://localhost:8080/api/feed/likes`)
+  Axios.get(`http://localhost:8080/api/feed/likes`, { headers })
+    .then((likesReceived) => {
+      if (likesReceived.includes(Number(swipedUserId))) {
+        console.log(`You MATCHED with ${userSwiped.dog_name}!!!`);
+        navigation.navigate("Match", {user, userSwiped});
+      } else {
+        console.log(`No match with ${userSwiped.dog_name}.`);
+      }
+    })
 
   // Add like to swipes table
   // Will create a new instance on the matches table if mutual like
