@@ -43,28 +43,6 @@ const getTraitsForDog = function(dogId) {
     });
 };
 
-// Get user PROFILE details (not account details)
-const getUserDetails = function(userId) {
-  const queryString = `
-    SELECT first_name, last_name, bio
-    FROM users
-    WHERE id = $1;
-  `;
-  const queryParams = [userId];
-
-  return db
-    .query(queryString, queryParams)
-    .then(data => {
-      if (!data.rows.length) {
-        return null;
-      }
-      return data.rows;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
 // Helper function for getAllSwipeableDogs
 const combineTraitsForDogs = function(dogs) {
   const promises = [];
@@ -130,13 +108,13 @@ const getAllSwipeableDogs = function(userId) {
     });
 };
 
-// Get swipes received for user from other users to facilitate matching
-const getSwipesReceivedForUser = function(userId) {
+// Get likes received for user from other users to facilitate matching
+const getLikesReceivedForUser = function(userId) {
   const queryString = `
-    SELECT swipes.swiped_user_id
+    SELECT swipes.swiped_by_user_id
     FROM swipes
     JOIN users
-    ON swipes.swiped_by_user_id = users.id
+    ON swipes.swiped_user_id = users.id
     WHERE is_liked
     AND users.id = $1;
   `;
@@ -148,8 +126,40 @@ const getSwipesReceivedForUser = function(userId) {
       if (!data.rows.length) {
         return [];
       }
-      const result = data.rows.map(a => a.swiped_user_id);
+      console.log('data.rows:', data.rows);
+      const result = data.rows.map(a => a.swiped_by_user_id);
+      console.log('result', result);
       return result;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const getMatchesForUser = function(userId) {
+  const queryString = `
+    SELECT first_liked_user_id AS user_id, time_matched
+    FROM matches
+    JOIN users
+    ON users.id = second_liked_user_id
+    WHERE users.id = $1
+    UNION
+    SELECT second_liked_user_id AS user_id, time_matched
+    FROM matches
+    JOIN users
+    ON users.id = first_liked_user_id
+    WHERE users.id = $1;
+  `;
+  const queryParams = [userId];
+
+  return db
+    .query(queryString, queryParams)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      console.log('data.rows', data.rows);
+      return data.rows;
     })
     .catch((err) => {
       console.error(err);
@@ -159,7 +169,7 @@ const getSwipesReceivedForUser = function(userId) {
 module.exports = {
   getAllTraits,
   getTraitsForDog,
-  getUserDetails,
   getAllSwipeableDogs,
-  getSwipesReceivedForUser
+  getLikesReceivedForUser,
+  getMatchesForUser
 };

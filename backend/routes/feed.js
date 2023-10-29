@@ -1,6 +1,6 @@
 const express = require("express");
 const { addNewSwipe, addNewMatch } = require("./helpers/insert-helpers");
-const { getSwipesReceivedForUser } = require("./helpers/select-helpers");
+const { getLikesReceivedForUser } = require("./helpers/select-helpers");
 const router = express.Router();
 const selectHelpers = require("./helpers/select-helpers");
 const verifyToken = require("../middlewares/verifyToken");
@@ -31,32 +31,53 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
   console.log('loggedInUserId:', loggedInUserId);
   console.log('swipedUserId:', swipedUserId);
 
-  addNewSwipe(swipedUserId, loggedInUserId, is_liked)
+  addNewSwipe(loggedInUserId, swipedUserId, is_liked)
     .then(() => {
-      return getSwipesReceivedForUser(loggedInUserId);
+      return getLikesReceivedForUser(loggedInUserId);
     })
-    .then((swipesReceived) => {
-      console.log('swipesReceived:', swipesReceived);
-      if (swipesReceived.includes(Number(swipedUserId))) {
-        addNewMatch(swipedUserId, loggedInUserId)
-          .then((newMatch) => {
-            if (newMatch) {
-              res.json(newMatch);
-            } else {
-              res.status(404).json({ error: 'Match not found.' });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            res.status(500);
-          });
+    .then((likesReceived) => {
+      console.log('swipesReceived:', likesReceived);
 
-        // Redirect to 'it's a match!' page
+      // If it is a match, add to the matches table
+      if (likesReceived.includes(Number(swipedUserId))) {
+        addNewMatch(swipedUserId, loggedInUserId);
       }
     })
     .catch((err) => {
       console.log(err);
       res.status(500);
+    });
+});
+
+// Get likes received for logged-in user
+router.get("/likes", (req, res) => {
+  const loggedInUserId = req.user_id; // token id 
+
+  selectHelpers
+    .getLikesReceivedForUser(loggedInUserId)
+    .then(likes => {
+      console.log('likes:', likes);
+      res.json(likes);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
+
+// Get list of matches for logged-in user
+router.get("/matches", (req, res) => {
+  const loggedInUserId = req.user_id; // token id 
+
+  selectHelpers
+    .getMatchesForUser(loggedInUserId)
+    .then(matches => {
+      console.log('matches:', matches);
+      res.json(matches);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
     });
 });
 
