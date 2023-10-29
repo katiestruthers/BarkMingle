@@ -59,56 +59,80 @@ const HomeScreen = () => {
 
 const swipeLeft = (cardIndex) => {
   const userSwiped = filteredProfiles[cardIndex];
+  const userSwipedId = userSwiped.user_id;
 
   if (!userSwiped) return;   // if no cards, just return
+  console.log(`You swiped PASS on ${userSwiped.dog_name}`);
 
   // Add pass to swipes table
   Axios
-  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+  .post(`http://localhost:8080/api/feed/dogs/${userSwipedId}`, {
     swiped_by_user_id: user.id,
-    swiped_user_id: 3,
+    swiped_user_id: userSwipedId,
     is_liked: false
-    }, { headers })
-  .then((res) => {
-    console.log(`You swiped PASS on ${userSwiped.dog_name}`);
-  });
+    }, { headers });
 };
 
 const swipeRight = (cardIndex) => {
   const userSwiped = filteredProfiles[cardIndex];
+  const userSwipedId = userSwiped.user_id;
 
   if (!userSwiped) return;  // if no cards, just return
+  console.log(`You swiped LIKE on ${userSwiped.dog_name}`);
+
+  // Get all likes received for current user
+  // If received a like for userSwipedId, redirect to matches page
+  Axios.get("http://localhost:8080/api/feed/likes", { headers })
+    .then((res) => {
+      const likesReceived = res.data;
+      console.log('likesReceived:', likesReceived);
+      if (likesReceived.includes(Number(userSwipedId))) {
+        console.log(`You MATCHED with ${userSwiped.dog_name}!!!`);
+        navigation.navigate("Match", {user, userSwipedId});
+      } else {
+        console.log(`No match with ${userSwiped.dog_name}.`);
+      }
+    })
+    .catch(error => console.log(error));
 
   // Add like to swipes table
-  Axios
-  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+  // Will create a new instance on the matches table if mutual like
+  Axios.post(`http://localhost:8080/api/feed/dogs/${userSwipedId}`, {
     swiped_by_user_id: user.id,
-    swiped_user_id: userSwiped.user_id,
+    swiped_user_id: userSwipedId,
     is_liked: true
-    }, { headers })
-  .then((res) => {
-    console.log(`You swiped LIKE on ${userSwiped.dog_name}`);
-  });
+    }, { headers });
 
-  // const swipedId = userSwiped.id
+  // return Promise.all(getLikesReceived, postLikeToSwipes);
 
-  // if ((userSwiped.matches).includes(user)) {
-    
-  //   usersMatchArray.push(swipedId);
-  //   userMatchDetailsArray.push(userSwiped);
-  //   swipedUser.push(userSwiped);
+    // This was my previous attempt to get it to work
+    // wanted the commit history but will delete this comment later
 
-  //   setMatchesIds((prev) => ([...prev, swipedId]));
-  //   setMatchesDetails((prev) => ([...prev, userSwiped]));
+    // // Get logged-in user's matches
+    // .then(() => {
+    //   return Axios.get("http://localhost:8080/api/feed/matches", { headers });
+    // })
 
-  //   console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
+    // // Check matches to see if most recent like resulted in new match
+    // .then((res) => {
+    //   const matches = res.data;
+    //   console.log('matches:', matches);
 
-  //   navigation.navigate("Match", {userProfile, userSwiped});
-  // }
-  // else {
-  //   console.log("Not a match")
-  // }
-}
+    //   if (matches) {
+    //     const matchedUserIds = matches.map(a => a.user_id);
+        
+    //     if (matchedUserIds.includes(swiped_user_id)) {
+    //       console.log(`You MATCHED with ${userSwiped.dog_name}!!!`);
+    //       navigation.navigate("Match", {user, userSwiped});
+    //     } else {
+    //       console.log(`No match with ${userSwiped.dog_name}.`)
+    //     }
+    //   } else {
+    //     throw new Error;
+    //   }
+    // })
+    // .catch(err => console.log(err));
+  };
 
 
   return (

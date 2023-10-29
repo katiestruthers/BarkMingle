@@ -19,16 +19,14 @@ JOIN breeds
 ON dogs_breeds.breed_id = breeds.id
 JOIN users
 ON dogs.user_id = users.id
-JOIN likes
-ON users.id = likes.liked_by_user_id
 
 -- Do not show logged-in user's dog
-WHERE NOT users.id = $1 -- = logged-in user id
+WHERE NOT users.id = 1 -- = logged-in user id
 
 -- Do not show dogs the logged-in user has already swiped
-AND NOT users.id IN (
-  SELECT swipes.swiped_user_id
-  FROM users
-  JOIN swipes
-  ON users.id = swipes.swiped_by_user_id
-  WHERE users.id = $1);  -- = logged-in user id
+AND users.id NOT IN (
+  SELECT swipes.swiped_by_user_id
+  FROM swipes
+  JOIN users
+  ON swipes.swiped_user_id = users.id
+  WHERE users.id = 1);  -- = logged-in user id

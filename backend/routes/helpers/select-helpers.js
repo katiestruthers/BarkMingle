@@ -43,28 +43,6 @@ const getTraitsForDog = function(dogId) {
     });
 };
 
-// Get user PROFILE details (not account details)
-const getUserDetails = function(userId) {
-  const queryString = `
-    SELECT first_name, last_name, bio
-    FROM users
-    WHERE id = $1;
-  `;
-  const queryParams = [userId];
-
-  return db
-    .query(queryString, queryParams)
-    .then(data => {
-      if (!data.rows.length) {
-        return null;
-      }
-      return data.rows;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
 // Helper function for getAllSwipeableDogs
 const combineTraitsForDogs = function(dogs) {
   const promises = [];
@@ -106,14 +84,12 @@ const getAllSwipeableDogs = function(userId) {
     ON dogs_breeds.breed_id = breeds.id
     JOIN users
     ON dogs.user_id = users.id
-    JOIN likes
-    ON users.id = likes.liked_by_user_id
     WHERE NOT users.id = $1
-    AND NOT users.id IN (
+    AND users.id NOT IN (
       SELECT swipes.swiped_user_id
-      FROM users
-      JOIN swipes
-      ON users.id = swipes.swiped_by_user_id
+      FROM swipes
+      JOIN users
+      ON swipes.swiped_by_user_id = users.id
       WHERE users.id = $1);
     `;
   const queryParams = [userId];
@@ -132,26 +108,57 @@ const getAllSwipeableDogs = function(userId) {
     });
 };
 
-// Get swipes received for user from other users to facilitate matching
-const getSwipesReceivedForUser = function(userId) {
+// Get likes received for user from other users to facilitate matching
+const getLikesReceivedForUser = function(userId) {
   const queryString = `
-    SELECT DISTINCT swipes.swiped_by_user_id
-    FROM users
-    JOIN swipes
-    ON users.id = swipes.swiped_user_id
+    SELECT swipes.swiped_by_user_id
+    FROM swipes
+    JOIN users
+    ON swipes.swiped_user_id = users.id
     WHERE is_liked
     AND users.id = $1;
   `;
   const queryParams = [userId];
-  
+
+  return db
+    .query(queryString, queryParams)
+    .then(data => {
+      if (!data.rows.length) {
+        return [];
+      }
+      const likesReceived = data.rows;
+      const result = likesReceived.map(a => a.swiped_by_user_id);
+      return result;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const getMatchesForUser = function(userId) {
+  const queryString = `
+    SELECT first_liked_user_id AS user_id, time_matched
+    FROM matches
+    JOIN users
+    ON users.id = second_liked_user_id
+    WHERE users.id = $1
+    UNION
+    SELECT second_liked_user_id AS user_id, time_matched
+    FROM matches
+    JOIN users
+    ON users.id = first_liked_user_id
+    WHERE users.id = $1;
+  `;
+  const queryParams = [userId];
+
   return db
     .query(queryString, queryParams)
     .then(data => {
       if (!data.rows.length) {
         return null;
       }
-      const result = data.rows.map(a => a.swiped_by_user_id);
-      return result;
+      console.log('data.rows', data.rows);
+      return data.rows;
     })
     .catch((err) => {
       console.error(err);
@@ -161,7 +168,7 @@ const getSwipesReceivedForUser = function(userId) {
 module.exports = {
   getAllTraits,
   getTraitsForDog,
-  getUserDetails,
   getAllSwipeableDogs,
-  getSwipesReceivedForUser
+  getLikesReceivedForUser,
+  getMatchesForUser
 };
