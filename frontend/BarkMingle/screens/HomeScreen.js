@@ -15,6 +15,7 @@ import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
+import { createChannel } from '../hooks/useChatClientDev.js';
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -109,6 +110,26 @@ const swipeRight = (cardIndex) => {
   //   console.log("Not a match")
   // }
 }
+
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+// DON'T ERASE ME //
+
+//TO BE UNCOMMENTED
+
+    //// CREATE NEW STREAM CHAT CHANNEL IF USERS MATCH ////
+    // put in an if (users match) statement 
+/*  const chatUserID = `u${user.id}`
+    const chatSwipedUserID = `u${userSwiped.user_id}`  // needs to be a string
+    const chatSwipedUserName = `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`
+    const chatSwipedUserImage = `${userSwiped.img}`
+
+    createChannel(chatUserID, chatSwipedUserID, chatSwipedUserName, chatSwipedUserImage);
+*/
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
 
 
   return (

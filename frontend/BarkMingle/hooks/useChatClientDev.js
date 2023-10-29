@@ -15,19 +15,23 @@ export const client = StreamChat.getInstance(chatApiKey);
 // - get a set user object 
 // - extract info to userInfo object and devToken
 
+// TO BE UNCOMMENTED
+
 // import { user } from './useAuth';
 
 /*
 const userInfo = {
-  id: `${user.id}`,
-  name: `${user.dogName} & ${user.first_name} ${user.last_name}`,
+  id: `u${user.id}`,
+  name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
   image: `${user.img}`
 }
 
-const devToken = `${user.id}`
+const devToken = `u${user.id}`
 */
 
+
 // EXAMPLE CASE TO AVOID THROWING ERRORS
+// TO BE DELETED
 const userInfo =  {
   id: "doggo4",
   name: "Jane Doe",
@@ -70,4 +74,16 @@ export const useChatClient = () => {
   return {
     clientIsReady,
   };
+};
+
+
+export const createChannel = async (userID, swipedUserID, swipedUserName, swipedUserImage) => {
+  const channelID = `${userID}--${swipedUserID}`
+  
+  const channel = client.channel("messaging", channelID, 
+    {name: swipedUserName,
+    image: swipedUserImage,
+    members: [userID, swipedUserID]}
+  );
+  await channel.watch();
 };
