@@ -87,3 +87,9 @@ export const createChannel = async (userID, swipedUserID, swipedUserName, swiped
   );
   await channel.watch();
 };
+
+
+// ADD TO LOGOUT
+export const disconnectUser = async () => {
+  await client.disconnectUser();
+};
