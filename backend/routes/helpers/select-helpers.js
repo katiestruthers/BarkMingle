@@ -157,7 +157,6 @@ const getMatchesForUser = function(userId) {
       if (!data.rows.length) {
         return null;
       }
-      console.log('data.rows', data.rows);
       return data.rows;
     })
     .catch((err) => {

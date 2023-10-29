@@ -28,15 +28,12 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
   if (!loggedInUserId) {
     return res.status(401).json({ message: 'User is not logged in.' });
   }
-  console.log('loggedInUserId:', loggedInUserId);
-  console.log('swipedUserId:', swipedUserId);
 
   addNewSwipe(loggedInUserId, swipedUserId, is_liked)
     .then(() => {
       return getLikesReceivedForUser(loggedInUserId);
     })
     .then((likesReceived) => {
-      console.log('from post /dogs/:id, likesReceived:', likesReceived);
       // If it is a match, add to the matches table
       if (likesReceived.includes(Number(swipedUserId))) {
         addNewMatch(loggedInUserId, swipedUserId);
@@ -55,7 +52,6 @@ router.get("/likes", verifyToken, (req, res) => {
   selectHelpers
     .getLikesReceivedForUser(loggedInUserId)
     .then(likes => {
-      console.log('from /likes:', likes);
       res.json(likes);
     })
     .catch((err) => {
@@ -71,7 +67,6 @@ router.get("/matches", (req, res) => {
   selectHelpers
     .getMatchesForUser(loggedInUserId)
     .then(matches => {
-      console.log('matches:', matches);
       res.json(matches);
     })
     .catch((err) => {
