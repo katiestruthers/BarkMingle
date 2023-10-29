@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react';
 import { StreamChat } from 'stream-chat';
 
-import { chatApiKey } from '../chatConfig';
+import { CHAT_API_KEY } from "@env";
 
 
-export const client = StreamChat.getInstance(chatApiKey);
+export const client = StreamChat.getInstance(CHAT_API_KEY);
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -15,11 +15,8 @@ export const client = StreamChat.getInstance(chatApiKey);
 // - get a set user object 
 // - extract info to userInfo object and devToken
 
-// TO BE UNCOMMENTED
+import { user } from './useAuth';
 
-// import { user } from './useAuth';
-
-/*
 const userInfo = {
   id: `u${user.id}`,
   name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
@@ -27,21 +24,18 @@ const userInfo = {
 }
 
 const devToken = `u${user.id}`
-*/
+
 
 
 // EXAMPLE CASE TO AVOID THROWING ERRORS
 // TO BE DELETED
-const userInfo =  {
-  id: "doggo4",
-  name: "Jane Doe",
-  image: "https://media.npr.org/assets/img/2022/11/23/russian-toy-2-3-_custom-fd300880a9643efca73031d33f38ca7f4054b710.jpg"
-};
+// const userInfo =  {
+//   id: "doggo4",
+//   name: "Jane Doe",
+//   image: "https://media.npr.org/assets/img/2022/11/23/russian-toy-2-3-_custom-fd300880a9643efca73031d33f38ca7f4054b710.jpg"
+// };
 
-const devToken = `${userInfo.id}`
-
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
+// const devToken = `${userInfo.id}`
 
 
 export const useChatClient = () => {
