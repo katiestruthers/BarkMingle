@@ -33,12 +33,6 @@ const HomeScreen = () => {
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
 
-  // to set array of match ids
-  const [matchesIds, setMatchesIds] = useState([]);
-
-  // to set array of match info objects
-  const [matchesDetails, setMatchesDetails] = useState([])
-
   appData = {user, filteredProfiles};
 
   // set state of profiles when user changes
@@ -59,10 +53,11 @@ const HomeScreen = () => {
 
 const swipeLeft = (cardIndex) => {
   const userSwiped = filteredProfiles[cardIndex];
-  const userSwipedId = userSwiped.user_id;
 
   if (!userSwiped) return;   // if no cards, just return
-  console.log(`You swiped PASS on ${userSwiped.dog_name}`);
+
+  const userSwipedId = userSwiped.user_id;
+  console.log(`You swiped PASS on ${userSwiped.dog_name}, user id ${userSwipedId}`);
 
   // Add pass to swipes table
   Axios
@@ -75,20 +70,21 @@ const swipeLeft = (cardIndex) => {
 
 const swipeRight = (cardIndex) => {
   const userSwiped = filteredProfiles[cardIndex];
-  const userSwipedId = userSwiped.user_id;
 
   if (!userSwiped) return;  // if no cards, just return
-  console.log(`You swiped LIKE on ${userSwiped.dog_name}`);
+
+  const userSwipedId = userSwiped.user_id;
+  console.log(`You swiped LIKE on ${userSwiped.dog_name}, user id ${userSwipedId}`);
 
   // Get all likes received for current user
   // If received a like for userSwipedId, redirect to matches page
   Axios.get("http://localhost:8080/api/feed/likes", { headers })
     .then((res) => {
       const likesReceived = res.data;
-      console.log('likesReceived:', likesReceived);
+      console.log("You've received the following likes:", likesReceived);
       if (likesReceived.includes(Number(userSwipedId))) {
-        console.log(`You MATCHED with ${userSwiped.dog_name}!!!`);
-        navigation.navigate("Match", {user, userSwipedId});
+        console.log(`You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`);
+        navigation.navigate("Match", { userSwiped });
       } else {
         console.log(`No match with ${userSwiped.dog_name}.`);
       }
@@ -102,36 +98,6 @@ const swipeRight = (cardIndex) => {
     swiped_user_id: userSwipedId,
     is_liked: true
     }, { headers });
-
-  // return Promise.all(getLikesReceived, postLikeToSwipes);
-
-    // This was my previous attempt to get it to work
-    // wanted the commit history but will delete this comment later
-
-    // // Get logged-in user's matches
-    // .then(() => {
-    //   return Axios.get("http://localhost:8080/api/feed/matches", { headers });
-    // })
-
-    // // Check matches to see if most recent like resulted in new match
-    // .then((res) => {
-    //   const matches = res.data;
-    //   console.log('matches:', matches);
-
-    //   if (matches) {
-    //     const matchedUserIds = matches.map(a => a.user_id);
-        
-    //     if (matchedUserIds.includes(swiped_user_id)) {
-    //       console.log(`You MATCHED with ${userSwiped.dog_name}!!!`);
-    //       navigation.navigate("Match", {user, userSwiped});
-    //     } else {
-    //       console.log(`No match with ${userSwiped.dog_name}.`)
-    //     }
-    //   } else {
-    //     throw new Error;
-    //   }
-    // })
-    // .catch(err => console.log(err));
   };
 
 
