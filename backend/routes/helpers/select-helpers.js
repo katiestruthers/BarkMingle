@@ -126,10 +126,7 @@ const getLikesReceivedForUser = function(userId) {
       if (!data.rows.length) {
         return [];
       }
-      console.log('data.rows:', data.rows);
-      const result = data.rows.map(a => a.swiped_by_user_id);
-      console.log('result', result);
-      return result;
+      return data.rows;
     })
     .catch((err) => {
       console.error(err);

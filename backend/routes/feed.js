@@ -36,8 +36,6 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
       return getLikesReceivedForUser(loggedInUserId);
     })
     .then((likesReceived) => {
-      console.log('swipesReceived:', likesReceived);
-
       // If it is a match, add to the matches table
       if (likesReceived.includes(Number(swipedUserId))) {
         addNewMatch(swipedUserId, loggedInUserId);
@@ -50,13 +48,13 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
 });
 
 // Get likes received for logged-in user
-router.get("/likes", (req, res) => {
+router.get("/likes", verifyToken, (req, res) => {
   const loggedInUserId = req.user_id; // token id 
 
   selectHelpers
     .getLikesReceivedForUser(loggedInUserId)
     .then(likes => {
-      console.log('likes:', likes);
+      console.log('from /likes:', likes);
       res.json(likes);
     })
     .catch((err) => {
