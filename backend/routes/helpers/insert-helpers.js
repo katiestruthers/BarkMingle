@@ -22,7 +22,9 @@ const addNewMatch = function(loggedInUserId, swipedUserId) {
     INSERT INTO matches (first_liked_user_id, second_liked_user_id)
     VALUES ($1, $2);
     `;
-  const queryParams = [loggedInUserId, swipedUserId];
+    
+  // Match animation will play for the second_liked_user_id, the currently logged-in user
+  const queryParams = [swipedUserId, loggedInUserId];
 
   return db
     .query(queryString, queryParams)
