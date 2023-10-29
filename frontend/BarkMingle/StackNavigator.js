@@ -15,16 +15,11 @@ import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
-
 import ChannelListScreen from './screens/ChannelListScreen';
-
-import { useChatClient, client } from './hooks/useChatClientDev';
-import { Text } from 'react-native';
+import ChannelScreen from './screens/ChannelScreen';
 
 import { Chat } from 'stream-chat-expo';
-import { StreamChat } from 'stream-chat';
-import { chatApiKey } from './chatConfig';
-import ChannelScreen from './screens/ChannelScreen';
+import { client } from './hooks/useChatClientDev';
 
 
 const Stack = createStackNavigator();
@@ -36,11 +31,6 @@ const StackNavigator = () => {
     authorization: `Bearer ${token}`,
   };
 
-  const { clientIsReady } = useChatClient();
-
-  if (!clientIsReady) {
-    return <Text>Loading chat...</Text>
-  }
 
   return (
     <Chat client={client}>

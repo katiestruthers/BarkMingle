@@ -15,7 +15,7 @@ import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
-import { createChannel } from '../hooks/useChatClientDev.js';
+import { useChatClient, createChannel } from '../hooks/useChatClientDev.js';
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -25,6 +25,14 @@ export let appData = {};
 
 const HomeScreen = () => {
 
+  // Setup chat client
+  const { clientIsReady } = useChatClient();
+
+  if (!clientIsReady) {
+    return <Text>Loading chat...</Text>
+  }
+
+  
   // Get user and JWT token from useAuth
   const { user, token } = useAuth();
   const headers = {
