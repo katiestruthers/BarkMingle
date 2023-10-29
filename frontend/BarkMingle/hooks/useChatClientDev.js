@@ -38,7 +38,7 @@ const devToken = `u${user.id}`
 // const devToken = `${userInfo.id}`
 
 
-export const useChatClient = () => {
+export const useChatClient = () => {                            // Add userInfo and devToken params to function?
   const [clientIsReady, setClientIsReady] = useState(false);
 
   useEffect(() => {

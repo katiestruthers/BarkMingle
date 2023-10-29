@@ -93,6 +93,18 @@ const swipeRight = (cardIndex) => {
       console.log("You've received the following likes:", likesReceived);
       if (likesReceived.includes(Number(userSwipedId))) {
         console.log(`You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`);
+
+
+        // Create new chat channel for matches
+        // Check with Katie about dog image
+        
+        const chatUserID = `u${user.id}`                      // needs to be a string
+        const chatSwipedUserID = `u${userSwiped.user_id}`     // needs to be a string
+        const chatSwipedUserName = `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`
+        const chatSwipedUserImage = `${userSwiped.img}`
+        createChannel(chatUserID, chatSwipedUserID, chatSwipedUserName, chatSwipedUserImage);
+
+
         navigation.navigate("Match", { userSwiped });
       } else {
         console.log(`No match with ${userSwiped.dog_name}.`);
@@ -108,26 +120,6 @@ const swipeRight = (cardIndex) => {
     is_liked: true
     }, { headers });
   };
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-
-// DON'T ERASE ME //
-
-//TO BE UNCOMMENTED
-
-    //// CREATE NEW STREAM CHAT CHANNEL IF USERS MATCH ////
-    // put in an if (users match) statement 
-/*  const chatUserID = `u${user.id}`
-    const chatSwipedUserID = `u${userSwiped.user_id}`  // needs to be a string
-    const chatSwipedUserName = `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`
-    const chatSwipedUserImage = `${userSwiped.img}`
-
-    createChannel(chatUserID, chatSwipedUserID, chatSwipedUserName, chatSwipedUserImage);
-*/
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
 
 
   return (
