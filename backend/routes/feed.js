@@ -36,9 +36,10 @@ router.post("/dogs/:id", verifyToken, (req, res) => {
       return getLikesReceivedForUser(loggedInUserId);
     })
     .then((likesReceived) => {
+      console.log('from post /dogs/:id, likesReceived:', likesReceived);
       // If it is a match, add to the matches table
       if (likesReceived.includes(Number(swipedUserId))) {
-        addNewMatch(swipedUserId, loggedInUserId);
+        addNewMatch(loggedInUserId, swipedUserId);
       }
     })
     .catch((err) => {

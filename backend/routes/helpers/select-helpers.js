@@ -86,10 +86,10 @@ const getAllSwipeableDogs = function(userId) {
     ON dogs.user_id = users.id
     WHERE NOT users.id = $1
     AND users.id NOT IN (
-      SELECT swipes.swiped_by_user_id
+      SELECT swipes.swiped_user_id
       FROM swipes
       JOIN users
-      ON swipes.swiped_user_id = users.id
+      ON swipes.swiped_by_user_id = users.id
       WHERE users.id = $1);
     `;
   const queryParams = [userId];
@@ -126,7 +126,9 @@ const getLikesReceivedForUser = function(userId) {
       if (!data.rows.length) {
         return [];
       }
-      return data.rows;
+      const likesReceived = data.rows;
+      const result = likesReceived.map(a => a.swiped_by_user_id);
+      return result;
     })
     .catch((err) => {
       console.error(err);

@@ -82,15 +82,18 @@ const swipeRight = (cardIndex) => {
 
   // Get all likes received for current user
   // If received a like for userSwipedId, redirect to matches page
-  Axios.get(`http://localhost:8080/api/feed/likes`, { headers })
-    .then((likesReceived) => {
-      if (likesReceived.includes(Number(swipedUserId))) {
+  Axios.get("http://localhost:8080/api/feed/likes", { headers })
+    .then((res) => {
+      const likesReceived = res.data;
+      console.log('likesReceived:', likesReceived);
+      if (likesReceived.includes(Number(userSwipedId))) {
         console.log(`You MATCHED with ${userSwiped.dog_name}!!!`);
-        navigation.navigate("Match", {user, userSwiped});
+        navigation.navigate("Match", {user, userSwipedId});
       } else {
         console.log(`No match with ${userSwiped.dog_name}.`);
       }
     })
+    .catch(error => console.log(error));
 
   // Add like to swipes table
   // Will create a new instance on the matches table if mutual like
@@ -98,7 +101,9 @@ const swipeRight = (cardIndex) => {
     swiped_by_user_id: user.id,
     swiped_user_id: userSwipedId,
     is_liked: true
-    }, { headers })
+    }, { headers });
+
+  // return Promise.all(getLikesReceived, postLikeToSwipes);
 
     // This was my previous attempt to get it to work
     // wanted the commit history but will delete this comment later
@@ -127,7 +132,7 @@ const swipeRight = (cardIndex) => {
     //   }
     // })
     // .catch(err => console.log(err));
-  }
+  };
 
 
   return (
