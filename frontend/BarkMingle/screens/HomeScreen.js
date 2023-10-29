@@ -42,12 +42,6 @@ const HomeScreen = () => {
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
 
-  // to set array of match ids
-  const [matchesIds, setMatchesIds] = useState([]);
-
-  // to set array of match info objects
-  const [matchesDetails, setMatchesDetails] = useState([])
-
   appData = {user, filteredProfiles};
 
   // set state of profiles when user changes
@@ -71,16 +65,16 @@ const swipeLeft = (cardIndex) => {
 
   if (!userSwiped) return;   // if no cards, just return
 
+  const userSwipedId = userSwiped.user_id;
+  console.log(`You swiped PASS on ${userSwiped.dog_name}, user id ${userSwipedId}`);
+
   // Add pass to swipes table
   Axios
-  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+  .post(`http://localhost:8080/api/feed/dogs/${userSwipedId}`, {
     swiped_by_user_id: user.id,
-    swiped_user_id: 3,
+    swiped_user_id: userSwipedId,
     is_liked: false
-    }, { headers })
-  .then((res) => {
-    console.log(`You swiped PASS on ${userSwiped.dog_name}`);
-  });
+    }, { headers });
 };
 
 const swipeRight = (cardIndex) => {
@@ -88,36 +82,32 @@ const swipeRight = (cardIndex) => {
 
   if (!userSwiped) return;  // if no cards, just return
 
+  const userSwipedId = userSwiped.user_id;
+  console.log(`You swiped LIKE on ${userSwiped.dog_name}, user id ${userSwipedId}`);
+
+  // Get all likes received for current user
+  // If received a like for userSwipedId, redirect to matches page
+  Axios.get("http://localhost:8080/api/feed/likes", { headers })
+    .then((res) => {
+      const likesReceived = res.data;
+      console.log("You've received the following likes:", likesReceived);
+      if (likesReceived.includes(Number(userSwipedId))) {
+        console.log(`You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`);
+        navigation.navigate("Match", { userSwiped });
+      } else {
+        console.log(`No match with ${userSwiped.dog_name}.`);
+      }
+    })
+    .catch(error => console.log(error));
+
   // Add like to swipes table
-  Axios
-  .post(`http://localhost:8080/api/feed/dogs/${cardIndex}`, {
+  // Will create a new instance on the matches table if mutual like
+  Axios.post(`http://localhost:8080/api/feed/dogs/${userSwipedId}`, {
     swiped_by_user_id: user.id,
-    swiped_user_id: userSwiped.user_id,
+    swiped_user_id: userSwipedId,
     is_liked: true
-    }, { headers })
-  .then((res) => {
-    console.log(`You swiped LIKE on ${userSwiped.dog_name}`);
-  });
-
-  // const swipedId = userSwiped.id
-
-  // if ((userSwiped.matches).includes(user)) {
-    
-  //   usersMatchArray.push(swipedId);
-  //   userMatchDetailsArray.push(userSwiped);
-  //   swipedUser.push(userSwiped);
-
-  //   setMatchesIds((prev) => ([...prev, swipedId]));
-  //   setMatchesDetails((prev) => ([...prev, userSwiped]));
-
-  //   console.log(`You MATCHED with ${userSwiped.firstName}!!!!`)
-
-  //   navigation.navigate("Match", {userProfile, userSwiped});
-  // }
-  // else {
-  //   console.log("Not a match")
-  // }
-}
+    }, { headers });
+  };
 
 
 /////////////////////////////////////////////////

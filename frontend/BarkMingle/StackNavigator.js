@@ -39,8 +39,17 @@ const StackNavigator = () => {
         // To remove default header on every screen:
         headerShown: false,
       }}>
-        {token ? (
         <>
+          <Stack.Group>
+            <Stack.Screen name="GetStarted" component={LandingScreen} />
+            <Stack.Screen name="SignIn" component={SignInScreen} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} />
+            <Stack.Screen name="CreateDogProfile" component={CreateDogProfileScreen} />
+            <Stack.Screen name="Traits" component={TraitsScreen} />
+            <Stack.Screen name="Upload" component={UploadScreen} />
+            <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
+          </Stack.Group>
+        
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
             <Stack.Screen name="UserProfile" component={UserProfileScreen} />
@@ -62,20 +71,7 @@ const StackNavigator = () => {
           <Stack.Group screenOptions={{ presentation: "modal"}}>
             <Stack.Screen name="SwipedProfile" component={SwipedProfileScreen}/>
           </Stack.Group>
-        </> ) :
-        (
-          <Stack.Group>
-          <Stack.Screen name="GetStarted" component={LandingScreen} />
-          <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="CreateDogProfile" component={CreateDogProfileScreen} />
-          <Stack.Screen name="Traits" component={TraitsScreen} />
-          <Stack.Screen name="Upload" component={UploadScreen} />
-          <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Group>
-        )}
-      
+        </>
     </Stack.Navigator>
     </Chat>
   )
