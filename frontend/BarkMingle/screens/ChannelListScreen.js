@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, Text } from 'react-native';
 import { ChannelList } from 'stream-chat-expo';
-import { user } from '../hooks/useAuth;'
+import useAuth from '../hooks/useAuth;'
 
 import { useAppContext } from '../AppContext';
 

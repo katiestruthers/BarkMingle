@@ -1,11 +1,14 @@
 // useclient.js
+
+/*
 import { useEffect, useState } from 'react';
 import { StreamChat } from 'stream-chat';
 
 import { CHAT_API_KEY } from "@env";
+import { useChatContext } from 'stream-chat-react-native-core';
 
 
-export const client = StreamChat.getInstance(CHAT_API_KEY);
+// export const client = StreamChat.getInstance(CHAT_API_KEY);
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -87,3 +90,4 @@ export const createChannel = async (userID, swipedUserID, swipedUserName, swiped
 export const disconnectUser = async () => {
   await client.disconnectUser();
 };
+*/

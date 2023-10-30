@@ -19,8 +19,11 @@ import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
 
 import { Chat } from 'stream-chat-expo';
-import { client } from './hooks/useChatClientDev';
 
+
+import { CHAT_API_KEY } from "@env";
+
+export const client = StreamChat.getInstance(CHAT_API_KEY);
 
 const Stack = createStackNavigator();
 
