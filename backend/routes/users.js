@@ -130,7 +130,7 @@ router.get("/:id", (req, res) => {
 // Update logged-in user profile
 router.post("/", verifyToken, (req, res) => {
   const loggedInUserId = req.user_id;
-  const { first_name, last_name, bio} = req.body;
+  const { first_name, last_name, bio, profile_img } = req.body;
   console.log('Profileuser:', 'req.user_id(token id):', req.user_id);
 
   // if (Number(userId) !== req.user_id) { // checks the same user is logged in
@@ -142,15 +142,16 @@ router.post("/", verifyToken, (req, res) => {
   }
 
   // Build the SQL query for updating the user's profile
-  const query = `
+  const queryString = `
     UPDATE users
-    SET first_name = $1, last_name = $2, bio = $3
-    WHERE id = $4
+    SET first_name = $1, last_name = $2, bio = $3, profile_img = $4,
+    WHERE id = $5
     RETURNING *
   `;
+  const queryParams = [first_name, last_name, bio, profile_img, loggedInUserId];
 
   // Execute the query
-  database.query(query, [first_name, last_name, bio, loggedInUserId], (error, result) => {
+  database.query(queryString, queryParams, (error, result) => {
     if (error) {
       console.error("Error updating user profile:", error);
       return res.status(500).json({ error: "Failed to update user profile" });
