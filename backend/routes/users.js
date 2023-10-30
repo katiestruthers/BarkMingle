@@ -54,8 +54,33 @@ router.post("/signin", (req, res) => {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
+  const queryString = `
+    SELECT
+      dogs.id AS dog_id,
+      dogs.name AS dog_name,
+      dogs.age AS dog_age, 
+      dogs.is_neutered, 
+      dogs.gender AS dog_gender, 
+      dogs.size AS dog_size, 
+      dogs.img AS dog_img,
+      breeds.name AS breed, 
+      users.id, users.password,
+      users.first_name, users.last_name,
+      users.password, users.bio,
+      users.profile_img
+    FROM dogs
+    JOIN dogs_breeds
+    ON dogs.id = dogs_breeds.dog_id
+    JOIN breeds
+    ON dogs_breeds.breed_id = breeds.id
+    JOIN users
+    ON dogs.user_id = users.id
+    WHERE users.email = $1;
+  `;
+  const queryParams = [email];
+
   // Find the user with the provided email
-  database.query("SELECT * FROM users WHERE email = $1", [email], (error, result) => {
+  database.query(queryString, queryParams, (error, result) => {
     if (error) {
       console.error("Error while looking up the user:", error);
       return res.status(500).json({ error: "Login failed" });
