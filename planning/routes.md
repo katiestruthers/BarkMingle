@@ -21,7 +21,7 @@ POST     | /api/dogs/:id/signup        | Click arrow, creating a new dog
 GET      | /api/dogs/traits            | Get list of all traits from db
 PUT      | /api/dogs/:id/traits        | Click arrow, assigning 3 traits to dog
 
-PUT      | /dogs/images                | Click arrow, uploading 1 image of dog
+PUT      | /api/dogs/images            | Click arrow, uploading 1 image of dog
 
 PUT      | /api/users/edit             | Click arrow, updating user account details
 
