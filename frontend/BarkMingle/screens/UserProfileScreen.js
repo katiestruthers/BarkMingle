@@ -6,13 +6,26 @@ import styles from "../styles/userProfileStyles.js"
 import NavBar from "../components/NavBar.js";
 import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js";
 import useAuth from "../hooks/useAuth.js";
+// import { disconnectUser } from "../hooks/useChatClientDev.js";
+import { useChatContext } from "stream-chat-react-native-core";
+
+
+
 
 const UserProfileScreen = () => {
 
+  const { client } = useChatContext
+
+  const disconnectUser = async () => {
+    await client.disconnectUser();
+  };
+
   const navigation = useNavigation();
   const { user, setUser } = useAuth();
+  
 
   const signOut = () => {
+    disconnectUser();
     navigation.navigate("GetStarted");
     setUser('');
   }

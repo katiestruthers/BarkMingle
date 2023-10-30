@@ -15,6 +15,9 @@ import useAuth from '../hooks/useAuth.js';
 import NavBar from '../components/NavBar.js';
 import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
+import { useChatContext } from 'stream-chat-react-native-core';
+// import { useChatClient, createChannel } from '../hooks/useChatClientDev.js';
+
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -22,13 +25,81 @@ export const swipedUser = [];
 
 export let appData = {};
 
-const HomeScreen = () => {
 
+const HomeScreen = () => {
+  
   // Get user and JWT token from useAuth
   const { user, token } = useAuth();
   const headers = {
     authorization: `Bearer ${token}`  
   };
+
+
+  // Get Chat Client Instance
+  const { client } = useChatContext();
+
+  // User Info to create client
+  const userInfo = {
+    id: `u${user.id}`,
+    name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+    image: `${user.profile_img}`
+  };
+  
+  const devToken = `u${user.id}`
+
+  // Creating Chat Client function
+  const useChatClient = () => {                // Added userInfo and devToken params to function
+    const [clientIsReady, setClientIsReady] = useState(false);
+
+    useEffect(() => {
+      const setupClient = async () => {
+        try {
+          client.connectUser(userInfo, client.devToken(devToken));
+          setClientIsReady(true);
+
+          // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
+          // But in case you need the chat to load from offline storage first then you should render chat components
+          // immediately after calling `connectUser()`.
+          // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error(`An error occurred while connecting the user: ${error.message}`);
+          }
+        }
+      };
+
+      // If the chat client has a value in the field `userID`, a user is already connected
+      // and we can skip trying to connect the user again.
+      if (!client.userID) {
+        setupClient();
+      }
+    }, []);
+
+    return {
+      clientIsReady,
+    };
+  };
+
+  const createChannel = async (userID, swipedUserID, swipedUserName, swipedUserImage) => {
+    //const channelID = `${userID}--${swipedUserID}`
+
+    console.log("CREATING CHANNEL");
+    
+    const channel = client.channel("messaging", 
+      {name: swipedUserName,
+      image: swipedUserImage,
+      members: [userID, swipedUserID]}
+    );
+    await channel.watch();
+  };
+
+  // Setup chat client
+  const { clientIsReady } = useChatClient();
+
+  if (!clientIsReady) {
+    return <Text>Loading chat...</Text>
+  }
+
   
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
@@ -84,6 +155,19 @@ const swipeRight = (cardIndex) => {
       console.log("You've received the following likes:", likesReceived);
       if (likesReceived.includes(Number(userSwipedId))) {
         console.log(`You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`);
+
+
+        // Create new chat channel for matches
+        // Check with Katie about dog image
+        
+        const chatUserID = `u${user.id}`                      // needs to be a string
+        const chatSwipedUserID = `u${userSwiped.user_id}`     // needs to be a string
+        const chatSwipedUserName = `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`
+        const chatSwipedUserImage = `${userSwiped.profile_img}`
+
+        createChannel(chatUserID, chatSwipedUserID, chatSwipedUserName, chatSwipedUserImage);
+
+
         navigation.navigate("Match", { userSwiped });
       } else {
         console.log(`No match with ${userSwiped.dog_name}.`);

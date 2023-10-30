@@ -15,19 +15,15 @@ import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
-
 import ChannelListScreen from './screens/ChannelListScreen';
-
-import { useChatClient } from './hooks/useChatClient';
-import { Text } from 'react-native';
-
-import { Chat } from 'stream-chat-expo';
-import { StreamChat } from 'stream-chat';
-import { chatApiKey } from './chatConfig';
 import ChannelScreen from './screens/ChannelScreen';
 
-const chatClient = StreamChat.getInstance(chatApiKey);
+import { Chat } from 'stream-chat-expo';
 
+
+import { CHAT_API_KEY } from "@env";
+
+export const client = StreamChat.getInstance(CHAT_API_KEY);
 
 const Stack = createStackNavigator();
 
@@ -38,14 +34,9 @@ const StackNavigator = () => {
     authorization: `Bearer ${token}`,
   };
 
-  const { clientIsReady } = useChatClient();
-
-  if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>
-  }
 
   return (
-    <Chat client={chatClient}>
+    <Chat client={client}>
     <Stack.Navigator 
       screenOptions={{
         // To remove default header on every screen:
@@ -72,11 +63,6 @@ const StackNavigator = () => {
             <Stack.Screen name="Chatting" component={ChannelScreen} />
           </Stack.Group>
           
-          <Stack.Group>
-            <Stack.Screen name="Chat" component={ChatScreen} />
-            <Stack.Screen name="Message" component={MessageScreen} />
-          </Stack.Group>
-
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
             <Stack.Screen name="Match" component={MatchedScreen}/>
           </Stack.Group>
