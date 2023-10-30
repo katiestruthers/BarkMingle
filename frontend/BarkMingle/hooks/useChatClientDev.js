@@ -15,15 +15,15 @@ export const client = StreamChat.getInstance(CHAT_API_KEY);
 // - get a set user object 
 // - extract info to userInfo object and devToken
 
-import { user } from './useAuth';
+// import { user } from './useAuth';
 
-const userInfo = {
-  id: `u${user.id}`,
-  name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
-  image: `${user.img}`
-}
+// const userInfo = {
+//   id: `u${user.id}`,
+//   name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+//   image: `${user.img}`
+// }
 
-const devToken = `u${user.id}`
+// const devToken = `u${user.id}`
 
 
 
@@ -38,7 +38,7 @@ const devToken = `u${user.id}`
 // const devToken = `${userInfo.id}`
 
 
-export const useChatClient = () => {                            // Add userInfo and devToken params to function?
+export const useChatClient = (userInfo, devToken) => {                // Added userInfo and devToken params to function
   const [clientIsReady, setClientIsReady] = useState(false);
 
   useEffect(() => {
@@ -72,9 +72,9 @@ export const useChatClient = () => {                            // Add userInfo 
 
 
 export const createChannel = async (userID, swipedUserID, swipedUserName, swipedUserImage) => {
-  const channelID = `${userID}--${swipedUserID}`
+  //const channelID = `${userID}--${swipedUserID}`
   
-  const channel = client.channel("messaging", channelID, 
+  const channel = client.channel("messaging", 
     {name: swipedUserName,
     image: swipedUserImage,
     members: [userID, swipedUserID]}

@@ -6,6 +6,7 @@ import styles from "../styles/userProfileStyles.js"
 import NavBar from "../components/NavBar.js";
 import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js";
 import useAuth from "../hooks/useAuth.js";
+import { disconnectUser } from "../hooks/useChatClientDev.js";
 
 const UserProfileScreen = () => {
 
@@ -13,6 +14,7 @@ const UserProfileScreen = () => {
   const { user, setUser } = useAuth();
 
   const signOut = () => {
+    disconnectUser();
     navigation.navigate("GetStarted");
     setUser('');
   }

@@ -25,19 +25,28 @@ export let appData = {};
 
 const HomeScreen = () => {
 
+    // Get user and JWT token from useAuth
+    const { user, token } = useAuth();
+    const headers = {
+      authorization: `Bearer ${token}`  
+    };
+    
+// CHECK FORMAT OF USER OBJECT
+  const userInfo = {
+    id: `u${user.id}`,
+    name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+    image: `${user.img}`
+  }
+  
+  const devToken = `u${user.id}`
+
   // Setup chat client
-  const { clientIsReady } = useChatClient();
+  const { clientIsReady } = useChatClient(userInfo, devToken);
 
   if (!clientIsReady) {
     return <Text>Loading chat...</Text>
   }
 
-  
-  // Get user and JWT token from useAuth
-  const { user, token } = useAuth();
-  const headers = {
-    authorization: `Bearer ${token}`  
-  };
   
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
