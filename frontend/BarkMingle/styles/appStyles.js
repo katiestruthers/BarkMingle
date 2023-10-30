@@ -73,6 +73,12 @@ const appStyles = StyleSheet.create({
     fontFamily: 'Baloo2_800ExtraBold',
     alignSelf: "center",
   },
+  textPurpleButton: {
+    color: '#6263AF',
+    fontSize: 18,
+    fontFamily: 'Baloo2_800ExtraBold',
+    alignSelf: "center",
+  },
   backIconWhite: {
     color: '#FFFCF6',
     position: 'absolute',
@@ -129,6 +135,17 @@ const appStyles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     justifyContent: "center",
+  },
+  activeButton: {
+    flex: 1,
+    margin: 10,
+    width: "50%",
+    backgroundColor: "#D2D1F8",
+    borderRadius: 30,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#1E1E1E"
   },
   buttonContainer: {
     flexDirection: "row",
