@@ -56,7 +56,7 @@ const swipeLeft = (cardIndex) => {
 
   if (!userSwiped) return;   // if no cards, just return
 
-  const userSwipedId = userSwiped.user_id;
+  const userSwipedId = userSwiped.id;
   console.log(`You swiped PASS on ${userSwiped.dog_name}, user id ${userSwipedId}`);
 
   // Add pass to swipes table
@@ -73,7 +73,7 @@ const swipeRight = (cardIndex) => {
 
   if (!userSwiped) return;  // if no cards, just return
 
-  const userSwipedId = userSwiped.user_id;
+  const userSwipedId = userSwiped.id;
   console.log(`You swiped LIKE on ${userSwiped.dog_name}, user id ${userSwipedId}`);
 
   // Get all likes received for current user
@@ -166,7 +166,6 @@ const swipeRight = (cardIndex) => {
 
                     <View style={styles.text}>
                       <Text style={styles.name}>{card.dog_name}</Text>
-                      <Text style={styles.bio}>{/* Do not have dog bio in db */}</Text>
                     </View>
 
                   </ImageBackground>
