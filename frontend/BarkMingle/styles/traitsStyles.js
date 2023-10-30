@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
+    height: "60%",
   },
   button: {
     marginHorizontal: 10,
@@ -59,6 +59,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: 'visible',
   },
+  activeButton: {
+    marginHorizontal: 10,
+    marginVertical: 15,
+    backgroundColor: "#A5A7FB",
+    borderRadius: 30,
+    paddingHorizontal: 20,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: 'visible',
+    backgroundColor: "#1E1E1E"
+  },
+  
 });
 
 export default styles;
