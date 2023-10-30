@@ -29,6 +29,7 @@ const SignIn = () => {
     }, { headers }).then(res => {
       setToken(res.data.token);
       setUser(res.data.user);
+      console.log('Logged-in user info:', res.data.user);
       navigation.navigate("Home"); // Navigate to the "Home" screen on success
     }).catch(err => console.log(err));
   };
