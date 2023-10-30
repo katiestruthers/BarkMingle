@@ -60,11 +60,6 @@ const StackNavigator = () => {
             <Stack.Screen name="Chatting" component={ChannelScreen} />
           </Stack.Group>
           
-          <Stack.Group>
-            <Stack.Screen name="Chat" component={ChatScreen} />
-            <Stack.Screen name="Message" component={MessageScreen} />
-          </Stack.Group>
-
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
             <Stack.Screen name="Match" component={MatchedScreen}/>
           </Stack.Group>
