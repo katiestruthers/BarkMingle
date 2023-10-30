@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/uploadStyles.js";
@@ -14,13 +14,32 @@ import BonePatternSvg from "../svg-images/BonePatternSvg.js";
 import StatusBarSvg3 from "../svg-images/StatusBarSvg3.js";
 import Uploading from "../components/Uploading.js";
 import useFileUpload from "../hooks/useFileUpload.js";
+import Axios from "axios";
 
 const UploadScreen = () => {
-  const { user } = useAuth();
+  const { token, setToken } = useAuth();
+  console.log("CreateUserProfileToken: ", token);
 
   const navigation = useNavigation();
 
-  const { pickImage, image, progress, files } = useFileUpload();
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
+
+  const { pickImage, image, progress, dogImage } = useFileUpload();
+
+  const [img, setImage] = useState("");
+
+  const onSubmit = () => {
+    setImage(dogImage);
+    Axios.post("http://localhost:8080/api/dogs/images", {
+      img
+    }, { headers }).then(res => {
+      navigation.navigate("CreateUserProfile"); // Navigato to the "CreateUserProfile" screen on success
+    }).catch(err => console.log(err));
+  };
+
+  console.log('dog', dogImage)
 
   return (
     <View style={styles.container}>
@@ -58,18 +77,17 @@ const UploadScreen = () => {
         </View>
 
         <View style={styles.imageContainer}>
-          {files.map((item) => (
+          {dogImage && (
             <Image
-              key={item.url}
-              source={{ uri: item.url }}
+              source={{ uri: dogImage }}
               style={styles.image}
             />
-          ))}
+          )}
         </View>
       </View>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("CreateUserProfile")}
+        onPress={onSubmit}
       >
         <FontAwesomeIcon
           icon={faArrowRight}

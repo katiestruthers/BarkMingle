@@ -56,6 +56,24 @@ const styles = StyleSheet.create({
     zIndex: -1,
     bottom: -48,
   },
+  imageContainer: {
+    backgroundColor: '#D2D1F8',
+    width: "50%",
+    height: "10%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
+  },
+  image: {
+    width: "95%",
+    height: "95%",
+    borderRadius: 10,
+  },
+  contentContainer: {
+    alignItems: "center",
+    height: '60%',
+    width: "100%",
+  },
 });
 
 export default styles;
