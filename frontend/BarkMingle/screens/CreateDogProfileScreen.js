@@ -21,8 +21,7 @@ import Axios from "axios";
 import { SelectList } from "react-native-dropdown-select-list";
 
 const CreateDogProfileScreen = () => {
-  const { token, setToken } = useAuth();
-  console.log("CreateDogProfileToken: ", token);
+  const { token } = useAuth();
   const navigation = useNavigation();
 
   const headers = {
@@ -34,7 +33,7 @@ const CreateDogProfileScreen = () => {
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [size, setSize] = useState("");
-  const [is_neutered, setIsNeutered] = useState("");
+  const [isNeutered, setIsNeutered] = useState(true);
 
   const dataGender = [{ value: "male" }, { value: "female" }];
 
@@ -93,7 +92,7 @@ const CreateDogProfileScreen = () => {
       gender,
       age,
       size,
-      is_neutered
+      is_neutered: isNeutered
     }, { headers }).then(res => {
       navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
     }).catch(err => console.log(err));
@@ -180,16 +179,16 @@ const CreateDogProfileScreen = () => {
         <Text style={styles.textHeaderBlack}>Spayed / Neutered? * </Text>
         <View style={appStyles.buttonContainer}>
           <TouchableOpacity
-            style={appStyles.button}
-            onPress={() => setIsNeutered("Yes")}
+            style={isNeutered ? appStyles.activeButton : appStyles.button}
+            onPress={() => setIsNeutered(true)}
           >
-            <Text style={appStyles.textBlackButton}>Yes</Text>
+            <Text style={isNeutered ? appStyles.textPurpleButton : appStyles.textBlackButton}>Yes</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={appStyles.button}
-            onPress={() => setIsNeutered("No")}
+            style={!isNeutered ? appStyles.activeButton : appStyles.button}
+            onPress={() => setIsNeutered(false)}
           >
-            <Text style={appStyles.textBlackButton}>No</Text>
+            <Text style={!isNeutered ? appStyles.textPurpleButton : appStyles.textBlackButton}>No</Text>
           </TouchableOpacity>
         </View>
       </View>
