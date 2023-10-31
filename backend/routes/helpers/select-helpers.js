@@ -163,10 +163,27 @@ const getMatchesForUser = function(userId) {
     });
 };
 
+// Get all traits
+const getAllBreeds = function() {
+  const queryString = `SELECT * FROM breeds;`;
+
+  return db
+    .query(queryString)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 module.exports = {
   getAllTraits,
   getTraitsForDog,
   getAllSwipeableDogs,
   getLikesReceivedForUser,
-  getMatchesForUser
+  getMatchesForUser,
+  getAllBreeds
 };

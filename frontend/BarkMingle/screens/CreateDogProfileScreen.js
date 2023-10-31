@@ -35,55 +35,28 @@ const CreateDogProfileScreen = () => {
   const [size, setSize] = useState("");
   const [isNeutered, setIsNeutered] = useState(true);
 
+  const [selectedBreed, setSelectedBreed] = useState("");
+
   const dataGender = [{ value: "male" }, { value: "female" }];
-
-  const dataBreed = [
-    { value: "Labrador Retriever" },
-    { value: "German Shepherd" },
-    { value: "Golden Retriever" },
-    { value: "French Bulldog" },
-    { value: "Bulldog" },
-    { value: "Poodle" },
-    { value: "Beagle" },
-    { value: "Rottweiler" },
-    { value: "German Shorthaired (Pointer)" },
-    { value: "Pembroke Welsh Corgi" },
-    { value: "Dachshund" },
-    { value: "Australian Shepherd" },
-    { value: "Siberian Husky" },
-    { value: "Cavalier King Charles Spaniel" },
-    { value: "Great Dane" },
-    { value: "Miniature Schnauzer" },
-    { value: "Doberman Pincher" },
-    { value: "Shih Tzu" },
-    { value: "Chihuahua" },
-    { value: "English Cocker Spanieler" },
-    { value: "Pug" },
-    { value: "Sheltie" },
-    { value: "Dalmation" },
-    { value: "Basset Hound" },
-    { value: "Border Collie" },
-    { value: "St. Bernard" },
-    { value: "Boston Terrier" },
-    { value: "Alaskan Malamute" },
-    { value: "Mixed-Breed" },
-  ];
-
   const dataSize = [
     { value: "small" },
     { value: "medium" },
     { value: "large" },
   ];
+ 
+  useEffect( () => {
+    Axios
+      .get ("http://localhost:8080/api/dogs/breeds")
+      .then((response) => {
+        let newArray = response.data.map((item) => {
+          return { key: item.id, value: item.name }
+      });
+      console.log("response", response.data)
+      console.log("newarray", newArray)
+      setBreeds(newArray)
+    })
+  }, []);
 
-  // useEffect( () => { // for testing
-  //   console.log("ddd")
-  //   setName("donut")
-  //   setBreeds("Poodle")
-  //   setGender("male")
-  //   setAge("2")
-  //   setSize("small")
-  //   setIsNeutered(true)
-  // }, []);
 
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/dogs/signup", {
@@ -131,7 +104,7 @@ const CreateDogProfileScreen = () => {
         <Text style={styles.textHeaderBlack}>Breed * </Text>
         <View style={styles.dropDownView1}>
           <SelectList
-            data={dataBreed}
+            data={breeds}
             setSelected={(text) => setBreeds(text)}
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
