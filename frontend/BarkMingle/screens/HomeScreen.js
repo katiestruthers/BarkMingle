@@ -111,9 +111,19 @@ const swipeRight = (cardIndex) => {
         style={styles.background2}
         imageStyle={{opacity: 0.3}}>
 
-        <View style={styles.flex}>
 
-          <Swiper 
+          {!filteredProfiles ? 
+          <View style={styles.flex}>
+            <Text>
+              Sorry, there are no new profiles!
+            </Text> 
+            </View> 
+            
+            :
+            
+          <>
+          <View style={styles.flex}>
+           <Swiper 
             ref={swipeRef}
             containerStyle={ {backgroundColor: "transparent"} }
             cards={filteredProfiles} 
@@ -181,7 +191,8 @@ const swipeRight = (cardIndex) => {
                 </View>
             )}
             
-            />         
+            />  
+                 
         </View>
 
         <View style={styles.buttons}>
@@ -198,6 +209,8 @@ const swipeRight = (cardIndex) => {
           <FontAwesomeIcon icon={faHeart} size={50} style={{color: "#65d926",}} />
           </TouchableOpacity>
         </View>
+        </>
+        }
       
       </ImageBackground>
       
