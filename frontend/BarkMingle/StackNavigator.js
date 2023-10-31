@@ -17,13 +17,12 @@ import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
 import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
+import { StreamChat } from 'stream-chat';
 
 import { Chat } from 'stream-chat-expo';
+import {  chatApiKey } from '../chatConfig';
 
-
-import { CHAT_API_KEY } from "@env";
-
-export const client = StreamChat.getInstance(CHAT_API_KEY);
+const client = StreamChat.getInstance(chatApiKey);
 
 const Stack = createStackNavigator();
 
@@ -59,8 +58,8 @@ const StackNavigator = () => {
           </Stack.Group>
 
           <Stack.Group screenOptions={{headerShown: true}} >
-            <Stack.Screen name="Matches" component={ChannelListScreen} />
-            <Stack.Screen name="Chatting" component={ChannelScreen} />
+            <Stack.Screen name="ChannelList" component={ChannelListScreen} options={{title: "Matches"}}/>
+            <Stack.Screen name="ChannelScreen" component={ChannelScreen} options={{title: "Messages"}}/>
           </Stack.Group>
           
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
