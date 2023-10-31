@@ -1,25 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-
-  navBar: {
-    width: "100%",
-    height: 75,
-    paddingBottom: 10,
-    backgroundColor: "#D2D1F8",
-    flexDirection: "row",
-    alignContent: "center",
-    alignItems: "flex-end",
-    justifyContent: "space-evenly",
-  },
-
   flex: {
     flex: 1,
     width: '100%', 
     height: '100%',
     alignItems: "center",
     justifyContent: "space-between",
-
   },
   background2: {
     width: '100%', 
@@ -27,12 +14,13 @@ const styles = StyleSheet.create({
   },
   cards: {
     position: "relative",
+    bottom: 40,
     borderRadius: 20,
     alignItems: "center",
     alignSelf: "center",
     backgroundColor: "#ffffff",
-    height: "65%",
-    width: "90%",
+    height: "60%",
+    width: "97%",
     shadowColor: "#000",
     shadowOffset: {
       width:0,
@@ -48,22 +36,27 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    
   },
   buttons:{
     flexDirection: "row",
     justifyContent: "space-around",
-    marginBottom: 90,
+    marginBottom: 40,
   },
   text: {
-    padding: 10,
-    backgroundColor: 'rgba(52, 52, 52, 0.4)',
+    paddingHorizontal: 10,
+  },
+  purpleContainer: {
+    margin: 5,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    backgroundColor: '#A5A7FBB2',
     borderRadius: 20,
   },
   name: {
-    fontSize: 20,
-    fontWeight: "500",
-    color: "#ffffff",
+    color: '#ffffff',
+    fontSize: 50,
+    fontFamily: 'Baloo2_600SemiBold',
+    top: 15,
   },
   bio:{
     color: "#ffffff",
@@ -81,9 +74,33 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(252, 252, 252)',
     borderRadius: 30,
     width: "100%",
+    height: "32%"
   },
-  humanProfile: {
-    textAlign: "center",
+  textContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    height: '80%',
+    bottom: 10,
+  },
+  textBlack: {
+    color: '#1E1E1E',
+    fontSize: 15,
+    fontFamily: 'Baloo2_600SemiBold',
+    textAlign: 'left',
+  },
+  textWhite: {
+    color: '#FFFCF6',
+    fontSize: 15,
+    fontFamily: 'Baloo2_600SemiBold',
+    alignSelf: 'center',
+  },
+  textPurple: {
+    color: '#6263AF',
+    fontSize: 14,
+    fontFamily: 'Baloo2_600SemiBold',
+    textAlign: 'left',
+    width: 210,
   },
   avatar: {
     width: 70, 
@@ -91,6 +108,13 @@ const styles = StyleSheet.create({
     borderRadius: 400/ 2,
     marginRight: 10,
     marginLeft: 5,
+    bottom: 15,
+  },
+  petInfoContainer: {
+    flex: 20,
+    flexDirection:'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
 
 
