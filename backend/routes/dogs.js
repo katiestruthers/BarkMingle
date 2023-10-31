@@ -3,6 +3,7 @@ const database = require("../db/connection");
 const verifyToken = require("../middlewares/verifyToken");
 const router = express.Router();
 const selectHelpers = require("./helpers/select-helpers");
+const { updateDogPhoto }= require("./helpers/update-helpers");
 
 // Create a new dog and associate it with a logged in user
 router.post("/signup", verifyToken, (req, res) => {
@@ -167,6 +168,22 @@ router.post("/traits", verifyToken, (req, res) => {
         res.status(500).json({ error: "Failed to add traits" });
       });
   });
+});
+
+// Add image of dog
+router.post("/images", verifyToken, (req, res) => {
+  const loggedInUserId = req.user_id;
+  const { img } = req.body;  
+
+  if (!loggedInUserId) {
+    return res.status(401).json({ message: 'User is not logged in.' });
+  }
+
+  if (!img) {
+    return res.status(400).json({ error: "Please provide dog image url." });
+  }
+
+  updateDogPhoto(loggedInUserId, img);
 });
 
 module.exports = router;
