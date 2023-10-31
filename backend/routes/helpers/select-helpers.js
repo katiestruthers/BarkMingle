@@ -158,10 +158,32 @@ const getSwipesReceivedForUser = function(userId) {
     });
 };
 
+// Get all traits
+const getAllBreeds = function() {
+  const queryString = `SELECT * FROM breeds;`;
+
+  return db
+    .query(queryString)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+
+
+      console.log("data.rows", data.rows)
+      return data.rows
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+
 module.exports = {
   getAllTraits,
   getTraitsForDog,
   getUserDetails,
   getAllSwipeableDogs,
-  getSwipesReceivedForUser
+  getSwipesReceivedForUser,
+  getAllBreeds
 };
