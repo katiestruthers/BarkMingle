@@ -14,15 +14,15 @@ const NavBar = () => {
   return (
     <View style={styles.navBar}>
       <TouchableOpacity onPress={() => navigation.navigate("Matches")}>
-        <FontAwesomeIcon icon={faPaw} size={50} />
+        <FontAwesomeIcon icon={faPaw} size={40} />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-        <FontAwesomeIcon icon={faDog} size={50} />
+        <FontAwesomeIcon icon={faDog} size={40} />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
-        <FontAwesomeIcon icon={faUser} size={50} />
+        <FontAwesomeIcon icon={faUser} size={40} />
       </TouchableOpacity>
     </View>
   );
