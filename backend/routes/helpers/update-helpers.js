@@ -20,5 +20,4 @@ const updateDogPhoto = function(loggedInUserId, imageUrl) {
 
 module.exports = {
   updateDogPhoto,
-  updateUserPhoto
 };

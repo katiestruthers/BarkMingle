@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Baloo2_600SemiBold',
     fontSize: 18,
     textAlign: 'center',
+    paddingVertical: 25,
   },
   backgroundTop: {
     position: 'absolute',
@@ -55,6 +56,28 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: -1,
     bottom: -48,
+  },
+  imageContainer: {
+    backgroundColor: '#D2D1F8',
+    width: 100,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
+  },
+  uploadContainer: {
+    height: "5%",
+    justifyContent: 'flex-start',
+  },
+  image: {
+    width: "95%",
+    height: "95%",
+    borderRadius: 50,
+  },
+  contentContainer: {
+    alignItems: "center",
+    height: '60%',
+    width: "100%",
   },
 });
 

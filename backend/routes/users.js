@@ -144,10 +144,10 @@ router.post("/", verifyToken, (req, res) => {
   // Build the SQL query for updating the user's profile
   const queryString = `
     UPDATE users
-    SET first_name = $1, last_name = $2, bio = $3, profile_img = $4,
+    SET first_name = $1, last_name = $2, bio = $3, profile_img = $4
     WHERE id = $5
     RETURNING *
-  `;
+  ;`;
   const queryParams = [first_name, last_name, bio, profile_img, loggedInUserId];
 
   // Execute the query
