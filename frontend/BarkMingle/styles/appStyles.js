@@ -127,6 +127,16 @@ const appStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: 'center',
   },
+  whiteButton: {
+    backgroundColor: "#FFFCF6",
+    borderRadius: 30,
+    width: 250,
+    height: 45,
+    marginBottom: 10,
+    marginTop: 300,
+    alignItems: "center",
+    justifyContent: 'center',
+  },
   statusBar: {
     position: 'absolute',
     top: 60,
