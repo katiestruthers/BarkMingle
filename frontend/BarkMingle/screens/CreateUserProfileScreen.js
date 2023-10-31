@@ -61,23 +61,6 @@ const CreateUserProfileScreen = () => {
       </Text>
     </View>
 
-        <View>
-          {image ? (
-            <Uploading image={image} progress={progress} />
-          ) : (
-            <TouchableOpacity
-              onPress={pickImage}
-              style={styles.imageIconHolder}
-            >
-              <FontAwesomeIcon
-                icon={faImage}
-                size={30}
-                style={styles.imageIcon}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
-
         <View style={styles.imageContainer}>
           {userImage && (
             <Image
@@ -86,6 +69,19 @@ const CreateUserProfileScreen = () => {
             />
           )}
         </View>
+
+        <View>
+          {image ? (
+            <Uploading image={image} progress={progress} />
+          ) : (
+            <TouchableOpacity
+              onPress={pickImage}
+            >
+            <Text style={styles.textPurple}>Upload a profile photo</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
 
     <View style={styles.textContainer}>
       <Text style={styles.textHeaderBlack}>First Name *</Text>

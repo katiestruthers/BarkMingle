@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Baloo2_600SemiBold',
     fontSize: 18,
     textAlign: 'center',
+    paddingTop: 30,
   },
   backgroundTop: {
     position: 'absolute',
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     backgroundColor: '#D2D1F8',
-    width: "50%",
-    height: "10%",
+    width: 100,
+    height: 100,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   image: {
     width: "95%",
     height: "95%",
-    borderRadius: 10,
+    borderRadius: 50,
   },
   contentContainer: {
     alignItems: "center",
