@@ -28,15 +28,12 @@ const UploadScreen = () => {
 
   const { pickImage, image, progress, dogImage } = useFileUpload();
 
-  const [img, setImage] = useState("");
-
   const onSubmit = () => {
-    setImage(dogImage);
     Axios.post("http://localhost:8080/api/dogs/images", {
-      img
+      img: dogImage
     }, { headers }).then(res => {
-      navigation.navigate("CreateUserProfile"); // Navigato to the "CreateUserProfile" screen on success
     }).catch(err => console.log(err));
+    navigation.navigate("CreateUserProfile");
   };
 
   console.log('dog', dogImage)
