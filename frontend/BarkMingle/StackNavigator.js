@@ -54,7 +54,6 @@ const StackNavigator = () => {
       }}>
         <>
           <Stack.Group>
-            <Stack.Screen name="Completetion" component={CompletionScreen} />
             <Stack.Screen name="GetStarted" component={LandingScreen} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
@@ -62,6 +61,7 @@ const StackNavigator = () => {
             <Stack.Screen name="Traits" component={TraitsScreen} />
             <Stack.Screen name="Upload" component={UploadScreen} />
             <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
+            <Stack.Screen name="Completion" component={CompletionScreen} />
           </Stack.Group>
         
           <Stack.Group>
