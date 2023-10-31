@@ -113,7 +113,12 @@ const swipeRight = (cardIndex) => {
 
         <View style={styles.flex}>
 
-          <Swiper 
+          {!filteredProfiles ? 
+            <Text>
+              Sorry, there are no new profiles!
+            </Text> :
+          
+           <Swiper 
             ref={swipeRef}
             containerStyle={ {backgroundColor: "transparent"} }
             cards={filteredProfiles} 
@@ -181,7 +186,8 @@ const swipeRight = (cardIndex) => {
                 </View>
             )}
             
-            />         
+            />  
+          }       
         </View>
 
         <View style={styles.buttons}>
