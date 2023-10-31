@@ -34,6 +34,7 @@ const CreateUserProfileScreen = () => {
       first_name,
       last_name,
       bio,
+      profile_img: userImage,
     }, { headers }).then(res => {
       navigation.navigate("Home"); // Navigato to the "Home" screen on success
     }).catch(err => console.log(err));
