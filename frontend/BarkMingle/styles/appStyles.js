@@ -13,6 +13,11 @@ const appStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textPurple: {
+    fontFamily: 'Baloo2_600SemiBold',
+    color: '#6263AF',
+    fontSize: 18,
+  },
   textInput: {
     height: 50,
     flex: 1,
