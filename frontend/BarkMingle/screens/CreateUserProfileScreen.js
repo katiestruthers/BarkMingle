@@ -71,9 +71,9 @@ const CreateUserProfileScreen = () => {
           )}
         </View>
 
-        <View>
+        <View style={styles.uploadContainer}>
           {image ? (
-            <Uploading image={image} progress={progress} />
+            <Uploading progress={progress} style={styles.uploading} />
           ) : (
             <TouchableOpacity
               onPress={pickImage}

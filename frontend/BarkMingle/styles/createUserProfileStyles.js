@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Baloo2_600SemiBold',
     fontSize: 18,
     textAlign: 'center',
-    paddingTop: 30,
+    paddingVertical: 25,
   },
   backgroundTop: {
     position: 'absolute',
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
+  },
+  uploadContainer: {
+    height: "5%",
+    justifyContent: 'flex-start',
   },
   image: {
     width: "95%",
