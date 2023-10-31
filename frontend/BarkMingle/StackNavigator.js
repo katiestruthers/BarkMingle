@@ -15,6 +15,7 @@ import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
+import CompletionScreen from './screens/CompletionScreen';
 
 import ChannelListScreen from './screens/ChannelListScreen';
 
@@ -53,6 +54,7 @@ const StackNavigator = () => {
       }}>
         <>
           <Stack.Group>
+            <Stack.Screen name="Completetion" component={CompletionScreen} />
             <Stack.Screen name="GetStarted" component={LandingScreen} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
