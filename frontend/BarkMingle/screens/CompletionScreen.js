@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -14,12 +14,9 @@ import BonePatternSvg from "../svg-images/BonePatternSvg.js";
 import Axios from "axios";
 
 const CompletionScreen = () => {
-  const { token, setToken } = useAuth();
-  console.log('Completion Token: ', token);
+  const { token, setToken, user } = useAuth();
   const navigation = useNavigation();
-
-  useEffect(() => {
-  }, []);
+  console.log('Created user info:', user);
 
   const headers = {
     authorization: `Bearer ${token}`,

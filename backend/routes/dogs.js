@@ -24,7 +24,6 @@ router.get("/breeds", (req, res) => {
 router.post("/signup", verifyToken, (req, res) => {
   const { name, breeds, gender, age, size, is_neutered } = req.body;
   const loggedInUserId = req.user_id;
-  console.log('user:', 'req.user_id(token id):', req.user_id);
   
   if (!name || !breeds || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide all of the info" });
@@ -82,9 +81,7 @@ router.get("/traits", (req, res) => {
 // Add traits to a dog's profile 
 router.post("/traits", verifyToken, (req, res) => {
   const { traits } = req.body; // Assuming traits is an array of trait IDs
-  console.log("traits", traits);
   const loggedInUserId = req.user_id;
-  console.log("loggedinuserid", loggedInUserId);
 
   if (!traits || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide the required information" });

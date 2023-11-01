@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Platform, Image } from 'react-native';
 import appStyles from '../styles/appStyles.js';
 import styles from '../styles/createUserProfileStyles.js';
@@ -14,8 +14,7 @@ import Uploading from '../components/Uploading.js';
 
 
 const CreateUserProfileScreen = () => {
-  const { token, setToken } = useAuth();
-  console.log("CreateUserProfileToken: ", token);
+  const { token, setToken, setUser } = useAuth();
 
   const navigation = useNavigation();
 
@@ -36,11 +35,12 @@ const CreateUserProfileScreen = () => {
       bio,
       profile_img: userImage,
     }, { headers }).then(res => {
+      setUser(res.data.user);
       navigation.navigate("Completion"); // Navigato to the "Home" screen on success
     }).catch(err => console.log(err));
   };
 
-  console.log("url", userImage)
+  // console.log("url", userImage)
 
   return (
     <KeyboardAvoidingView

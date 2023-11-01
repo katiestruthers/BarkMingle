@@ -20,7 +20,6 @@ import Axios from "axios";
 
 const TraitsScreen = () => {
   const { token, setToken } = useAuth();
-  console.log('Traits Token: ', token);
   const navigation = useNavigation();
 
   const [traits, setTraits] = useState([]);

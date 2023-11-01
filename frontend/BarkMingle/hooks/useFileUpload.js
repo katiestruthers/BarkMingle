@@ -122,9 +122,9 @@ const useFileUpload = () => {
     }
   }, [uploadComplete, files]);
 
-  console.log('user', userImage)
-  console.log('dog', dogImage)
-  console.log('files', files)
+  // console.log('user', userImage);
+  // console.log('dog', dogImage);
+  // console.log('files', files);
 
   return {
     image,
