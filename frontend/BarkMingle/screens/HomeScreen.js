@@ -37,8 +37,6 @@ const HomeScreen = () => {
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
 
-  const [traits, setTraits] = useState([]);
-
   appData = { user, filteredProfiles };
 
   // set state of profiles when user changes
