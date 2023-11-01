@@ -18,8 +18,6 @@ const MatchedScreen = () => {
   const { params } = useRoute();
   const { userSwiped, filteredProfiles } = params;
 
-  console.log(userSwiped, user);
-
   return (
     <SafeAreaView style={styles.background} >
       <FullScreenBgSvg style={appStyles.backgroundFull}/>
