@@ -24,7 +24,7 @@ const NavBar = () => {
       <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
         <FontAwesomeIcon icon={faUser} size={50} />
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

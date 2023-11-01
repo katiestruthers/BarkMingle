@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import HomeScreen from './screens/HomeScreen';
@@ -18,11 +19,13 @@ import MessageScreen from './screens/MessageScreen';
 import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
 import { StreamChat } from 'stream-chat';
+import { CHAT_API_KEY } from "@env";
+import { useChatClient, createChannel } from './hooks/useChatClientDev.js';
 
 import { Chat } from 'stream-chat-expo';
-import {  chatApiKey } from '../chatConfig';
+// import {  chatApiKey } from '../chatConfig';
 
-const client = StreamChat.getInstance(chatApiKey);
+const client = StreamChat.getInstance(CHAT_API_KEY);
 
 const Stack = createStackNavigator();
 
@@ -33,6 +36,11 @@ const StackNavigator = () => {
     authorization: `Bearer ${token}`,
   };
 
+  const { clientIsReady } = useChatClient();
+
+  if (!clientIsReady) {
+    return <Text>Loading chat...</Text>
+  }
 
   return (
     <Chat client={client}>

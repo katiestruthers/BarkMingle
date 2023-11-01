@@ -10,6 +10,38 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons/faCircleXmark';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
+        // Create new chat channel for matches
+        // Check with Katie about dog image
+
+        // const channelInfo = {
+        //   name: `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`,
+        //   image: userSwiped.dog_img,
+        //   member: [chatUserId,`u${userSwiped.user_id}`]
+        // }
+        
+        // console.log(`CREATING ${channelInfo.name} CHANNEL`);
+        // createChannel(channelInfo);
+
+         // // Get chat client instance info
+  // const { client } = useChatContext();
+
+  // // Call useChatClient to connect user
+  // const { clientIsReady } = useChatClient();
+
+  // if (!clientIsReady) {
+  //   return <Text>Loading chat...</Text>
+  // }
+
+
+  // const createChannel = async (channelInfoOb) => {
+  //   //const channelID = `${userID}--${swipedUserID}`
+
+  //   console.log("CREATING CHANNEL");
+    
+  //   const channel = client.channel("messaging", channelInfoOb);
+  //   await channel.watch();        // try channel.create(); if not working
+  // };
+
 const MatchedScreen = () => {
   const { user } = useAuth();
   const navigation = useNavigation();

@@ -18,6 +18,8 @@ import { AuthProvider } from "../hooks/useAuth.js";
 import { useChatContext } from 'stream-chat-react-native-core';
 import { useChatClient, createChannel } from '../hooks/useChatClientDev.js';
 import { chatUserId } from '../chatConfig';
+import { StreamChat } from 'stream-chat';
+import { CHAT_API_KEY } from "@env";
 
 
 export const usersMatchArray = [];
@@ -36,25 +38,42 @@ const HomeScreen = () => {
     authorization: `Bearer ${token}`  
   };
 
+  const [matchedUserId, setMatchedUserId] = useState('');
+
   // Get chat client instance info
-  const { client } = useChatContext();
+  // const { client } = useChatContext();
+  const client = StreamChat.getInstance(CHAT_API_KEY);
+
+  useEffect(() => {
+    const createChannel = async () => {
+        //const channelID = `${userID}--${swipedUserID}`
+        console.log('inside createChannel!!!!');
+        console.log('matchedUserId:', matchedUserId);
+        
+        const channel = client.channel('messaging', `u3--${matchedUserId}`, {
+          members: ['u3', matchedUserId],
+        });
+        await channel.watch();
+    };
+    createChannel();
+  }, [matchedUserId]);
 
   // Call useChatClient to connect user
-  const { clientIsReady } = useChatClient();
+  // const { clientIsReady } = useChatClient();
 
-  if (!clientIsReady) {
-    return <Text>Loading chat...</Text>
-  }
+  // if (!clientIsReady) {
+  //   return <Text>Loading chat...</Text>
+  // }
 
 
-  const createChannel = async (channelInfoOb) => {
-    //const channelID = `${userID}--${swipedUserID}`
+  // const createChannel = async (channelInfoOb) => {
+  //   //const channelID = `${userID}--${swipedUserID}`
 
-    console.log("CREATING CHANNEL");
+  //   console.log("CREATING CHANNEL");
     
-    const channel = client.channel("messaging", channelInfoOb);
-    await channel.watch();        // try channel.create(); if not working
-  };
+  //   const channel = client.channel("messaging", channelInfoOb);
+  //   await channel.watch();        // try channel.create(); if not working
+  // };
  
   // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
@@ -110,19 +129,21 @@ const swipeRight = (cardIndex) => {
       console.log("You've received the following likes:", likesReceived);
       if (likesReceived.includes(Number(userSwipedId))) {
         console.log(`You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`);
+        setMatchedUserId(`u${userSwipedId}`);
+        // console.log(`new matchedUserId: ${matchedUserId}`);
 
 
         // Create new chat channel for matches
         // Check with Katie about dog image
 
-        const channelInfo = {
-          name: `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`,
-          image: userSwiped.dog_img,
-          member: [chatUserId,`u${userSwiped.user_id}`]
-        }
+        // const channelInfo = {
+        //   name: `${userSwiped.dog_name} & ${userSwiped.first_name} ${userSwiped.last_lame}`,
+        //   image: userSwiped.dog_img,
+        //   member: [chatUserId,`u${userSwiped.user_id}`]
+        // }
         
-        console.log(`CREATING ${channelInfo.name} CHANNEL`);
-        createChannel(channelInfo);
+        // console.log(`CREATING ${channelInfo.name} CHANNEL`);
+        // createChannel(channelInfo);
 
         navigation.navigate("Match", { userSwiped });
       } else {
