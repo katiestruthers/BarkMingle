@@ -55,6 +55,7 @@ const SignIn = () => {
         <Text style={styles.textHeaderBlack}>Email</Text>
         <View style={appStyles.inputView}>
           <TextInput
+            autoCapitalize="none"
             style={appStyles.textInput}
             onChangeText={(text) => setEmail(text)}
           />
@@ -63,6 +64,7 @@ const SignIn = () => {
         <Text style={styles.textHeaderBlack}>Password</Text>
         <View style={appStyles.inputView}>
           <TextInput
+            autoCapitalize="none"
             style={appStyles.textInput}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}

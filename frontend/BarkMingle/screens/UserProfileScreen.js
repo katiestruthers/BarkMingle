@@ -18,7 +18,7 @@ const UserProfileScreen = () => {
   }
  
   return (
-    <SafeAreaView style={styles.flex}>
+    <View style={styles.flex}>
       
       <NavBar />
       <ImageBackground 
@@ -46,10 +46,10 @@ const UserProfileScreen = () => {
                 <Text style={styles.buttonText}> Edit Profile </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.button} >
+              <TouchableOpacity style={styles.button} onPress={signOut} >
                 <Text 
                   style={styles.buttonText}
-                  onPress={signOut}
+                  
                 > Sign Out </Text>
               </TouchableOpacity>
 
@@ -60,7 +60,7 @@ const UserProfileScreen = () => {
 
       </ImageBackground>
 
-    </SafeAreaView>
+    </View>
   )
 };
 

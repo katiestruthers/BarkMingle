@@ -35,7 +35,6 @@ const CreateDogProfileScreen = () => {
   const [size, setSize] = useState("");
   const [isNeutered, setIsNeutered] = useState(true);
 
-  const [selectedBreed, setSelectedBreed] = useState("");
 
   const dataGender = [{ value: "male" }, { value: "female" }];
   const dataSize = [
@@ -95,7 +94,6 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setName(text)}
-            // value={name} FOR TESTING(with hardcoded)
           />
         </View>
 
@@ -129,7 +127,6 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setAge(text)}
-            // value={age}
           />
         </View>
 

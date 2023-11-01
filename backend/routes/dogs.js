@@ -24,8 +24,8 @@ router.get("/breeds", (req, res) => {
 router.post("/signup", verifyToken, (req, res) => {
   const { name, breeds, gender, age, size, is_neutered } = req.body;
   const loggedInUserId = req.user_id;
-
-  if (!name || !breeds || !gender || !age || !size || !is_neutered || !loggedInUserId) {
+  
+  if (!name || !breeds || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
