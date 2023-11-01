@@ -18,7 +18,6 @@ import Axios from "axios";
 
 const UploadScreen = () => {
   const { token, setToken } = useAuth();
-  console.log("CreateUserProfileToken: ", token);
 
   const navigation = useNavigation();
 
@@ -36,7 +35,7 @@ const UploadScreen = () => {
     navigation.navigate("CreateUserProfile");
   };
 
-  console.log('dog', dogImage)
+  console.log('dog image:', dogImage);
 
   return (
     <View style={styles.container}>

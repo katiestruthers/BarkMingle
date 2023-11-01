@@ -14,12 +14,16 @@ import BonePatternSvg from "../svg-images/BonePatternSvg.js";
 import Axios from "axios";
 
 const CompletionScreen = () => {
-  const { token, setToken } = useAuth();
+  const { token, setToken, setUser, user } = useAuth();
   console.log('Completion Token: ', token);
   const navigation = useNavigation();
 
-  useEffect(() => {
-  }, []);
+  Axios.get(`http://localhost:8080/api/users/${user.id}`)
+      .then((res) => {
+        console.log('Completion screen, res.data:', res.data);
+        setUser({ ...user, ...res.data});
+      })
+      .then(() => console.log('User created:', user));
 
   const headers = {
     authorization: `Bearer ${token}`,

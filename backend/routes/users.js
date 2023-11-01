@@ -39,6 +39,7 @@ router.post("/signup", (req, res) => {  // only /signup
       res.json({
         message: "User created successfully",
         token,
+        user,
         userId: req.user_id
       });
 

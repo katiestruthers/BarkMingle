@@ -51,8 +51,6 @@ const CreateDogProfileScreen = () => {
         let newArray = response.data.map((item) => {
           return { key: item.id, value: item.name }
       });
-      console.log("response", response.data)
-      console.log("newarray", newArray)
       setBreeds(newArray)
     })
   }, []);

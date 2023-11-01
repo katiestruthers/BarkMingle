@@ -15,7 +15,6 @@ import Uploading from '../components/Uploading.js';
 
 const CreateUserProfileScreen = () => {
   const { token, setToken } = useAuth();
-  console.log("CreateUserProfileToken: ", token);
 
   const navigation = useNavigation();
 
