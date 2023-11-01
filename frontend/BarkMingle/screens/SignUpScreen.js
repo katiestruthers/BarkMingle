@@ -35,7 +35,6 @@ const SignIn = () => {
     }, { headers }).then(res => {
       setToken(res.data.token);
       setUser(res.data.user);
-      console.log('Created user info:', res.data.user);
       navigation.navigate("CreateDogProfile");
     }).catch(err => console.log(err));
   };

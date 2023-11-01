@@ -113,26 +113,27 @@ router.post("/signin", (req, res) => {
   });
 });
 
-// Get logged-in user profile info from database
-router.get("/:id", (req, res) => {
-  const userId = req.params.id;    // user's id captured from the url
+// We no longer need this route -- keeping it in a commit for records
 
-  selectHelpers
-    .getUserDetails(userId)
-    .then(items => {
-      res.json(items);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(err);
-    });
-});
+// Get logged-in user profile info from database
+// router.get("/", verifyToken, (req, res) => {
+//   const userId = req.user_id;    // user's id captured from the url
+
+//   selectHelpers
+//     .getUserDetails(userId)
+//     .then(items => {
+//       res.json(items);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.send(err);
+//     });
+// });
 
 // Update logged-in user profile
 router.post("/", verifyToken, (req, res) => {
   const loggedInUserId = req.user_id;
   const { first_name, last_name, bio, profile_img } = req.body;
-  console.log('Profileuser:', 'req.user_id(token id):', req.user_id);
 
   // if (Number(userId) !== req.user_id) { // checks the same user is logged in
   //   return res.send("You're not the authourized to modify the user")
@@ -165,11 +166,16 @@ router.post("/", verifyToken, (req, res) => {
     const updatedUser = result.rows[0];
     // delete updatedUser.password;
     // const token = jwt.sign(updatedUser, process.env.JWT_SECRET);
-
-    res.json({
-      message: "User profile updated successfully",
-      userId: req.user_id
-    });
+    
+    selectHelpers
+      .getUserDetails(loggedInUserId)
+      .then(items => {
+        res.json({
+          message: "User profile updated successfully",
+          userId: req.user_id,
+          user: items[0]
+        });
+      })
   });
 });
 
