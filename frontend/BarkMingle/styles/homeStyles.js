@@ -8,10 +8,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  background2: {
-    width: '100%', 
-    height: '100%',
-  },
   cards: {
     position: "relative",
     bottom: 40,
@@ -24,7 +20,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width:0,
-      height: 1,
+      height: 5,
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
@@ -41,6 +37,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginBottom: 40,
+    width: "100%",
   },
   text: {
     paddingHorizontal: 10,
@@ -74,7 +71,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(252, 252, 252)',
     borderRadius: 30,
     width: "100%",
-    height: "32%"
+    height: "32%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width:0,
+      height: 5,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   textContainer: {
     flexDirection: 'column',

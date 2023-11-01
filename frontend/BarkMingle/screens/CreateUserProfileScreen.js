@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Platform, Image } from 'react-native';
 import appStyles from '../styles/appStyles.js';
 import styles from '../styles/createUserProfileStyles.js';
 import useAuth from '../hooks/useAuth.js';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faArrowLeft, faImage, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import FullScreenBgSvg from '../svg-images/FullScreenBgSvg.js';
 import StatusBarSvg4 from '../svg-images/StatusBarSvg4.js';
 import Axios from 'axios';
 import useFileUpload from '../hooks/useFileUpload.js';
@@ -47,7 +47,7 @@ const CreateUserProfileScreen = () => {
       style={styles.container}
       behavior={Platform.OS == "ios" ? "padding" : "height"} 
     >
-    <BonePatternSvg style={styles.backgroundTop} />
+    <FullScreenBgSvg style={appStyles.backgroundFull} />
     <StatusBarSvg4 style={appStyles.statusBar} />
     <TouchableOpacity onPress={() => navigation.navigate("Upload")}>
       <FontAwesomeIcon
@@ -121,7 +121,6 @@ const CreateUserProfileScreen = () => {
         style={appStyles.forwardIconPurple}
       />
     </TouchableOpacity>
-    <BonePatternSvg style={styles.backgroundBottom} />
   </KeyboardAvoidingView>
 );
 };

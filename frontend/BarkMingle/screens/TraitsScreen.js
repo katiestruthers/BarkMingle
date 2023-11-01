@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
-  ImageBackground,
-  TextInput,
   FlatList,
   TouchableOpacity,
 } from "react-native";
@@ -14,7 +12,7 @@ import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import StatusBarSvg2 from "../svg-images/StatusBarSvg2.js";
 import Axios from "axios";
 
@@ -73,7 +71,7 @@ const TraitsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <StatusBarSvg2 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("CreateDogProfile")}>
         <FontAwesomeIcon
@@ -116,7 +114,6 @@ const TraitsScreen = () => {
           style={styles.forwardIconWhite}
         />
       </TouchableOpacity>
-      <BonePatternSvg style={styles.backgroundBottom} />
     </View>
   );
 };

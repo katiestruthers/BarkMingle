@@ -13,6 +13,10 @@ const appStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  backgroundFull: {
+    position: 'absolute',
+    zIndex: -1,
+  },
   textPurple: {
     fontFamily: 'Baloo2_600SemiBold',
     color: '#6263AF',

@@ -3,9 +3,11 @@ import React from "react";
 import { View, Text, ImageBackground, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/userProfileStyles.js"
+import appStyles from "../styles/appStyles.js";
 import NavBar from "../components/NavBar.js";
 import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js";
 import useAuth from "../hooks/useAuth.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 
 const UserProfileScreen = () => {
 
@@ -25,11 +27,7 @@ const UserProfileScreen = () => {
     <View style={styles.flex}>
       
       <NavBar />
-      <ImageBackground 
-        source={require("../assets/bone-pattern.png")}
-        style={styles.background}
-        imageStyle={{opacity: 0.3}}>
-
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
           <View style={styles.textBox}> 
             <Text style={styles.nameText}>
               {`${user.first_name} ${user.last_name}`}
@@ -61,8 +59,6 @@ const UserProfileScreen = () => {
 
 
           </View>
-
-      </ImageBackground>
 
     </View>
   )
