@@ -37,11 +37,12 @@ const StackNavigator = () => {
     authorization: `Bearer ${token}`,
   };
 
-  const { clientIsReady } = useChatClient();
+  //MOVED TO HOME SCREEN
+  // const { clientIsReady } = useChatClient();
 
-  if (!clientIsReady) {
-    return <Text>Loading chat...</Text>
-  }
+  // if (!clientIsReady) {
+  //   return <Text>Loading chat...</Text>
+  // }
 
   return (
     <Chat client={client}>

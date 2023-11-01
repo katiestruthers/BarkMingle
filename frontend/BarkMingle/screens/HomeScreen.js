@@ -36,9 +36,61 @@ const HomeScreen = () => {
 
   const [matchedUserId, setMatchedUserId] = useState('');
 
-  // Get chat client instance info
-  // const { client } = useChatContext();
+  // Get chat client instance
+  //const { client } = useChatContext;
   const client = StreamChat.getInstance(CHAT_API_KEY);
+
+
+  // User Data for setting up chat client
+  const userInfo = {
+    id: `u${user.id}`,
+    name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+    image: `${user.dog_img}`
+  };
+  
+  const devToken = userInfo.id;
+
+
+  const useChatClient = () => {
+    const [clientIsReady, setClientIsReady] = useState(false);
+  
+    useEffect(() => {
+      const setupClient = async () => {
+        try {
+          client.connectUser(userInfo, client.devToken(devToken));
+          setClientIsReady(true);
+  
+          // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
+          // But in case you need the chat to load from offline storage first then you should render chat components
+          // immediately after calling `connectUser()`.
+          // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error(`An error occurred while connecting the user: ${error.message}`);
+          }
+        }
+      };
+  
+      // If the chat client has a value in the field `userID`, a user is already connected
+      // and we can skip trying to connect the user again.
+      if (!client.userID) {
+        setupClient();
+      }
+    }, []);
+  
+    return {
+      clientIsReady,
+    };
+  };
+
+  const { clientIsReady } = useChatClient();
+  
+  if (!clientIsReady) {
+      return <Text>Loading chat...</Text>
+    }
+
+
+  // create channel if matchedUserId state changes:
 
   useEffect(() => {
     const createChannel = async () => {
@@ -46,7 +98,7 @@ const HomeScreen = () => {
         console.log('inside createChannel!!!!');
         console.log('matchedUserId:', matchedUserId);
         
-        const channel = client.channel('messaging', `u3--${matchedUserId}`, {
+        const channel = client.channel('messaging', `u3--${matchedUserId}`, {  //try as members list channel
           members: ['u3', matchedUserId],
         });
         await channel.watch();
@@ -104,40 +156,6 @@ const HomeScreen = () => {
 
   const swipeRight = (cardIndex) => {
     const userSwiped = filteredProfiles[cardIndex];
-
-
-const swipeRight = (cardIndex) => {
-  const userSwiped = filteredProfiles[cardIndex];
-
-  if (!userSwiped) return;  // if no cards, just return
-
-  const userSwipedId = userSwiped.id;
-  console.log(`You swiped LIKE on ${userSwiped.dog_name}, user id ${userSwipedId}`);
-
-  // Get all likes received for current user
-  // If received a like for userSwipedId, redirect to matches page
-  Axios.get("http://localhost:8080/api/feed/likes", { headers })
-    .then((res) => {
-      const likesReceived = res.data;
-      console.log("You've received the following likes:", likesReceived);
-      if (likesReceived.includes(Number(userSwipedId))) {
-        console.log(`You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`);
-        setMatchedUserId(`u${userSwipedId}`);
-        navigation.navigate("Match", { userSwiped });
-      } else {
-        console.log(`No match with ${userSwiped.dog_name}.`);
-      }
-    })
-    .catch(error => console.log(error));
-
-  // Add like to swipes table
-  // Will create a new instance on the matches table if mutual like
-  Axios.post(`http://localhost:8080/api/feed/dogs/${userSwipedId}`, {
-    swiped_by_user_id: user.id,
-    swiped_user_id: userSwipedId,
-    is_liked: true
-    }, { headers });
-  };
 
     if (!userSwiped) return; // if no cards, just return
 

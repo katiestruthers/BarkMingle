@@ -13,7 +13,7 @@ import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 
 const UserProfileScreen = () => {
 
-  const { client } = useChatContext
+  const { client } = useChatContext;
 
   const disconnectUser = async () => {
     await client.disconnectUser();
