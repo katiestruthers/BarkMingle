@@ -22,6 +22,7 @@ import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import { LinearGradient } from "expo-linear-gradient";
+import NoProfilesBlobSvg from "../svg-images/NoProfilesBlobSvg.js";
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -122,8 +123,14 @@ const HomeScreen = () => {
       <FullScreenBgSvg style={appStyles.backgroundFull} />
       <NavBar />
       {!filteredProfiles ? (
-        <View style={styles.flex}>
-          <Text>Sorry, there are no new profiles!</Text>
+        <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
+          <Text style={appStyles.textPurple}>Sorry, there are no new profiles!</Text>
+          <Image 
+          source={require('../assets/dog-waiting.gif')}
+          width={50}
+          height={50}
+          />
+          <NoProfilesBlobSvg style={{zIndex: -1, position: 'absolute', left: 38, top: 140 }}/>
         </View>
       ) : (
         <>
