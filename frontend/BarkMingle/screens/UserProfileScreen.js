@@ -12,7 +12,11 @@ import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 const UserProfileScreen = () => {
 
   const navigation = useNavigation();
-  const { user, setUser } = useAuth();
+  const { user, setUser, token } = useAuth();
+
+  const EditUserProfile = () => {
+    navigation.navigate("EditUserProfile", { user });
+  }
 
   const signOut = () => {
     navigation.navigate("GetStarted");
@@ -40,7 +44,7 @@ const UserProfileScreen = () => {
             </View>
 
             <View style={styles.buttonGroup}>
-              <TouchableOpacity style={styles.button} >
+              <TouchableOpacity style={styles.button} onPress={EditUserProfile}>
                 <Text style={styles.buttonText}> Edit Profile </Text>
               </TouchableOpacity>
 
