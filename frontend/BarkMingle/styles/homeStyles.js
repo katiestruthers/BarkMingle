@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  background: {
+    position: 'absolute',
+    zIndex: -1,
+    top: 10,
+  },
   background2: {
     width: '100%', 
     height: '100%',
@@ -41,6 +46,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginBottom: 40,
+    width: "100%",
   },
   text: {
     paddingHorizontal: 10,

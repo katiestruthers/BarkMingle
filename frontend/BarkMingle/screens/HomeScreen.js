@@ -7,9 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native"; // can also use SafeAreaView from reg react-native if it looks better?
-import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/homeStyles.js";
-import appStyles from "../styles/appStyles.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { faHeart } from "@fortawesome/free-solid-svg-icons/faHeart";
@@ -19,7 +17,7 @@ import useAuth from "../hooks/useAuth.js";
 import NavBar from "../components/NavBar.js";
 import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
-import { FlatList } from "react-native-gesture-handler";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -125,11 +123,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.flex}>
-      <ImageBackground
-        source={require("../assets/bone-pattern.png")}
-        style={styles.background2}
-        imageStyle={{ opacity: 0.3 }}
-      >
+      <FullScreenBgSvg style={styles.background}/>
         <NavBar />
         {!filteredProfiles ? (
           <View style={styles.flex}>
@@ -273,7 +267,6 @@ const HomeScreen = () => {
             </View>
           </>
         )}
-      </ImageBackground>
     </View>
   );
 };
