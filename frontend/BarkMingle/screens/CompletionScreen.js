@@ -10,7 +10,7 @@ import styles from "../styles/completionStyles.js";
 import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import Axios from "axios";
 
 const CompletionScreen = () => {
@@ -25,7 +25,7 @@ const CompletionScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <TouchableOpacity onPress={() => navigation.navigate("CreateUserProfile")}>
         <FontAwesomeIcon
           icon={faArrowLeft}
@@ -43,8 +43,6 @@ const CompletionScreen = () => {
           <Text style={appStyles.textPurpleButton}> Start Matching </Text>
         </TouchableOpacity>
       </View>
-
-      <BonePatternSvg style={styles.backgroundBottom} />
     </View>
   );
 };

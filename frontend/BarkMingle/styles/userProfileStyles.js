@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    justifyContent: "space-between",
   },
   background: {
     width: "100%", 
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   textBox: {
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
     marginBottom: 20,

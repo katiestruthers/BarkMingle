@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native"; // can also use SafeAreaView from reg react-native if it looks better?
 import styles from "../styles/homeStyles.js";
+import appStyles from "../styles/appStyles.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faXmark,
@@ -123,7 +124,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.flex}>
-      <FullScreenBgSvg style={styles.background} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <NavBar />
       {!filteredProfiles ? (
         <View style={styles.flex}>

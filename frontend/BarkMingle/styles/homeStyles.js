@@ -8,11 +8,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  background: {
-    position: 'absolute',
-    zIndex: -1,
-    top: 10,
-  },
   cards: {
     position: "relative",
     bottom: 40,

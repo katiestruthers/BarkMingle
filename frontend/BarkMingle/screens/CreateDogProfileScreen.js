@@ -14,7 +14,7 @@ import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 import Axios from "axios";
 // https://www.npmjs.com/package/react-native-dropdown-select-list
@@ -73,7 +73,7 @@ const CreateDogProfileScreen = () => {
       style={styles.container}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
-      <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <StatusBarSvg1 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
         <FontAwesomeIcon
@@ -168,7 +168,6 @@ const CreateDogProfileScreen = () => {
           style={appStyles.forwardIconPurple}
         />
       </TouchableOpacity>
-      <BonePatternSvg style={styles.backgroundBottom} />
     </KeyboardAvoidingView>
   );
 };
