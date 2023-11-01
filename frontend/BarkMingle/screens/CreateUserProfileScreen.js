@@ -39,7 +39,7 @@ const CreateUserProfileScreen = () => {
     }).catch(err => console.log(err));
   };
 
-  console.log("url", userImage)
+  // console.log("url", userImage)
 
   return (
     <KeyboardAvoidingView
