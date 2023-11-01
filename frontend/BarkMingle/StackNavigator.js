@@ -16,6 +16,7 @@ import UploadScreen from './screens/UploadScreen';
 import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
+import CompletionScreen from './screens/CompletionScreen';
 import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
 import { StreamChat } from 'stream-chat';
@@ -58,6 +59,7 @@ const StackNavigator = () => {
             <Stack.Screen name="Traits" component={TraitsScreen} />
             <Stack.Screen name="Upload" component={UploadScreen} />
             <Stack.Screen name="CreateUserProfile" component={CreateUserProfileScreen} />
+            <Stack.Screen name="Completion" component={CompletionScreen} />
           </Stack.Group>
         
           <Stack.Group>

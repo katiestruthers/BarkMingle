@@ -163,10 +163,67 @@ const getMatchesForUser = function(userId) {
     });
 };
 
+// Get all traits
+const getAllBreeds = function() {
+  const queryString = `SELECT * FROM breeds;`;
+
+  return db
+    .query(queryString)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const getUserDetails = function(userId) {
+  const queryString = `
+    SELECT
+      dogs.id AS dog_id,
+      dogs.name AS dog_name,
+      dogs.age AS dog_age, 
+      dogs.is_neutered, 
+      dogs.gender AS dog_gender, 
+      dogs.size AS dog_size, 
+      dogs.img AS dog_img,
+      breeds.name AS breed, 
+      users.id, users.first_name, 
+      users.last_name, users.bio,
+      users.profile_img
+    FROM dogs
+    JOIN dogs_breeds
+    ON dogs.id = dogs_breeds.dog_id
+    JOIN breeds
+    ON dogs_breeds.breed_id = breeds.id
+    JOIN users
+    ON dogs.user_id = users.id
+    WHERE users.id = $1;
+  `;
+  const queryParams = [userId];
+
+  return db
+    .query(queryString, queryParams)
+    .then(data => {
+      if (!data.rows.length) {
+        return null;
+      }
+      return data.rows
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 module.exports = {
   getAllTraits,
   getTraitsForDog,
   getAllSwipeableDogs,
   getLikesReceivedForUser,
-  getMatchesForUser
+  getMatchesForUser,
+  getAllBreeds,
+  getUserDetails
 };

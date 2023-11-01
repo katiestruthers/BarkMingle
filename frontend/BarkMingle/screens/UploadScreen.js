@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/uploadStyles.js";
 import useAuth from "../hooks/useAuth.js";
@@ -10,21 +10,36 @@ import {
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import StatusBarSvg3 from "../svg-images/StatusBarSvg3.js";
 import Uploading from "../components/Uploading.js";
 import useFileUpload from "../hooks/useFileUpload.js";
+import Axios from "axios";
 
 const UploadScreen = () => {
-  const { user } = useAuth();
+  const { token, setToken } = useAuth();
 
   const navigation = useNavigation();
 
-  const { pickImage, image, progress, files } = useFileUpload();
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
+
+  const { pickImage, image, progress, dogImage } = useFileUpload();
+
+  const onSubmit = () => {
+    Axios.post("http://localhost:8080/api/dogs/images", {
+      img: dogImage
+    }, { headers }).then(res => {
+    }).catch(err => console.log(err));
+    navigation.navigate("CreateUserProfile");
+  };
+
+  // console.log('dog image:', dogImage);
 
   return (
     <View style={styles.container}>
-      <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <StatusBarSvg3 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
         <FontAwesomeIcon
@@ -58,18 +73,17 @@ const UploadScreen = () => {
         </View>
 
         <View style={styles.imageContainer}>
-          {files.map((item) => (
+          {dogImage && (
             <Image
-              key={item.url}
-              source={{ uri: item.url }}
+              source={{ uri: dogImage }}
               style={styles.image}
             />
-          ))}
+          )}
         </View>
       </View>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("CreateUserProfile")}
+        onPress={onSubmit}
       >
         <FontAwesomeIcon
           icon={faArrowRight}
@@ -77,7 +91,6 @@ const UploadScreen = () => {
           style={appStyles.forwardIconPurple}
         />
       </TouchableOpacity>
-      <BonePatternSvg style={styles.backgroundBottom} />
     </View>
   );
 };

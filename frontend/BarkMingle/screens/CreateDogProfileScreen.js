@@ -14,7 +14,7 @@ import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 import Axios from "axios";
 // https://www.npmjs.com/package/react-native-dropdown-select-list
@@ -35,55 +35,25 @@ const CreateDogProfileScreen = () => {
   const [size, setSize] = useState("");
   const [isNeutered, setIsNeutered] = useState(true);
 
+
   const dataGender = [{ value: "male" }, { value: "female" }];
-
-  const dataBreed = [
-    { value: "Labrador Retriever" },
-    { value: "German Shepherd" },
-    { value: "Golden Retriever" },
-    { value: "French Bulldog" },
-    { value: "Bulldog" },
-    { value: "Poodle" },
-    { value: "Beagle" },
-    { value: "Rottweiler" },
-    { value: "German Shorthaired (Pointer)" },
-    { value: "Pembroke Welsh Corgi" },
-    { value: "Dachshund" },
-    { value: "Australian Shepherd" },
-    { value: "Siberian Husky" },
-    { value: "Cavalier King Charles Spaniel" },
-    { value: "Great Dane" },
-    { value: "Miniature Schnauzer" },
-    { value: "Doberman Pincher" },
-    { value: "Shih Tzu" },
-    { value: "Chihuahua" },
-    { value: "English Cocker Spanieler" },
-    { value: "Pug" },
-    { value: "Sheltie" },
-    { value: "Dalmation" },
-    { value: "Basset Hound" },
-    { value: "Border Collie" },
-    { value: "St. Bernard" },
-    { value: "Boston Terrier" },
-    { value: "Alaskan Malamute" },
-    { value: "Mixed-Breed" },
-  ];
-
   const dataSize = [
     { value: "small" },
     { value: "medium" },
     { value: "large" },
   ];
+ 
+  useEffect( () => {
+    Axios
+      .get ("http://localhost:8080/api/dogs/breeds")
+      .then((response) => {
+        let newArray = response.data.map((item) => {
+          return { key: item.id, value: item.name }
+      });
+      setBreeds(newArray)
+    })
+  }, []);
 
-  // useEffect( () => { // for testing
-  //   console.log("ddd")
-  //   setName("donut")
-  //   setBreeds("Poodle")
-  //   setGender("male")
-  //   setAge("2")
-  //   setSize("small")
-  //   setIsNeutered(true)
-  // }, []);
 
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/dogs/signup", {
@@ -103,7 +73,7 @@ const CreateDogProfileScreen = () => {
       style={styles.container}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
-      <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <StatusBarSvg1 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
         <FontAwesomeIcon
@@ -124,14 +94,13 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setName(text)}
-            // value={name} FOR TESTING(with hardcoded)
           />
         </View>
 
         <Text style={styles.textHeaderBlack}>Breed * </Text>
         <View style={styles.dropDownView1}>
           <SelectList
-            data={dataBreed}
+            data={breeds}
             setSelected={(text) => setBreeds(text)}
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
@@ -158,7 +127,6 @@ const CreateDogProfileScreen = () => {
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setAge(text)}
-            // value={age}
           />
         </View>
 
@@ -200,7 +168,6 @@ const CreateDogProfileScreen = () => {
           style={appStyles.forwardIconPurple}
         />
       </TouchableOpacity>
-      <BonePatternSvg style={styles.backgroundBottom} />
     </KeyboardAvoidingView>
   );
 };

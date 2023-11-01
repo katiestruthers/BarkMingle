@@ -13,6 +13,15 @@ const appStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  backgroundFull: {
+    position: 'absolute',
+    zIndex: -1,
+  },
+  textPurple: {
+    fontFamily: 'Baloo2_600SemiBold',
+    color: '#6263AF',
+    fontSize: 18,
+  },
   textInput: {
     height: 50,
     flex: 1,
@@ -119,6 +128,16 @@ const appStyles = StyleSheet.create({
     height: 45,
     marginBottom: 10,
     marginTop: 20,
+    alignItems: "center",
+    justifyContent: 'center',
+  },
+  whiteButton: {
+    backgroundColor: "#FFFCF6",
+    borderRadius: 30,
+    width: 250,
+    height: 45,
+    marginBottom: 10,
+    marginTop: 300,
     alignItems: "center",
     justifyContent: 'center',
   },
