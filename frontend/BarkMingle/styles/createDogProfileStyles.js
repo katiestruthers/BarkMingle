@@ -73,16 +73,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     left: 30,
   },
-  backgroundTop: {
-    position: 'absolute',
-    zIndex: -1,
-    top: 0,
-  },
-  backgroundBottom: {
-    position: 'absolute',
-    zIndex: -1,
-    bottom: -48,
-  },
 });
 
 export default styles;

@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/uploadStyles.js";
 import useAuth from "../hooks/useAuth.js";
@@ -10,7 +10,7 @@ import {
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
+import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import StatusBarSvg3 from "../svg-images/StatusBarSvg3.js";
 import Uploading from "../components/Uploading.js";
 import useFileUpload from "../hooks/useFileUpload.js";
@@ -39,7 +39,7 @@ const UploadScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
       <StatusBarSvg3 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("Traits")}>
         <FontAwesomeIcon
@@ -91,7 +91,6 @@ const UploadScreen = () => {
           style={appStyles.forwardIconPurple}
         />
       </TouchableOpacity>
-      <BonePatternSvg style={styles.backgroundBottom} />
     </View>
   );
 };
