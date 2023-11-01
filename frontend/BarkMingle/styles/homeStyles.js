@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
       width:0,
       height: 5,
     },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.3,
     shadowRadius: 1.41,
     elevation: 2,
   },
@@ -35,9 +35,25 @@ const styles = StyleSheet.create({
   },
   buttons:{
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 40,
+    justifyContent: 'space-around',
+    marginBottom: 30,
     width: "100%",
+  },
+  buttonsCircle: {
+    width: 70,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgb(252, 252, 252)',
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width:0,
+      height: 5,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   text: {
     paddingHorizontal: 10,
@@ -48,6 +64,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#A5A7FBB2',
     borderRadius: 20,
+    height: 30,
+    alignSelf: 'flex-end'
   },
   name: {
     color: '#ffffff',
@@ -77,7 +95,7 @@ const styles = StyleSheet.create({
       width:0,
       height: 5,
     },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.3,
     shadowRadius: 1.41,
     elevation: 2,
   },
@@ -113,13 +131,12 @@ const styles = StyleSheet.create({
     borderRadius: 400/ 2,
     marginRight: 10,
     marginLeft: 5,
-    bottom: 15,
+    bottom: 20,
+    borderColor: '#6263AF',
+    borderWidth: 3
   },
   petInfoContainer: {
-    flex: 20,
-    flexDirection:'row',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    margin: 10,
   },
 
 

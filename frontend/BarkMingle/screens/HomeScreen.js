@@ -49,12 +49,6 @@ const HomeScreen = () => {
       .catch((err) => console.log(err));
   }, [user]);
 
-  useEffect(() => {
-    Axios.get("http://localhost:8080/api/dogs/traits").then((response) => {
-      setTraits(response.data);
-    });
-  }, []);
-
   const navigation = useNavigation();
   const swipeRef = useRef(null);
 
@@ -184,44 +178,43 @@ const HomeScreen = () => {
                               profile: card,
                             })
                           }
-                        >
-                        </TouchableOpacity>
+                        ></TouchableOpacity>
                       </View>
 
                       <View style={styles.petInfoContainer}>
-                        <View style={styles.text}>
+                        <View style={{ flexDirection: "row" }}>
                           <Text style={styles.name}>{card.dog_name}</Text>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textWhite}>
+                              {card.dog_age} years old
+                            </Text>
+                          </View>
                         </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>
-                            {card.dog_age} years old
-                          </Text>
+                        <View style={{ flexDirection: "row" }}>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textBlack}>
+                              {card.dog_gender}
+                            </Text>
+                          </View>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textBlack}>{card.breed}</Text>
+                          </View>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textBlack}>
+                              {card.is_neutered ? "Fixed" : "Not Fixed"}
+                            </Text>
+                          </View>
                         </View>
-                      </View>
-                      <View style={{ flexDirection: "row" }}>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textBlack}>
-                            {card.dog_gender}
-                          </Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textBlack}>{card.breed}</Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textBlack}>
-                            {card.is_neutered ? "Fixed" : "Not Fixed"}
-                          </Text>
-                        </View>
-                      </View>
-                      <View style={{ flexDirection: "row" }}>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>{card.trait_1}</Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>{card.trait_2}</Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>{card.trait_3}</Text>
+                        <View style={{ flexDirection: "row" }}>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textWhite}>{card.trait_1}</Text>
+                          </View>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textWhite}>{card.trait_2}</Text>
+                          </View>
+                          <View style={styles.purpleContainer}>
+                            <Text style={styles.textWhite}>{card.trait_3}</Text>
+                          </View>
                         </View>
                       </View>
                     </ImageBackground>
@@ -248,18 +241,24 @@ const HomeScreen = () => {
           </View>
 
           <View style={styles.buttons}>
-            <TouchableOpacity onPress={() => swipeRef.current.swipeLeft()}>
+            <TouchableOpacity
+              onPress={() => swipeRef.current.swipeLeft()}
+              style={styles.buttonsCircle}
+            >
               <FontAwesomeIcon
                 icon={faXmark}
                 style={{ color: "#f83207" }}
-                size={50}
+                size={40}
               />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => swipeRef.current.swipeRight()}>
+            <TouchableOpacity
+              onPress={() => swipeRef.current.swipeRight()}
+              style={styles.buttonsCircle}
+            >
               <FontAwesomeIcon
                 icon={faHeart}
-                size={50}
+                size={40}
                 style={{ color: "#65d926" }}
               />
             </TouchableOpacity>
