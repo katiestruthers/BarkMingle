@@ -21,6 +21,7 @@ import NavBar from "../components/NavBar.js";
 import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const usersMatchArray = [];
 export const userMatchDetailsArray = [];
@@ -171,52 +172,62 @@ const HomeScreen = () => {
                       imageStyle={{ borderRadius: 20 }}
                       source={{ uri: card.dog_img }}
                     >
-                      <View style={styles.spread}>
-                        <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate("SwipedProfile", {
-                              profile: card,
-                            })
-                          }
-                        ></TouchableOpacity>
-                      </View>
-
-                      <View style={styles.petInfoContainer}>
-                        <View style={{ flexDirection: "row" }}>
-                          <Text style={styles.name}>{card.dog_name}</Text>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textWhite}>
-                              {card.dog_age} years old
-                            </Text>
+                      <LinearGradient
+                        colors={["transparent", "rgba(0, 0, 0, 0.3)"]}
+                        style={appStyles.linearGradient}
+                      >
+                        <View style={styles.spread}>
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate("SwipedProfile", {
+                                profile: card,
+                              })
+                            }
+                          ></TouchableOpacity>
+                        </View>
+                        <View style={styles.petInfoContainer}>
+                          <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.name}>{card.dog_name}</Text>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.dog_age} years old
+                              </Text>
+                            </View>
+                          </View>
+                          <View style={{ flexDirection: "row" }}>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textBlack}>
+                                {card.dog_gender}
+                              </Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textBlack}>{card.breed}</Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textBlack}>
+                                {card.is_neutered ? "Fixed" : "Not Fixed"}
+                              </Text>
+                            </View>
+                          </View>
+                          <View style={{ flexDirection: "row" }}>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.trait_1}
+                              </Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.trait_2}
+                              </Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.trait_3}
+                              </Text>
+                            </View>
                           </View>
                         </View>
-                        <View style={{ flexDirection: "row" }}>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textBlack}>
-                              {card.dog_gender}
-                            </Text>
-                          </View>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textBlack}>{card.breed}</Text>
-                          </View>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textBlack}>
-                              {card.is_neutered ? "Fixed" : "Not Fixed"}
-                            </Text>
-                          </View>
-                        </View>
-                        <View style={{ flexDirection: "row" }}>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textWhite}>{card.trait_1}</Text>
-                          </View>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textWhite}>{card.trait_2}</Text>
-                          </View>
-                          <View style={styles.purpleContainer}>
-                            <Text style={styles.textWhite}>{card.trait_3}</Text>
-                          </View>
-                        </View>
-                      </View>
+                      </LinearGradient>
                     </ImageBackground>
 
                     <View style={styles.humanProfileBox}>

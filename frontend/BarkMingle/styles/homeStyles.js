@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
   },
   petInfoContainer: {
     margin: 10,
+    top: 240,
   },
 
 
