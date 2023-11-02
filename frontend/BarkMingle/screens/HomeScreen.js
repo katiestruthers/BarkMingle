@@ -89,17 +89,14 @@ const HomeScreen = () => {
       return <Text>Loading chat...</Text>
     }
 
-
   // create channel if matchedUserId state changes:
 
   useEffect(() => {
     const createChannel = async () => {
         //const channelID = `${userID}--${swipedUserID}`
-        console.log('inside createChannel!!!!');
-        console.log('matchedUserId:', matchedUserId);
         
-        const channel = client.channel('messaging', `u3--${matchedUserId}`, {  //try as members list channel
-          members: ['u3', matchedUserId],
+        const channel = client.channel('messaging', {   //try as members list channel  `u3--${matchedUserId}`
+          members: [userInfo.id, matchedUserId],
         });
         await channel.watch();
     };
