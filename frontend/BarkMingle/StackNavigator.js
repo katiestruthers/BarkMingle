@@ -31,14 +31,22 @@ const client = StreamChat.getInstance(CHAT_API_KEY);
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-  //const { user } = useAuth(); or  // or const token = true  to visit other pages
-  const [token ] = useState('');
+  const { user } = useAuth(); // or const token = true  to visit other pages
+  const [ token ] = useState('');
   const headers = {
     authorization: `Bearer ${token}`,
   };
 
-  //MOVED TO HOME SCREEN
-  // const { clientIsReady } = useChatClient();
+  // const userInfo = {
+  //   id: `u${user.id}`,
+  //   name: user.first_name,
+  //   image: user.profile_img
+  // };
+
+  // const devToken = userInfo.id;
+
+  // // MOVED TO HOME SCREEN
+  // const { clientIsReady } = useChatClient(userInfo, devToken);
 
   // if (!clientIsReady) {
   //   return <Text>Loading chat...</Text>

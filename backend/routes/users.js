@@ -116,19 +116,19 @@ router.post("/signin", (req, res) => {
 // We no longer need this route -- keeping it in a commit for records
 
 // Get logged-in user profile info from database
-// router.get("/", verifyToken, (req, res) => {
-//   const userId = req.user_id;    // user's id captured from the url
+router.get("/", verifyToken, (req, res) => {
+  const userId = req.user_id;    // token id
 
-//   selectHelpers
-//     .getUserDetails(userId)
-//     .then(items => {
-//       res.json(items);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.send(err);
-//     });
-// });
+  selectHelpers
+    .getUserDetails(userId)
+    .then(items => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
 
 // Update logged-in user profile
 router.post("/", verifyToken, (req, res) => {

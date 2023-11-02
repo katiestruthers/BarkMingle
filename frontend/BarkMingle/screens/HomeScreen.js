@@ -23,6 +23,7 @@ import { AuthProvider } from "../hooks/useAuth.js";
 import { StreamChat } from 'stream-chat';
 import { CHAT_API_KEY } from "@env";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
+import { useChatClient } from '../hooks/useChatClientDev.js'
 
 
   
@@ -42,61 +43,103 @@ const HomeScreen = () => {
 
 
   // User Data for setting up chat client
-  const userInfo = {
-    id: `u${user.id}`,
-    name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
-    image: `${user.dog_img}`
-  };
+  // const userInfo = {
+  //   id: `u${user.id}`,
+  //   name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+  //   image: `${user.dog_img}`
+  // };
   
-  const devToken = userInfo.id;
+  // const devToken = userInfo.id;
 
 
-  const useChatClient = () => {
-    const [clientIsReady, setClientIsReady] = useState(false);
+  // const useChatClient = () => {
+  //   const [clientIsReady, setClientIsReady] = useState(false);
   
-    useEffect(() => {
-      const setupClient = async () => {
-        try {
-          client.connectUser(userInfo, client.devToken(devToken));
-          setClientIsReady(true);
+  //   useEffect(() => {
+  //     const setupClient = async () => {
+  //       try {
+  //         client.connectUser(userInfo, client.devToken(devToken));
+  //         setClientIsReady(true);
   
-          // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
-          // But in case you need the chat to load from offline storage first then you should render chat components
-          // immediately after calling `connectUser()`.
-          // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
-        } catch (error) {
-          if (error instanceof Error) {
-            console.error(`An error occurred while connecting the user: ${error.message}`);
-          }
-        }
-      };
+  //         // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
+  //         // But in case you need the chat to load from offline storage first then you should render chat components
+  //         // immediately after calling `connectUser()`.
+  //         // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
+  //       } catch (error) {
+  //         if (error instanceof Error) {
+  //           console.error(`An error occurred while connecting the user: ${error.message}`);
+  //         }
+  //       }
+  //     };
   
-      // If the chat client has a value in the field `userID`, a user is already connected
-      // and we can skip trying to connect the user again.
-      if (!client.userID) {
-        setupClient();
-      }
-    }, []);
+  //     // If the chat client has a value in the field `userID`, a user is already connected
+  //     // and we can skip trying to connect the user again.
+  //     if (!client.userID) {
+  //       setupClient();
+  //     }
+  //   }, []);
   
-    return {
-      clientIsReady,
-    };
-  };
+  //   return {
+  //     clientIsReady,
+  //   };
+  // };
 
-  const { clientIsReady } = useChatClient();
+  // const { clientIsReady } = useChatClient();
   
-  if (!clientIsReady) {
-      return <Text>Loading chat...</Text>
-    }
+  // if (!clientIsReady) {
+  //     return <Text>Loading chat...</Text>
+  //   }
 
   // create channel if matchedUserId state changes:
 
+  //MOVED TO HOME SCREEN
+  // const { clientIsReady } = useChatClient(userInfo, devToken);
+
+  // if (!clientIsReady) {
+  //   return <Text>Loading chat...</Text>
+  // }
+
+  useEffect(() => {
+    const setupClient = async () => {
+      const userInfo = {
+        id: `u${user.id}`,
+        name: user.first_name,
+        image: user.profile_img
+      };
+      const devToken = userInfo.id;
+      try {
+        client.connectUser(userInfo, client.devToken(devToken));
+        // setClientIsReady(true);
+
+        // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
+        // But in case you need the chat to load from offline storage first then you should render chat components
+        // immediately after calling `connectUser()`.
+        // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(`An error occurred while connecting the user: ${error.message}`);
+        }
+      }
+      console.log('in setup client, userInfo:', userInfo);
+      console.log('in setup client, devToken:', devToken);
+    };
+
+    // If the chat client has a value in the field `userID`, a user is already connected
+    // and we can skip trying to connect the user again.
+    if (!client.userID) {
+      setupClient();
+    }
+  }, []);
+
   useEffect(() => {
     const createChannel = async () => {
-        //const channelID = `${userID}--${swipedUserID}`
-        
-        const channel = client.channel('messaging', {   //try as members list channel  `u3--${matchedUserId}`
-          members: [userInfo.id, matchedUserId],
+        const userId = `u${user.id}`;
+        const channelId = `${userId}--${matchedUserId}`
+        console.log('userId:', userId);
+        console.log('channelId:', channelId);
+
+        const channel = client.channel('messaging', channelId, {   //try as members list channel  `u3--${matchedUserId}`
+          members: [userId, matchedUserId],
         });
         await channel.watch();
     };
@@ -171,6 +214,7 @@ const HomeScreen = () => {
           console.log(
             `You MATCHED with ${userSwiped.dog_name}, user id ${userSwipedId}!!!`
           );
+          setMatchedUserId(`u${userSwipedId}`);
           navigation.navigate("Match", { userSwiped });
         } else {
           console.log(`No match with ${userSwiped.dog_name}.`);
