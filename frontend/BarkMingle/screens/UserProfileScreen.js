@@ -33,25 +33,24 @@ const UserProfileScreen = () => {
     navigation.navigate("GetStarted");
     setUser('');
   }
+
+  console.log(user);
  
   return (
     <View style={styles.flex}>
+
+
       
-      <NavBar />
       <FullScreenBgSvg style={appStyles.backgroundFull} />
           <View style={styles.textBox}> 
             <Text style={styles.nameText}>
-              {`${user.first_name} ${user.last_name}`}
+              {`${user.first_name} & ${user.dog_name}`}
             </Text>
 
             <View>
               <Image 
-                source={{uri: user.profile_img}}
+                source={{uri: user.dog_img}}
                 style={styles.avatar} />
-            </View>
-
-            <View>
-              <Text> {user.bio}</Text>
             </View>
 
             <View style={styles.buttonGroup}>
@@ -70,6 +69,8 @@ const UserProfileScreen = () => {
 
 
           </View>
+          <NavBar />
+
 
     </View>
   )

@@ -4,8 +4,10 @@ const styles = StyleSheet.create({
   
   flex: {
     flex: 1,
-    width: "100%",
-    height: "100%",
+    width: '100%', 
+    height: '100%',
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   background: {
     width: "100%", 
@@ -16,13 +18,11 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 30,
     fontWeight: "400",
-    padding: 20,
   },
   textBox: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
-    marginBottom: 20,
   },
   avatar: {
     width: 200, 
@@ -49,12 +49,8 @@ const styles = StyleSheet.create({
     color: "#ffffff"
   },
   buttonGroup: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
     alignItems: "center",
     alignContent:"center",
-    marginVertical: 100,
   }
 
 

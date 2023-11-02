@@ -20,13 +20,12 @@ import useAuth from "../hooks/useAuth.js";
 import NavBar from "../components/NavBar.js";
 import Axios from "axios";
 import { AuthProvider } from "../hooks/useAuth.js";
-import { StreamChat } from 'stream-chat';
+import { StreamChat } from "stream-chat";
 import { CHAT_API_KEY } from "@env";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
-import { useChatClient } from '../hooks/useChatClientDev.js'
+import { useChatClient } from "../hooks/useChatClientDev.js";
 import { LinearGradient } from "expo-linear-gradient";
 import NoProfilesBlobSvg from "../svg-images/NoProfilesBlobSvg.js";
-
 
 const HomeScreen = () => {
   // Get user and JWT token from useAuth
@@ -35,20 +34,19 @@ const HomeScreen = () => {
     authorization: `Bearer ${token}`,
   };
 
-  const [matchedUserId, setMatchedUserId] = useState('');
+  const [matchedUserId, setMatchedUserId] = useState("");
 
   // Get chat client instance
   //const { client } = useChatContext;
   const client = StreamChat.getInstance(CHAT_API_KEY);
 
-
   useEffect(() => {
     const setupClient = async () => {
       const userInfo = {
-          id: `u${user.id}`,
-          name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
-          image: `${user.dog_img}`
-      }
+        id: `u${user.id}`,
+        name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+        image: `${user.dog_img}`,
+      };
       const devToken = userInfo.id;
       try {
         client.connectUser(userInfo, client.devToken(devToken));
@@ -60,11 +58,13 @@ const HomeScreen = () => {
         // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
       } catch (error) {
         if (error instanceof Error) {
-          console.error(`An error occurred while connecting the user: ${error.message}`);
+          console.error(
+            `An error occurred while connecting the user: ${error.message}`
+          );
         }
       }
-      console.log('in setup client, userInfo:', userInfo);
-      console.log('in setup client, devToken:', devToken);
+      console.log("in setup client, userInfo:", userInfo);
+      console.log("in setup client, devToken:", devToken);
     };
 
     // If the chat client has a value in the field `userID`, a user is already connected
@@ -76,21 +76,21 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const createChannel = async () => {
-        const userId = `u${user.id}`;
-        const channelId = `${userId}--${matchedUserId}`
-        console.log('userId:', userId);
-        console.log('channelId:', channelId);
+      const userId = `u${user.id}`;
+      const channelId = `${userId}--${matchedUserId}`;
+      console.log("userId:", userId);
+      console.log("channelId:", channelId);
 
-        const channel = client.channel('messaging', channelId, {   //try as members list channel  `u3--${matchedUserId}`
-          members: [userId, matchedUserId],
-        });
-        await channel.watch();
+      const channel = client.channel("messaging", channelId, {
+        //try as members list channel  `u3--${matchedUserId}`
+        members: [userId, matchedUserId],
+      });
+      await channel.watch();
     };
     createChannel();
   }, [matchedUserId]);
 
- 
- // to set state of non-user profiles
+  // to set state of non-user profiles
   const [filteredProfiles, setFilteredProfiles] = useState([]);
 
   appData = { user, filteredProfiles };
@@ -175,16 +175,21 @@ const HomeScreen = () => {
   return (
     <View style={styles.flex}>
       <FullScreenBgSvg style={appStyles.backgroundFull} />
-      <NavBar />
       {!filteredProfiles ? (
-        <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
-          <Text style={appStyles.textPurple}>Sorry, there are no new profiles!</Text>
-          <Image 
-          source={require('../assets/dog-waiting.gif')}
-          width={50}
-          height={50}
+        <View
+          style={{ flex: 1, alignContent: "center", justifyContent: "center" }}
+        >
+          <Text style={appStyles.textPurple}>
+            Sorry, there are no new profiles!
+          </Text>
+          <Image
+            source={require("../assets/dog-waiting.gif")}
+            width={50}
+            height={50}
           />
-          <NoProfilesBlobSvg style={{zIndex: -1, position: 'absolute', left: 38, top: 140 }}/>
+          <NoProfilesBlobSvg
+            style={{ zIndex: -1, position: "absolute", left: 38, top: 140 }}
+          />
         </View>
       ) : (
         <>
@@ -292,16 +297,41 @@ const HomeScreen = () => {
                     </ImageBackground>
 
                     <View style={styles.humanProfileBox}>
-                      <Image
-                        source={{ uri: card.profile_img }}
-                        style={styles.avatar}
-                      />
-                      <View style={styles.textContainer}>
-                        <Text style={styles.textBlack}>
-                          {`${card.first_name} ${card.last_name}`}
-                        </Text>
+                      <View style={{ flexDirection: "row", flex: 1 }}>
+                        <Image
+                          source={{ uri: card.profile_img }}
+                          style={styles.avatar}
+                        />
+                        <View style={styles.textContainer}>
+                          <Text style={styles.textBlack}>
+                            {`${card.first_name} ${card.last_name}`}
+                          </Text>
 
-                        <Text style={styles.textPurple}>{`${card.bio}`}</Text>
+                          <Text style={styles.textPurple}>{`${card.bio}`}</Text>
+                        </View>
+                      </View>
+                      <View style={styles.buttons}>
+                        <TouchableOpacity
+                          onPress={() => swipeRef.current.swipeLeft()}
+                          style={styles.buttonsCircle}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f83207" }}
+                            size={40}
+                          />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          onPress={() => swipeRef.current.swipeRight()}
+                          style={styles.buttonsCircle}
+                        >
+                          <FontAwesomeIcon
+                            icon={faHeart}
+                            size={40}
+                            style={{ color: "#65d926" }}
+                          />
+                        </TouchableOpacity>
                       </View>
                     </View>
                   </View>
@@ -311,32 +341,10 @@ const HomeScreen = () => {
               }
             />
           </View>
-
-          <View style={styles.buttons}>
-            <TouchableOpacity
-              onPress={() => swipeRef.current.swipeLeft()}
-              style={styles.buttonsCircle}
-            >
-              <FontAwesomeIcon
-                icon={faXmark}
-                style={{ color: "#f83207" }}
-                size={40}
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => swipeRef.current.swipeRight()}
-              style={styles.buttonsCircle}
-            >
-              <FontAwesomeIcon
-                icon={faHeart}
-                size={40}
-                style={{ color: "#65d926" }}
-              />
-            </TouchableOpacity>
-          </View>
         </>
       )}
+
+      <NavBar />
     </View>
   );
 };
