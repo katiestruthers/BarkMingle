@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D2D1F8",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly',
   },
 });
 

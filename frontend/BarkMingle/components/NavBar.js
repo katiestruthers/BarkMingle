@@ -6,13 +6,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { faDog } from "@fortawesome/free-solid-svg-icons/faDog";
 import { faPaw } from "@fortawesome/free-solid-svg-icons/faPaw";
 import styles from "../styles/navBarStyles";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const NavBar = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.navBar}>  
+    <View style={styles.navBar}>  
       <TouchableOpacity onPress={() => navigation.navigate("ChannelList")}>
         <FontAwesomeIcon icon={faPaw} size={40} />
       </TouchableOpacity>
@@ -24,7 +23,7 @@ const NavBar = () => {
       <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
         <FontAwesomeIcon icon={faUser} size={40} />
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
