@@ -303,7 +303,7 @@ const HomeScreen = () => {
                           style={styles.avatar}
                         />
                         <View style={styles.textContainer}>
-                          <Text style={styles.textBlack}>
+                          <Text style={styles.textName}>
                             {`${card.first_name} ${card.last_name}`}
                           </Text>
 

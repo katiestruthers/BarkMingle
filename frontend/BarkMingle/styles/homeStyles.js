@@ -112,6 +112,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Baloo2_600SemiBold',
     textAlign: 'left',
   },
+  textName: {
+    color: '#1E1E1E',
+    fontSize: 18,
+    fontFamily: 'Baloo2_600SemiBold',
+    textAlign: 'left',
+  },
   textWhite: {
     color: '#FFFCF6',
     fontSize: 15,
