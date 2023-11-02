@@ -306,7 +306,15 @@ const HomeScreen = () => {
                     </View>
                   </View>
                 ) : (
-                  <View></View>
+                  <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
+                  <Text style={appStyles.textPurple}>Sorry, there are no new profiles!</Text>
+                  <Image 
+                  source={require('../assets/dog-waiting.gif')}
+                  width={50}
+                  height={50}
+                  />
+                  <NoProfilesBlobSvg style={{zIndex: -1, position: 'absolute', left: 38, top: 140 }}/>
+                </View>
                 )
               }
             />
