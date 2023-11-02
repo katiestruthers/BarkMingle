@@ -35,8 +35,6 @@ const UploadScreen = () => {
     navigation.navigate("CreateUserProfile");
   };
 
-  // console.log('dog image:', dogImage);
-
   return (
     <View style={styles.container}>
       <FullScreenBgSvg style={appStyles.backgroundFull} />

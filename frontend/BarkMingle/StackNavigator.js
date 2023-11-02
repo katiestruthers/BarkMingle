@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import HomeScreen from './screens/HomeScreen';
@@ -17,37 +18,43 @@ import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
 import CompletionScreen from './screens/CompletionScreen';
 import EditUserProfileScreen from './screens/EditUserProfileScreen'
-
 import ChannelListScreen from './screens/ChannelListScreen';
-
-import { useChatClient } from './hooks/useChatClient';
-import { Text } from 'react-native';
+import ChannelScreen from './screens/ChannelScreen';
+import { StreamChat } from 'stream-chat';
+import { CHAT_API_KEY } from "@env";
+import { useChatClient, createChannel } from './hooks/useChatClientDev.js';
 
 import { Chat } from 'stream-chat-expo';
-import { StreamChat } from 'stream-chat';
-import { chatApiKey } from './chatConfig';
-import ChannelScreen from './screens/ChannelScreen';
+// import {  chatApiKey } from '../chatConfig';
 
-const chatClient = StreamChat.getInstance(chatApiKey);
-
+const client = StreamChat.getInstance(CHAT_API_KEY);
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-  //const { user } = useAuth(); or  // or const token = true  to visit other pages
-  const [token ] = useState('');
+  const { user } = useAuth(); // or const token = true  to visit other pages
+  const [ token ] = useState('');
   const headers = {
     authorization: `Bearer ${token}`,
   };
 
-  const { clientIsReady } = useChatClient();
+  // const userInfo = {
+  //   id: `u${user.id}`,
+  //   name: user.first_name,
+  //   image: user.profile_img
+  // };
 
-  if (!clientIsReady) {
-    return <Text>Loading chat ...</Text>
-  }
+  // const devToken = userInfo.id;
+
+  // // MOVED TO HOME SCREEN
+  // const { clientIsReady } = useChatClient(userInfo, devToken);
+
+  // if (!clientIsReady) {
+  //   return <Text>Loading chat...</Text>
+  // }
 
   return (
-    <Chat client={chatClient}>
+    <Chat client={client}>
     <Stack.Navigator 
       screenOptions={{
         // To remove default header on every screen:
@@ -72,15 +79,10 @@ const StackNavigator = () => {
           </Stack.Group>
 
           <Stack.Group screenOptions={{headerShown: true}} >
-            <Stack.Screen name="Matches" component={ChannelListScreen} />
-            <Stack.Screen name="Chatting" component={ChannelScreen} />
+            <Stack.Screen name="ChannelList" component={ChannelListScreen} options={{title: "Matches"}}/>
+            <Stack.Screen name="ChannelScreen" component={ChannelScreen} options={{title: "Messages"}}/>
           </Stack.Group>
           
-          <Stack.Group>
-            <Stack.Screen name="Chat" component={ChatScreen} />
-            <Stack.Screen name="Message" component={MessageScreen} />
-          </Stack.Group>
-
           <Stack.Group screenOptions={{ presentation: "transparentModal"}}>
             <Stack.Screen name="Match" component={MatchedScreen}/>
           </Stack.Group>

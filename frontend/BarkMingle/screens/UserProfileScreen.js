@@ -7,9 +7,19 @@ import appStyles from "../styles/appStyles.js";
 import NavBar from "../components/NavBar.js";
 import {dogProfiles, getUserProfile } from "../dummyData/dummyData.js";
 import useAuth from "../hooks/useAuth.js";
+import { useChatContext } from "stream-chat-react-native-core";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
+import { StreamChat } from 'stream-chat';
+import { CHAT_API_KEY } from "@env";
+
 
 const UserProfileScreen = () => {
+
+  const client = StreamChat.getInstance(CHAT_API_KEY);
+
+  const disconnectUser = async () => {
+    await client.disconnectUser();
+  };
 
   const navigation = useNavigation();
   const { user, setUser, token } = useAuth();
@@ -19,6 +29,7 @@ const UserProfileScreen = () => {
   }
 
   const signOut = () => {
+    disconnectUser();
     navigation.navigate("GetStarted");
     setUser('');
   }

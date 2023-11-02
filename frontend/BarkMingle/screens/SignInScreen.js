@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
 import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -10,10 +10,12 @@ import styles from "../styles/signInStyles.js";
 import SignInSvgBlob from "../svg-images/SignInSvgBlob.js";
 import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent.js";
 import Axios from "axios";
+import { useChatClient } from '../hooks/useChatClientDev.js';
 
 const SignIn = () => {
   const { token, setToken, setUser } = useAuth();
   const navigation = useNavigation();
+  const [ userInfo, setUserInfo ] = useState('');
 
   const headers = {
     authorization: `Bearer ${token}`,

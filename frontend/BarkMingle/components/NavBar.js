@@ -12,8 +12,8 @@ const NavBar = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.navBar}>
-      <TouchableOpacity onPress={() => navigation.navigate("Matches")}>
+    <SafeAreaView style={styles.navBar}>  
+      <TouchableOpacity onPress={() => navigation.navigate("ChannelList")}>
         <FontAwesomeIcon icon={faPaw} size={40} />
       </TouchableOpacity>
 
@@ -24,7 +24,7 @@ const NavBar = () => {
       <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
         <FontAwesomeIcon icon={faUser} size={40} />
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
