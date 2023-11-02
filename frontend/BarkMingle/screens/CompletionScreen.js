@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image
 } from "react-native";
 import appStyles from "../styles/appStyles.js";
 import styles from "../styles/completionStyles.js";
@@ -38,6 +39,11 @@ const CompletionScreen = () => {
         <Text style={appStyles.textHeaderBlack}>
           You're all set!
         </Text>
+
+        <Image 
+          source={require('../assets/three-dogs.gif')}
+          style={styles.gif}
+        />
 
         <TouchableOpacity onPress={() => navigation.navigate("Home")} style={appStyles.whiteButton}>
           <Text style={appStyles.textPurpleButton}> Start Matching </Text>

@@ -17,6 +17,7 @@ import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
 import CompletionScreen from './screens/CompletionScreen';
+import EditUserProfileScreen from './screens/EditUserProfileScreen'
 import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
 import { StreamChat } from 'stream-chat';
@@ -74,6 +75,7 @@ const StackNavigator = () => {
           <Stack.Group>
             <Stack.Screen name="Home" component={HomeScreen} /> 
             <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+            <Stack.Screen name="EditUserProfile" component={EditUserProfileScreen} />
           </Stack.Group>
 
           <Stack.Group screenOptions={{headerShown: true}} >

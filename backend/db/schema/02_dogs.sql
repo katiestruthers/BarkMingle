@@ -7,8 +7,8 @@ CREATE TABLE dogs (
   is_neutered boolean NOT NULL,
 
   -- inspired by https://www.crunchydata.com/blog/enums-vs-check-constraints-in-postgres
-  gender text CHECK (gender in ('male', 'female')) NOT NULL,
-  size text CHECK (size in ('small', 'medium', 'large')) NOT NULL,
+  gender text CHECK (gender in ('Male', 'Female')) NOT NULL,
+  size text CHECK (size in ('Small', 'Medium', 'Large')) NOT NULL,
   --
 
   img text,

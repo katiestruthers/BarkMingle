@@ -171,6 +171,13 @@ const appStyles = StyleSheet.create({
     paddingEnd: 20,
     paddingStart: 20,
   },
+  linearGradient: {
+    borderRadius: 20,
+    bottom: 0,
+    height: '100%',
+    width: '100%',
+    position: "relative",
+  },
 })
 
 export default appStyles;

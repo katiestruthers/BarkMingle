@@ -24,6 +24,8 @@ import { StreamChat } from 'stream-chat';
 import { CHAT_API_KEY } from "@env";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import { useChatClient } from '../hooks/useChatClientDev.js'
+import { LinearGradient } from "expo-linear-gradient";
+import NoProfilesBlobSvg from "../svg-images/NoProfilesBlobSvg.js";
 
 
 const HomeScreen = () => {
@@ -102,12 +104,6 @@ const HomeScreen = () => {
       .catch((err) => console.log(err));
   }, [user]);
 
-  useEffect(() => {
-    Axios.get("http://localhost:8080/api/dogs/traits").then((response) => {
-      setTraits(response.data);
-    });
-  }, []);
-
   const navigation = useNavigation();
   const swipeRef = useRef(null);
 
@@ -181,8 +177,14 @@ const HomeScreen = () => {
       <FullScreenBgSvg style={appStyles.backgroundFull} />
       <NavBar />
       {!filteredProfiles ? (
-        <View style={styles.flex}>
-          <Text>Sorry, there are no new profiles!</Text>
+        <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
+          <Text style={appStyles.textPurple}>Sorry, there are no new profiles!</Text>
+          <Image 
+          source={require('../assets/dog-waiting.gif')}
+          width={50}
+          height={50}
+          />
+          <NoProfilesBlobSvg style={{zIndex: -1, position: 'absolute', left: 38, top: 140 }}/>
         </View>
       ) : (
         <>
@@ -231,53 +233,62 @@ const HomeScreen = () => {
                       imageStyle={{ borderRadius: 20 }}
                       source={{ uri: card.dog_img }}
                     >
-                      <View style={styles.spread}>
-                        <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate("SwipedProfile", {
-                              profile: card,
-                            })
-                          }
-                        >
-                        </TouchableOpacity>
-                      </View>
-
-                      <View style={styles.petInfoContainer}>
-                        <View style={styles.text}>
-                          <Text style={styles.name}>{card.dog_name}</Text>
+                      <LinearGradient
+                        colors={["transparent", "rgba(0, 0, 0, 0.3)"]}
+                        style={appStyles.linearGradient}
+                      >
+                        <View style={styles.spread}>
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate("SwipedProfile", {
+                                profile: card,
+                              })
+                            }
+                          ></TouchableOpacity>
                         </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>
-                            {card.dog_age} years old
-                          </Text>
+                        <View style={styles.petInfoContainer}>
+                          <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.name}>{card.dog_name}</Text>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.dog_age} years old
+                              </Text>
+                            </View>
+                          </View>
+                          <View style={{ flexDirection: "row" }}>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textBlack}>
+                                {card.dog_gender}
+                              </Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textBlack}>{card.breed}</Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textBlack}>
+                                {card.is_neutered ? "Fixed" : "Not Fixed"}
+                              </Text>
+                            </View>
+                          </View>
+                          <View style={{ flexDirection: "row" }}>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.trait_1}
+                              </Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.trait_2}
+                              </Text>
+                            </View>
+                            <View style={styles.purpleContainer}>
+                              <Text style={styles.textWhite}>
+                                {card.trait_3}
+                              </Text>
+                            </View>
+                          </View>
                         </View>
-                      </View>
-                      <View style={{ flexDirection: "row" }}>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textBlack}>
-                            {card.dog_gender}
-                          </Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textBlack}>{card.breed}</Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textBlack}>
-                            {card.is_neutered ? "Fixed" : "Not Fixed"}
-                          </Text>
-                        </View>
-                      </View>
-                      <View style={{ flexDirection: "row" }}>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>{card.trait_1}</Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>{card.trait_2}</Text>
-                        </View>
-                        <View style={styles.purpleContainer}>
-                          <Text style={styles.textWhite}>{card.trait_3}</Text>
-                        </View>
-                      </View>
+                      </LinearGradient>
                     </ImageBackground>
 
                     <View style={styles.humanProfileBox}>
@@ -302,18 +313,24 @@ const HomeScreen = () => {
           </View>
 
           <View style={styles.buttons}>
-            <TouchableOpacity onPress={() => swipeRef.current.swipeLeft()}>
+            <TouchableOpacity
+              onPress={() => swipeRef.current.swipeLeft()}
+              style={styles.buttonsCircle}
+            >
               <FontAwesomeIcon
                 icon={faXmark}
                 style={{ color: "#f83207" }}
-                size={50}
+                size={40}
               />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => swipeRef.current.swipeRight()}>
+            <TouchableOpacity
+              onPress={() => swipeRef.current.swipeRight()}
+              style={styles.buttonsCircle}
+            >
               <FontAwesomeIcon
                 icon={faHeart}
-                size={50}
+                size={40}
                 style={{ color: "#65d926" }}
               />
             </TouchableOpacity>

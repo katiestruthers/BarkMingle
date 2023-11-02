@@ -10,17 +10,7 @@ const styles = StyleSheet.create({
   innerContainer: {
     height: '50%',
     alignItems: 'center',
-
-  },
-  backgroundTop: {
-    position: 'absolute',
-    zIndex: -1,
-    top: 0,
-  },
-  backgroundBottom: {
-    position: 'absolute',
-    zIndex: -1,
-    bottom: -48,
+    justifyContent: 'space-around',
   },
   backIconWhite: {
     color: '#FFFCF6',
@@ -28,7 +18,11 @@ const styles = StyleSheet.create({
     top: -150,
     right: 120,
   },
-
+  gif: {
+    width: 100,
+    height: 200,
+    top: 241,
+  },
 })
 
 export default styles;
