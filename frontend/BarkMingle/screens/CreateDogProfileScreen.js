@@ -36,11 +36,11 @@ const CreateDogProfileScreen = () => {
   const [isNeutered, setIsNeutered] = useState(true);
 
 
-  const dataGender = [{ value: "male" }, { value: "female" }];
+  const dataGender = [{ value: "Male" }, { value: "Female" }];
   const dataSize = [
-    { value: "small" },
-    { value: "medium" },
-    { value: "large" },
+    { value: "Small" },
+    { value: "Medium" },
+    { value: "Large" },
   ];
  
   useEffect( () => {
