@@ -13,6 +13,11 @@ const appStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  backgroundHalf: {
+    position: 'absolute',
+    zIndex: -1,
+    bottom: 0,
+  },
   backgroundFull: {
     position: 'absolute',
     zIndex: -1,
