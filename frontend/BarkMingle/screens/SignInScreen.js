@@ -32,32 +32,9 @@ const SignIn = () => {
       setToken(res.data.token);
       setUser(res.data.user);
       console.log('Logged-in user info:', res.data.user);
-
-      // const user = {
-      //   id: `u${res.data.user.id}`,
-      //   name: res.data.user.first_name,
-      //   image: res.data.user.profile_img
-      // };
-      // setUserInfo(user);
-    
-      // MOVED TO HOME SCREEN
-      // useChatClient(userInfo, devToken);
-    
-      // if (!clientIsReady) {
-      //   return <Text>Loading chat...</Text>
-      // }
-
       navigation.navigate("Home"); // Navigate to the "Home" screen on success
     }).catch(err => console.log(err));
   };
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     useChatClient(userInfo, userInfo.id);
-  //     navigation.navigate("Home"); // Navigate to the "Home" screen on success
-  //   }
-  //   console.log('userInfo:', userInfo);
-  // }, [userInfo]);
 
   return (
     <KeyboardAvoidingView

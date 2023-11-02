@@ -13,7 +13,7 @@ const NavBar = () => {
 
   return (
     <SafeAreaView style={styles.navBar}>  
-      <TouchableOpacity onPress={() => navigation.navigate("Matches")}>
+      <TouchableOpacity onPress={() => navigation.navigate("ChannelList")}>
         <FontAwesomeIcon icon={faPaw} size={40} />
       </TouchableOpacity>
 

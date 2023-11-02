@@ -26,8 +26,6 @@ import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import { useChatClient } from '../hooks/useChatClientDev.js'
 
 
-  
-
 const HomeScreen = () => {
   // Get user and JWT token from useAuth
   const { user, token } = useAuth();
@@ -42,70 +40,13 @@ const HomeScreen = () => {
   const client = StreamChat.getInstance(CHAT_API_KEY);
 
 
-  // User Data for setting up chat client
-  // const userInfo = {
-  //   id: `u${user.id}`,
-  //   name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
-  //   image: `${user.dog_img}`
-  // };
-  
-  // const devToken = userInfo.id;
-
-
-  // const useChatClient = () => {
-  //   const [clientIsReady, setClientIsReady] = useState(false);
-  
-  //   useEffect(() => {
-  //     const setupClient = async () => {
-  //       try {
-  //         client.connectUser(userInfo, client.devToken(devToken));
-  //         setClientIsReady(true);
-  
-  //         // connectUser is an async function. So you can choose to await for it or not depending on your use case (e.g. to show custom loading indicator)
-  //         // But in case you need the chat to load from offline storage first then you should render chat components
-  //         // immediately after calling `connectUser()`.
-  //         // BUT ITS NECESSARY TO CALL connectUser FIRST IN ANY CASE.
-  //       } catch (error) {
-  //         if (error instanceof Error) {
-  //           console.error(`An error occurred while connecting the user: ${error.message}`);
-  //         }
-  //       }
-  //     };
-  
-  //     // If the chat client has a value in the field `userID`, a user is already connected
-  //     // and we can skip trying to connect the user again.
-  //     if (!client.userID) {
-  //       setupClient();
-  //     }
-  //   }, []);
-  
-  //   return {
-  //     clientIsReady,
-  //   };
-  // };
-
-  // const { clientIsReady } = useChatClient();
-  
-  // if (!clientIsReady) {
-  //     return <Text>Loading chat...</Text>
-  //   }
-
-  // create channel if matchedUserId state changes:
-
-  //MOVED TO HOME SCREEN
-  // const { clientIsReady } = useChatClient(userInfo, devToken);
-
-  // if (!clientIsReady) {
-  //   return <Text>Loading chat...</Text>
-  // }
-
   useEffect(() => {
     const setupClient = async () => {
       const userInfo = {
-        id: `u${user.id}`,
-        name: user.first_name,
-        image: user.profile_img
-      };
+          id: `u${user.id}`,
+          name: `${user.dog_name} & ${user.first_name} ${user.last_name}`,
+          image: `${user.dog_img}`
+      }
       const devToken = userInfo.id;
       try {
         client.connectUser(userInfo, client.devToken(devToken));
