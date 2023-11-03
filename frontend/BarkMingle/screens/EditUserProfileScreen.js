@@ -41,8 +41,6 @@ const EditUserProfileScreen = () => {
     }).catch(err => console.log(err));
   };
 
-  // console.log("url", userImage)
-
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -81,8 +79,6 @@ const EditUserProfileScreen = () => {
           value={last_name}
         />
       </View>
-
-      
 
       <Text style={styles.textHeaderBlack}>Write a short bio</Text>
       <View style={styles.inputViewBio}>
