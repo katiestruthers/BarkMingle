@@ -6,6 +6,6 @@ CREATE TABLE users (
   last_name varchar(50),
   email varchar(75) NOT NULL,
   password varchar(75) NOT NULL,
-  bio varchar(500),
+  bio varchar(120),
   profile_img text
 );
