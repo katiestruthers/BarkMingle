@@ -35,10 +35,7 @@ const UserProfileScreen = () => {
   const signOut = () => {
     disconnectUser();
     navigation.navigate("GetStarted");
-    setUser("");
   };
-
-  console.log(user);
 
   return (
     <View style={styles.flex}>

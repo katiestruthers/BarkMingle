@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import styles from "../styles/landingStyles.js";
 import appStyles from "../styles/appStyles.js";
@@ -9,7 +9,12 @@ import HomeBlobSvgComponent from "../svg-images/HomeBlobSvgComponent.js";
 import PurpleBGPatternSvgComponent from "../svg-images/PurpleBGPatternSvgComponent.js";
 
 const LandingScreen = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  
+  // Clear user after sign-out
+  useEffect(() => {
+    setUser('');
+  }, []);
 
   const navigation = useNavigation();
 
