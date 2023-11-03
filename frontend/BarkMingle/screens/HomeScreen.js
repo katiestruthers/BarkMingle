@@ -25,7 +25,7 @@ import { CHAT_API_KEY } from "@env";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import { useChatClient } from "../hooks/useChatClientDev.js";
 import { LinearGradient } from "expo-linear-gradient";
-import NoProfilesBlobSvg from "../svg-images/NoProfilesBlobSvg.js";
+import NoNewProfiles from "../components/NoNewProfiles.js";
 
 const HomeScreen = () => {
   // Get user and JWT token from useAuth
@@ -176,20 +176,8 @@ const HomeScreen = () => {
     <View style={styles.flex}>
       <FullScreenBgSvg style={appStyles.backgroundFull} />
       {!filteredProfiles ? (
-        <View
-          style={{ flex: 1, alignContent: "center", justifyContent: "center" }}
-        >
-          <Text style={appStyles.textPurple}>
-            Sorry, there are no new profiles!
-          </Text>
-          <Image
-            source={require("../assets/dog-waiting.gif")}
-            width={50}
-            height={50}
-          />
-          <NoProfilesBlobSvg
-            style={{ zIndex: -1, position: "absolute", left: 38, top: 140 }}
-          />
+        <View style={{paddingTop: 80, flex: 1 }}>
+        <NoNewProfiles />
         </View>
       ) : (
         <>
@@ -256,7 +244,10 @@ const HomeScreen = () => {
                             <Text style={styles.name}>{card.dog_name}</Text>
                             <View style={styles.purpleContainer}>
                               <Text style={styles.textWhite}>
-                                {card.dog_age + (Number(card.dog_age) === 1 ? ' year old' : ' years old')}
+                                {card.dog_age +
+                                  (Number(card.dog_age) === 1
+                                    ? " year old"
+                                    : " years old")}
                               </Text>
                             </View>
                           </View>
@@ -310,36 +301,38 @@ const HomeScreen = () => {
                           <Text style={styles.textPurple}>{`${card.bio}`}</Text>
                         </View>
                       </View>
-                      <View style={styles.buttons}>
-                        <TouchableOpacity
-                          onPress={() => swipeRef.current.swipeLeft()}
-                          style={styles.buttonsCircle}
-                        >
-                          <FontAwesomeIcon
-                            icon={faXmark}
-                            style={{ color: "#f83207" }}
-                            size={40}
-                          />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                          onPress={() => swipeRef.current.swipeRight()}
-                          style={styles.buttonsCircle}
-                        >
-                          <FontAwesomeIcon
-                            icon={faHeart}
-                            size={40}
-                            style={{ color: "#65d926" }}
-                          />
-                        </TouchableOpacity>
-                      </View>
                     </View>
                   </View>
                 ) : (
-                  <View></View>
+                  <NoNewProfiles />
                 )
               }
             />
+          </View>
+          <View style={styles.buttons}>
+            <TouchableOpacity
+              onPress={() => swipeRef.current.swipeLeft()}
+              style={styles.buttonsCircle}
+              disabled={!filteredProfiles}
+            >
+              <FontAwesomeIcon
+                icon={faXmark}
+                style={{ color: "#f83207" }}
+                size={40}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => swipeRef.current.swipeRight()}
+              style={styles.buttonsCircle}
+              disabled={!filteredProfiles}
+            >
+              <FontAwesomeIcon
+                icon={faHeart}
+                size={40}
+                style={{ color: "#65d926" }}
+              />
+            </TouchableOpacity>
           </View>
         </>
       )}
