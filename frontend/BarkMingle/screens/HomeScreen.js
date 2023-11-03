@@ -172,6 +172,17 @@ const HomeScreen = () => {
     );
   };
 
+  // Helper function for displaying a dog's age
+  const dogAgeText = (age) => {
+    if (age === "Less than a year") {
+      return age;
+    } else if (age === '1') {
+      return "1 year old";
+    } else {
+      return `${age} years old`;
+    }
+  };
+
   return (
     <View style={styles.flex}>
       <FullScreenBgSvg style={appStyles.backgroundFull} />
@@ -244,10 +255,7 @@ const HomeScreen = () => {
                             <Text style={styles.name}>{card.dog_name}</Text>
                             <View style={styles.purpleContainer}>
                               <Text style={styles.textWhite}>
-                                {card.dog_age +
-                                  (Number(card.dog_age) === 1
-                                    ? " year old"
-                                    : " years old")}
+                                {dogAgeText(card.dog_age)}
                               </Text>
                             </View>
                           </View>
