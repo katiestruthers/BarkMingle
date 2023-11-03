@@ -256,7 +256,7 @@ const HomeScreen = () => {
                             <Text style={styles.name}>{card.dog_name}</Text>
                             <View style={styles.purpleContainer}>
                               <Text style={styles.textWhite}>
-                                {card.dog_age} years old
+                                {card.dog_age + (Number(card.dog_age) === 1 ? ' year old' : ' years old')}
                               </Text>
                             </View>
                           </View>
