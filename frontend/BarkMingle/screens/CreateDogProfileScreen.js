@@ -42,6 +42,23 @@ const CreateDogProfileScreen = () => {
     { value: "Medium" },
     { value: "Large" },
   ];
+  const dataAge = [
+    { value: "Less than a year" },
+    { value: "1" },
+    { value: "2" },
+    { value: "3" },
+    { value: "4" },
+    { value: "5" },
+    { value: "6" },
+    { value: "7" },
+    { value: "8" },
+    { value: "9" },
+    { value: "10" },
+    { value: "11" },
+    { value: "12" },
+    { value: "13" },
+    { value: "13+" },
+  ];
  
   useEffect( () => {
     Axios
@@ -123,15 +140,21 @@ const CreateDogProfileScreen = () => {
         </View>
 
         <Text style={styles.textHeaderBlack}>Age * </Text>
-        <View style={styles.inputView}>
-          <TextInput
-            style={appStyles.textInput}
-            onChangeText={(text)=>setAge(text)}
+        <View style={styles.dropDownView3}>
+          <SelectList
+            data={dataAge}
+            setSelected={(text)=>setAge(text)}
+            fontFamily="Baloo2_400Regular"
+            boxStyles={styles.dropDown}
+            dropdownStyles={styles.dropDownScroll1}
+            dropdownTextStyles={styles.text}
+            search={false}
+            maxHeight={200}
           />
         </View>
 
         <Text style={styles.textHeaderBlack}>Size * </Text>
-        <View style={styles.dropDownView1}>
+        <View style={styles.dropDownView4}>
           <SelectList
             data={dataSize}
             setSelected={(text) => setSize(text)}
