@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   buttons:{
     flexDirection: "row",
     justifyContent: 'space-around',
+    marginBottom: 15,
     alignItems: 'center',
     width: "100%",
   },
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(252, 252, 252)',
     borderRadius: 30,
     width: "100%",
-    height: "53%",
+    height: "35%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
