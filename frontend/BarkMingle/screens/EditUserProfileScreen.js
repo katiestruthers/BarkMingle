@@ -15,7 +15,6 @@ import Uploading from '../components/Uploading.js';
 
 const EditUserProfileScreen = () => {
   const { token, setToken, user, setUser } = useAuth();
-  console.log("user-firstName", user.first_name, )
 
   const navigation = useNavigation();
 
@@ -28,7 +27,6 @@ const EditUserProfileScreen = () => {
   const [bio, setBio] = useState(user.bio);
 
   const { pickImage, image, progress, userImage } = useFileUpload(user.profile_img);
-  console.log(`user-profile-image: ${user.profile_img}`);
 
   
   const onSubmit = () => {
@@ -52,7 +50,7 @@ const EditUserProfileScreen = () => {
     >
     <BonePatternSvg style={styles.backgroundTop} />
     <StatusBarSvg4 style={appStyles.statusBar} />
-    <TouchableOpacity onPress={() => navigation.navigate("Upload")}>
+    <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
       <FontAwesomeIcon
         icon={faArrowLeft}
         size={50}
@@ -61,31 +59,9 @@ const EditUserProfileScreen = () => {
     </TouchableOpacity>
     <View>
       <Text style={appStyles.textHeaderPurple}>
-        Edit Profile
+        Edit your profile details
       </Text>
     </View>
-
-        <View style={styles.imageContainer}>
-          {userImage && (
-            <Image
-              source={{uri: user.profile_img}}
-              style={styles.image}
-            />
-          )}
-        </View>
-
-        <View style={styles.uploadContainer}>
-          {image ? (
-            <Uploading progress={progress} style={styles.uploading} />
-          ) : (
-            <TouchableOpacity
-              onPress={pickImage}
-            >
-            <Text style={styles.textPurple}>Upload a profile photo</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-
 
     <View style={styles.textContainer}>
       <Text style={styles.textHeaderBlack}>First Name *</Text>
