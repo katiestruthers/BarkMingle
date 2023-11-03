@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth.js";
 import HomeSvgComponent from "../svg-images/HomeSvgComponent.js";
 import HomeBlobSvgComponent from "../svg-images/HomeBlobSvgComponent.js";
 import PurpleBGPatternSvgComponent from "../svg-images/PurpleBGPatternSvgComponent.js";
+import { useTypingText } from "../hooks/useTypingText.js";
 
 const LandingScreen = () => {
   const { user, setUser } = useAuth();
@@ -17,6 +18,9 @@ const LandingScreen = () => {
   }, []);
 
   const navigation = useNavigation();
+
+  const { word } = useTypingText(['fun', 'connection', 'adventures',
+    'friendship', 'smiles', 'laughter', 'play'], 100, 20);
 
   return (
     <View style={styles.container}>
@@ -31,10 +35,10 @@ const LandingScreen = () => {
       </View>
       <View style={styles.textContainer}>
         <View style={styles.textDescription}>
-          <Text style={appStyles.textWhite}>
-            Bringing together dogs and owners for [fun, connection, adventures,
-            friends, smiles, laughter, play]
+          <Text style={appStyles.landingDescription}>
+            {`Bringing together dogs and owners for \n`} <Text style={{color: "#1E1E1E"}}>{word}</Text>
           </Text>
+          
         </View>
         <TouchableOpacity
           style={styles.getStartedButton}
