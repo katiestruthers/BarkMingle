@@ -22,15 +22,15 @@ router.get("/breeds", (req, res) => {
 
 // Create a new dog and associate it with a logged in user
 router.post("/signup", verifyToken, (req, res) => {
-  const { name, breeds, gender, age, size, is_neutered } = req.body;
+  const { name, breed, gender, age, size, is_neutered } = req.body;
   const loggedInUserId = req.user_id;
   
-  if (!name || !breeds || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
+  if (!name || !breed || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
   // Check if breed exists in the breeds table
-  database.query("SELECT id FROM breeds WHERE id = $1", [breeds], (error, result) => {
+  database.query("SELECT id FROM breeds WHERE id = $1", [breed], (error, result) => {
     const breedId = result.rows[0].id;
       // If the breed exists, insert the dog into the dogs table
       database.query(

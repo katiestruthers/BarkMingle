@@ -61,8 +61,8 @@ const CreateDogProfileScreen = () => {
     { value: "13+" },
   ];
  
-  // Set data for drop-down menu
-  useEffect( () => {
+  // Set dataBreed for drop-down menu
+  useEffect(() => {
     Axios
       .get ("http://localhost:8080/api/dogs/breeds")
       .then((response) => {
@@ -73,7 +73,7 @@ const CreateDogProfileScreen = () => {
     })
   }, []);
 
-
+  
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/dogs/signup", {
       name,
