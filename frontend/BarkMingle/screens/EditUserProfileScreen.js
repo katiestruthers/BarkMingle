@@ -26,7 +26,7 @@ const EditUserProfileScreen = () => {
   const [last_name, setLastName] = useState(user.last_name);
   const [bio, setBio] = useState(user.bio);
 
-  const { pickImage, image, progress, userImage } = useFileUpload(user.profile_img);
+  const { userImage } = useFileUpload(user.profile_img);
 
   
   const onSubmit = () => {
