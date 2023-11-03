@@ -43,6 +43,16 @@ const appStyles = StyleSheet.create({
     fontWeight: "400",
     textAlign: "center",
   },
+  landingDescription: {
+    color: "#FFFCF6",
+    fontSize: 20,
+    fontFamily: "Baloo2_600SemiBold",
+    fontWeight: "400",
+    textAlign: "center",
+    alignSelf: 'center',
+    width: '60%',
+    paddingTop: 20,
+  },
   textSignIn: {
     color: "#1E1E1E",
     fontSize: 18,
