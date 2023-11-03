@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import StackNavigator from './StackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './hooks/useAuth';
@@ -9,6 +9,8 @@ import { useFonts, Baloo2_400Regular, Baloo2_500Medium, Baloo2_600SemiBold, Balo
 import Axios from "axios";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+//Ignore all log notifications
+// LogBox.ignoreAllLogs();
 
 export default function App() {
   // Sample connection
