@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useReducer } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import * as ImagePicker from "expo-image-picker";
-import { addDoc } from "firebase/firestore";
+import { addDoc, doc, deleteDoc } from "firebase/firestore";
 import { storage, db } from "../firebaseConfig";
 
 const useFileUpload = () => {
@@ -108,23 +108,20 @@ const useFileUpload = () => {
     }
   }, [uploadComplete]);
 
-  // set dogImage after the upload is complete
   useEffect(() => {
     if (uploadComplete && files.length > 0) {
-      setDogImage(files[0].url);
+      const imageIndex = files.length - 1
+      if (files.length % 2 === 0) {
+        setUserImage(files[imageIndex].url);
+      } else {
+        setDogImage(files[imageIndex].url);
+      }
     }
   }, [uploadComplete, files]);
 
-  // set userImage after the upload is complete
-  useEffect(() => {
-    if (uploadComplete && files.length > 1) {
-      setUserImage(files[1].url);
-    }
-  }, [uploadComplete, files]);
-
-  // console.log('user', userImage);
-  // console.log('dog', dogImage);
-  // console.log('files', files);
+  console.log('user url:', userImage);
+  console.log('dog url:', dogImage);
+  console.log('files', files);
 
   return {
     image,
