@@ -20,6 +20,13 @@ const appStyles = StyleSheet.create({
     paddingEnd: 20,
     paddingStart: 20,
   },
+  contentContainer: {
+    alignItems: "center",
+    justifyContent: "flex-start",
+    height: '63%',
+    width: "100%",
+    paddingTop: 5,
+  },
 
   // background styles
   background: {
