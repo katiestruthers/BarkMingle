@@ -174,12 +174,15 @@ const HomeScreen = () => {
 
   // Helper function for displaying a dog's age
   const dogAgeText = (age) => {
-    if (age === "Less than a year") {
-      return age;
-    } else if (age === '1') {
-      return "1 year old";
-    } else {
-      return `${age} years old`;
+    switch (age) {
+      case 0:
+        return "Less than a year";
+      case 1:
+        return "1 year old";
+      case 14:
+        return "13+ years old";
+      default:
+        return `${age} years old`;
     }
   };
 
