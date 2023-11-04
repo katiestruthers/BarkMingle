@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   buttons:{
     flexDirection: "row",
     justifyContent: 'space-around',
-    marginBottom: 15,
+    marginBottom: 25,
     alignItems: 'center',
     width: "100%",
   },
@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 25,
+    padding: 15,
     backgroundColor: 'rgb(252, 252, 252)',
     borderRadius: 30,
     width: "100%",
-    height: "35%",
+    height: "30%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     width: 70, 
     height: 70, 
     borderRadius: 400/ 2,
-    marginRight: 15,
+    marginRight: 20,
     borderColor: '#6263AF',
     borderWidth: 3
   },
