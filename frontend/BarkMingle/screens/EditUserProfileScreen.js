@@ -25,16 +25,14 @@ const EditUserProfileScreen = () => {
   const [first_name, setFirstName] = useState(user.first_name);
   const [last_name, setLastName] = useState(user.last_name);
   const [bio, setBio] = useState(user.bio);
-
-  const { pickImage, image, progress, userImage } = useFileUpload(user.profile_img);
-
+  const profileImg = user.profile_img
   
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/users", {
       first_name,
       last_name,
       bio,
-      profile_img: userImage,
+      profile_img: profileImg,
     }, { headers }).then(res => {
       setUser(res.data.user);
       navigation.navigate("UserProfile"); // Navigato to the "UserProfile" screen on success
@@ -47,7 +45,6 @@ const EditUserProfileScreen = () => {
       behavior={Platform.OS == "ios" ? "padding" : "height"} 
     >
     <BonePatternSvg style={styles.backgroundTop} />
-    <StatusBarSvg4 style={appStyles.statusBar} />
     <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
       <FontAwesomeIcon
         icon={faArrowLeft}
@@ -92,12 +89,11 @@ const EditUserProfileScreen = () => {
 
     </View>
 
-    <TouchableOpacity onPress={onSubmit}>
-      <FontAwesomeIcon
-        icon={faArrowRight}
-        size={50}
-        style={appStyles.forwardIconPurple}
-      />
+    <TouchableOpacity
+      onPress={onSubmit}
+      style={appStyles.purpleButton}
+    >
+    <Text style={appStyles.textWhite}> Save Changes </Text>
     </TouchableOpacity>
     <BonePatternSvg style={styles.backgroundBottom} />
   </KeyboardAvoidingView>

@@ -22,15 +22,15 @@ router.get("/breeds", (req, res) => {
 
 // Create a new dog and associate it with a logged in user
 router.post("/signup", verifyToken, (req, res) => {
-  const { name, breeds, gender, age, size, is_neutered } = req.body;
+  const { name, breed, gender, age, size, is_neutered } = req.body;
   const loggedInUserId = req.user_id;
   
-  if (!name || !breeds || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
+  if (!name || !breed || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
   // Check if breed exists in the breeds table
-  database.query("SELECT id FROM breeds WHERE id = $1", [breeds], (error, result) => {
+  database.query("SELECT id FROM breeds WHERE id = $1", [breed], (error, result) => {
     const breedId = result.rows[0].id;
       // If the breed exists, insert the dog into the dogs table
       database.query(
@@ -137,6 +137,73 @@ router.post("/images", verifyToken, (req, res) => {
   }
 
   updateDogPhoto(loggedInUserId, img);
+});
+
+// Edit dog profile details
+router.post("/", verifyToken, (req, res) => {
+  const loggedInUserId = req.user_id;
+  const { name, breed, gender, age, size, is_neutered } = req.body;
+  console.log('req.body:', req.body);
+
+  // if (!name || !breed || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
+  //   return res.status(400).json({ error: "Please provide all of the info" });
+  // }
+
+  const queryString1 = `
+    UPDATE dogs
+    SET name = $1, gender = $2, age = $3, size = $4, is_neutered = $5
+    WHERE id = (
+      SELECT id
+      FROM dogs
+      WHERE user_id = $6)
+    RETURNING *;
+  `;
+  const queryParams1 = [name, gender, age, size, is_neutered, loggedInUserId];
+
+  const queryString2 = `
+    UPDATE dogs_breeds
+    SET breed_id = $1
+    WHERE dog_id = (
+      SELECT id
+      FROM dogs
+      WHERE user_id = $2)
+    RETURNING *;
+  `;
+  const queryParams2 = [breed, loggedInUserId];
+
+  // Execute the query
+  database.query(queryString1, queryParams1, (error, result) => {
+    console.log('result from query1:', result);
+    if (error) {
+      console.error("Error updating dog profile:", error);
+      return res.status(500).json({ error: "Failed to update dog profile" });
+    }
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Dog not found" });
+    }
+    database.query(queryString2, queryParams2, (error, result) => {
+      console.log('result from query2:', result);
+      if (error) {
+        console.error("Error updating dogs_breeds table:", error);
+        return res.status(500).json({ error: "Failed to update dogs_breeds table" });
+      }
+  
+      if (result.rows.length === 0) {
+        return res.status(404).json({ error: "dogs_breeds entry not found" });
+      }
+
+      selectHelpers
+        .getUserDetails(loggedInUserId)
+        .then(items => {
+          res.json({
+            message: "User profile updated successfully",
+            userId: req.user_id,
+            user: items[0]
+          });
+      })
+    })
+  });
 });
 
 module.exports = router;

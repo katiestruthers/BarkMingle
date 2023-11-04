@@ -1,12 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFCF6",
-  },
   textContainer: {
     alignItems: "center",
     justifyContent: "flex-start",
@@ -28,7 +22,7 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 5,
     marginTop: 5,
-    alignItems: "center",
+    alignItems: "flex-start",
     zIndex: 4,
   },
   dropDownView2: {
@@ -83,13 +77,6 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: "flex-start",
     borderColor: '#D2D1F8'
-  },
-  textHeaderBlack: {
-    color: '#1E1E1E',
-    fontSize: 18,
-    fontFamily: 'Baloo2_800ExtraBold',
-    alignSelf: "flex-start",
-    left: 30,
   },
 });
 

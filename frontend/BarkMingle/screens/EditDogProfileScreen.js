@@ -22,19 +22,19 @@ import Axios from "axios";
 import { SelectList } from "react-native-dropdown-select-list";
 
 const CreateDogProfileScreen = () => {
-  const { token } = useAuth();
+  const { token, user, setUser } = useAuth();
   const navigation = useNavigation();
 
   const headers = {
     authorization: `Bearer ${token}`,
   };
 
-  const [name, setName] = useState("");
-  const [breed, setBreed] = useState("");
-  const [gender, setGender] = useState("");
-  const [age, setAge] = useState("");
-  const [size, setSize] = useState("");
-  const [isNeutered, setIsNeutered] = useState(true);
+  const [name, setName] = useState(user.dog_name);
+  const [breed, setBreed] = useState(user.breed);
+  const [gender, setGender] = useState(user.dog_gender);
+  const [age, setAge] = useState(user.dog_age);
+  const [size, setSize] = useState(user.dog_size);
+  const [isNeutered, setIsNeutered] = useState(user.is_neutered);
 
   const [dataBreed, setDataBreed] = useState("");
   const [dataAge, setDataAge] = useState("");
@@ -72,7 +72,7 @@ const CreateDogProfileScreen = () => {
 
   
   const onSubmit = () => {
-    Axios.post("http://localhost:8080/api/dogs/signup", {
+    Axios.post("http://localhost:8080/api/dogs", {
       name,
       breed,
       gender,
@@ -80,18 +80,30 @@ const CreateDogProfileScreen = () => {
       size,
       is_neutered: isNeutered
     }, { headers }).then(res => {
-      navigation.navigate("Traits"); // Navigato to the "Traits" screen on success
+      setUser(res.data.user);
+      navigation.navigate("UserProfile"); // Navigato to the "UserProfile" screen on success
     }).catch(err => console.log(err));
+  };
+
+   // Helper function for displaying a dog's age
+   const dogAgePlaceholder = (age) => {
+    switch (age) {
+      case 0:
+        return "Less than a year";
+      case 14:
+        return "13+";
+      default:
+        return `${age}`;
+    }
   };
 
   return (
     <KeyboardAvoidingView
-      style={appStyles.containerWhite}
+      style={styles.container}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
       <FullScreenBgSvg style={appStyles.backgroundFull} />
-      <StatusBarSvg1 style={appStyles.statusBar} />
-      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+      <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
         <FontAwesomeIcon
           icon={faArrowLeft}
           size={50}
@@ -100,20 +112,21 @@ const CreateDogProfileScreen = () => {
       </TouchableOpacity>
       <View>
         <Text style={appStyles.textHeaderPurple}>
-          Let's get a profile started for your dog
+          Edit your dog's profile details
         </Text>
       </View>
 
       <View style={styles.textContainer}>
-        <Text style={appStyles.textSmallHeaderBlack}>Dog Name *</Text>
+        <Text style={styles.textHeaderBlack}>Dog Name *</Text>
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
             onChangeText={(text)=>setName(text)}
+            value={name}
           />
         </View>
 
-        <Text style={appStyles.textSmallHeaderBlack}>Breed * </Text>
+        <Text style={styles.textHeaderBlack}>Breed * </Text>
         <View style={styles.dropDownView1}>
           <SelectList
             data={dataBreed}
@@ -121,10 +134,11 @@ const CreateDogProfileScreen = () => {
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
             dropdownStyles={styles.dropDownScroll1}
+            placeholder={breed}
           />
         </View>
 
-        <Text style={appStyles.textSmallHeaderBlack}>Gender * </Text>
+        <Text style={styles.textHeaderBlack}>Gender * </Text>
         <View style={styles.dropDownView2}>
           <SelectList
             data={dataGender}
@@ -135,10 +149,11 @@ const CreateDogProfileScreen = () => {
             dropdownTextStyles={styles.text}
             search={false}
             maxHeight={200}
+            placeholder={gender}
           />
         </View>
 
-        <Text style={appStyles.textSmallHeaderBlack}>Age * </Text>
+        <Text style={styles.textHeaderBlack}>Age * </Text>
         <View style={styles.dropDownView3}>
           <SelectList
             data={dataAge}
@@ -149,10 +164,11 @@ const CreateDogProfileScreen = () => {
             dropdownTextStyles={styles.text}
             search={false}
             maxHeight={200}
+            placeholder={dogAgePlaceholder(age)}
           />
         </View>
 
-        <Text style={appStyles.textSmallHeaderBlack}>Size * </Text>
+        <Text style={styles.textHeaderBlack}>Size * </Text>
         <View style={styles.dropDownView4}>
           <SelectList
             data={dataSize}
@@ -163,19 +179,20 @@ const CreateDogProfileScreen = () => {
             dropdownTextStyles={styles.text}
             search={false}
             maxHeight={200}
+            placeholder={size}
           />
         </View>
 
-        <Text style={appStyles.textSmallHeaderBlack}>Spayed / Neutered? * </Text>
+        <Text style={styles.textHeaderBlack}>Spayed / Neutered? * </Text>
         <View style={appStyles.buttonContainer}>
           <TouchableOpacity
-            style={isNeutered ? appStyles.activeButton : appStyles.lightPurpleButton}
+            style={isNeutered ? appStyles.activeButton : appStyles.button}
             onPress={() => setIsNeutered(true)}
           >
             <Text style={isNeutered ? appStyles.textPurpleButton : appStyles.textBlackButton}>Yes</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={!isNeutered ? appStyles.activeButton : appStyles.lightPurpleButton}
+            style={!isNeutered ? appStyles.activeButton : appStyles.button}
             onPress={() => setIsNeutered(false)}
           >
             <Text style={!isNeutered ? appStyles.textPurpleButton : appStyles.textBlackButton}>No</Text>
@@ -183,13 +200,12 @@ const CreateDogProfileScreen = () => {
         </View>
       </View>
 
-      <TouchableOpacity onPress={onSubmit}>
-        <FontAwesomeIcon
-          icon={faArrowRight}
-          size={50}
-          style={appStyles.forwardIconPurple}
-        />
-      </TouchableOpacity>
+    <TouchableOpacity
+      onPress={onSubmit}
+      style={appStyles.purpleButton}
+    >
+      <Text style={appStyles.textWhite}> Save Changes </Text>
+    </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 };

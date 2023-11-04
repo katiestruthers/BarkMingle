@@ -1,131 +1,164 @@
 import { StyleSheet } from "react-native";
 
 const appStyles = StyleSheet.create({
-  container: {
+  
+  // container styles
+  containerPurple: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#6263AF",
   },
-   background: {
-    width: '100%', 
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  containerWhite: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFCF6",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    paddingEnd: 20,
+    paddingStart: 20,
+  },
+  contentContainer: {
+    alignItems: "center",
+    justifyContent: "flex-start",
+    height: '63%',
+    width: "100%",
+    paddingTop: 5,
+  },
+
+  // background styles
+  background: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   backgroundHalf: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: -1,
     bottom: 0,
   },
   backgroundFull: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: -1,
   },
+
+  // text styles
   textPurple: {
-    fontFamily: 'Baloo2_600SemiBold',
-    color: '#6263AF',
+    fontFamily: "Baloo2_600SemiBold",
+    color: "#6263AF",
     fontSize: 18,
   },
   textInput: {
     height: 50,
-    flex: 1,
-    padding: 10,
-    marginHorizontal: 10,
-    fontSize: 14,
-    fontFamily: 'Baloo2_400Regular',
+    marginHorizontal: 24,
+    fontSize: 16,
+    fontFamily: "Baloo2_400Regular",
     width: "90%",
   },
   textWhite: {
-    color: '#FFFCF6',
+    color: "#FFFCF6",
     fontSize: 18,
-    fontFamily: 'Baloo2_600SemiBold',
-    fontWeight: '400',
-    textAlign: 'center',
+    fontFamily: "Baloo2_600SemiBold",
+    fontWeight: "400",
+    textAlign: "center",
   },
   textSignIn: {
-    color: '#1E1E1E',
+    color: "#1E1E1E",
     fontSize: 18,
-    fontFamily: 'Baloo2_600SemiBold',
-    textAlign: 'center',
-    alignItems: 'center',
-  },
-  textLogoPurple: {
-    color: '#6263AF',
-    fontSize: 30,
-    fontFamily: 'Baloo2_800ExtraBold',
+    fontFamily: "Baloo2_600SemiBold",
+    textAlign: "center",
+    alignItems: "center",
   },
   textHeaderPurple: {
-    color: '#6263AF',
+    color: "#6263AF",
     fontSize: 30,
-    fontFamily: 'Baloo2_800ExtraBold',
-    paddingRight: 40,
-    left: 30,
-    alignSelf: 'center',
+    fontFamily: "Baloo2_800ExtraBold",
+    paddingHorizontal: 10,
+    width: 350,
+    alignSelf: "center",
   },
   textHeaderBlack: {
-    color: '#1E1E1E',
+    color: "#1E1E1E",
     fontSize: 30,
-    fontFamily: 'Baloo2_800ExtraBold',
-    left: 30,
-    paddingEnd: 50,
+    fontFamily: "Baloo2_800ExtraBold",
+    paddingHorizontal: 10,
+    width: 350,
+    alignSelf: "center",
   },
-  textLogoBlack: {
-    color: '#1E1E1E',
-    fontSize: 30,
-    fontFamily: 'Baloo2_800ExtraBold',
-  },
-  textBlackButton: {
+  textSmallHeaderBlack: {
     color: '#1E1E1E',
     fontSize: 18,
     fontFamily: 'Baloo2_800ExtraBold',
+    alignSelf: "flex-start",
+    left: 30,
+  },
+  textBlackButton: {
+    color: "#1E1E1E",
+    fontSize: 18,
+    fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "center",
   },
   textWhiteButton: {
-    color: '#FFFCF6',
+    color: "#FFFCF6",
     fontSize: 18,
-    fontFamily: 'Baloo2_800ExtraBold',
+    fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "center",
   },
   textPurpleButton: {
-    color: '#6263AF',
+    color: "#6263AF",
     fontSize: 18,
-    fontFamily: 'Baloo2_800ExtraBold',
+    fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "center",
   },
-  backIconWhite: {
+  textHeadingWhite: {
     color: '#FFFCF6',
-    position: 'absolute',
+    fontSize: 34,
+    fontFamily: 'Baloo2_800ExtraBold',
+    left: -90,
+    top: -40,
+  },
+
+  // icon styles
+  backIconWhite: {
+    color: "#FFFCF6",
+    position: "absolute",
     top: -120,
     right: 120,
   },
   forwardIconWhite: {
-    color: '#FFFCF6',
-    position: 'absolute',
+    color: "#FFFCF6",
+    position: "absolute",
     bottom: -100,
     right: -150,
   },
   backIconPurple: {
-    color: '#6263AF',
-    position: 'absolute',
-    top: -80,
+    color: "#6263AF",
+    position: "absolute",
+    top: -70,
     right: 120,
   },
   forwardIconPurple: {
-    color: '#6263AF',
-    position: 'absolute',
-    bottom: -90,
+    color: "#6263AF",
+    position: "absolute",
+    bottom: -75,
     right: -160,
   },
+
+  // input style
   inputView: {
     backgroundColor: "#D2D1F8",
     borderRadius: 30,
     width: "85%",
-    height: 45,
+    height: 48,
     marginBottom: 20,
     marginTop: 10,
     alignItems: "flex-start",
   },
+
+  // button styles
   blackButton: {
     backgroundColor: "#1E1E1E",
     borderRadius: 30,
@@ -134,7 +167,17 @@ const appStyles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
+  },
+  purpleButton: {
+    backgroundColor: "#6263AF",
+    borderRadius: 30,
+    width: "60%",
+    height: 45,
+    marginBottom: 10,
+    marginTop: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
   whiteButton: {
     backgroundColor: "#FFFCF6",
@@ -142,15 +185,11 @@ const appStyles = StyleSheet.create({
     width: 250,
     height: 45,
     marginBottom: 10,
-    marginTop: 300,
+    marginTop: 50,
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  statusBar: {
-    position: 'absolute',
-    top: 60,
-  },
-  button: {
+  lightPurpleButton: {
     flex: 1,
     margin: 10,
     width: "50%",
@@ -169,20 +208,28 @@ const appStyles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#1E1E1E"
+    backgroundColor: "#1E1E1E",
   },
-  buttonContainer: {
-    flexDirection: "row",
-    paddingEnd: 20,
-    paddingStart: 20,
-  },
+  
   linearGradient: {
     borderRadius: 20,
     bottom: 0,
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     position: "relative",
   },
-})
+  noProfilesView: {
+    flex: 1,
+    alignSelf: "center",
+    justifyContent: "flex-start",
+    position: "fixed",
+    marginTop: 80,
+  },
+
+  statusBar: {
+    position: "absolute",
+    top: 60,
+  },
+});
 
 export default appStyles;

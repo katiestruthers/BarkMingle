@@ -36,7 +36,7 @@ const UploadScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={appStyles.containerWhite}>
       <FullScreenBgSvg style={appStyles.backgroundFull} />
       <StatusBarSvg3 style={appStyles.statusBar} />
       <TouchableOpacity onPress={() => navigation.navigate("Traits")}>

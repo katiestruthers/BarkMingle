@@ -17,7 +17,8 @@ import CreateUserProfileScreen from './screens/CreateUserProfileScreen';
 import SwipedProfileScreen from './screens/SwipedProfile';
 import MessageScreen from './screens/MessageScreen';
 import CompletionScreen from './screens/CompletionScreen';
-import EditUserProfileScreen from './screens/EditUserProfileScreen'
+import EditUserProfileScreen from './screens/EditUserProfileScreen';
+import EditDogProfileScreen from './screens/EditDogProfileScreen';
 import ChannelListScreen from './screens/ChannelListScreen';
 import ChannelScreen from './screens/ChannelScreen';
 import { StreamChat } from 'stream-chat';
@@ -32,26 +33,10 @@ const client = StreamChat.getInstance(CHAT_API_KEY);
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-  const { user } = useAuth(); // or const token = true  to visit other pages
   const [ token ] = useState('');
   const headers = {
     authorization: `Bearer ${token}`,
   };
-
-  // const userInfo = {
-  //   id: `u${user.id}`,
-  //   name: user.first_name,
-  //   image: user.profile_img
-  // };
-
-  // const devToken = userInfo.id;
-
-  // // MOVED TO HOME SCREEN
-  // const { clientIsReady } = useChatClient(userInfo, devToken);
-
-  // if (!clientIsReady) {
-  //   return <Text>Loading chat...</Text>
-  // }
 
   return (
     <Chat client={client}>
@@ -76,6 +61,7 @@ const StackNavigator = () => {
             <Stack.Screen name="Home" component={HomeScreen} /> 
             <Stack.Screen name="UserProfile" component={UserProfileScreen} />
             <Stack.Screen name="EditUserProfile" component={EditUserProfileScreen} />
+            <Stack.Screen name="EditDogProfile" component={EditDogProfileScreen} />
           </Stack.Group>
 
           <Stack.Group screenOptions={{headerShown: true}} >

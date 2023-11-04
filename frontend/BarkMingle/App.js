@@ -10,7 +10,7 @@ import Axios from "axios";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 //Ignore all log notifications
-// LogBox.ignoreAllLogs();
+//LogBox.ignoreAllLogs();
 
 export default function App() {
   // Sample connection

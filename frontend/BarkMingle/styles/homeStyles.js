@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   buttons:{
     flexDirection: "row",
     justifyContent: 'space-around',
+    marginBottom: 25,
     alignItems: 'center',
     width: "100%",
   },
@@ -81,15 +82,13 @@ const styles = StyleSheet.create({
   },
   humanProfileBox: {
     marginVertical: 10,
-    flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    padding: 20,
-    paddingTop: 25,
+    padding: 15,
     backgroundColor: 'rgb(252, 252, 252)',
     borderRadius: 30,
     width: "100%",
-    height: "53%",
+    height: "30%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -103,8 +102,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    height: '80%',
-    bottom: 10,
   },
   textBlack: {
     color: '#1E1E1E',
@@ -135,10 +132,9 @@ const styles = StyleSheet.create({
     width: 70, 
     height: 70, 
     borderRadius: 400/ 2,
-    marginRight: 10,
-    bottom: 10,
+    marginRight: 20,
     borderColor: '#6263AF',
-    borderWidth: 3
+    borderWidth: 3,
   },
   petInfoContainer: {
     margin: 10,
