@@ -25,7 +25,7 @@ router.post("/signup", verifyToken, (req, res) => {
   const { name, breed, gender, age, size, is_neutered } = req.body;
   const loggedInUserId = req.user_id;
   
-  if (!name || !breed || !gender || !age || !size || is_neutered === undefined || !loggedInUserId) {
+  if (!name || !breed || !gender || age === undefined || !size || is_neutered === undefined || !loggedInUserId) {
     return res.status(400).json({ error: "Please provide all of the info" });
   }
 
