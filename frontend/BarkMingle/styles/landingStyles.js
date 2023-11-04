@@ -12,6 +12,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
    },
+   textLogo: {
+    paddingTop: 60,
+   },
+   textLogoPurple: {
+    color: "#6263AF",
+    fontSize: 34,
+    fontFamily: "Baloo2_800ExtraBold",
+  },
+  textLogoBlack: {
+    color: "#1E1E1E",
+    fontSize: 34,
+    fontFamily: "Baloo2_800ExtraBold",
+  },
+  landingDescription: {
+    color: "#FFFCF6",
+    fontSize: 22,
+    fontFamily: "Baloo2_600SemiBold",
+    textAlign: "center",
+    alignSelf: 'center',
+    width: '90%',
+    paddingTop: 85,
+  },
    textContainer: { 
     flex: 1.75,
     width: '100%',
@@ -19,7 +41,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#6263AF',
     borderRadius: 40,
-    flexShrink: 1,
+   },
+   textAlignView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
    },
    textDescription: {
     width: '80%',
@@ -28,12 +54,18 @@ const styles = StyleSheet.create({
   getStartedButton: {
     backgroundColor: "#A5A7FB",
     borderRadius: 30,
-    width: 200,
-    height: 45,
-    marginBottom: 10,
-    marginTop: 10,
-    alignItems: "center",
+    width: 250,
+    height: 50,
+    marginTop: 50,
+    marginBottom: 15,
+    alignSelf: "center",
     justifyContent: 'center',
+  },
+  textGetStarted: {
+    color: "#FFFCF6",
+    fontSize: 20,
+    fontFamily: "Baloo2_600SemiBold",
+    textAlign: "center",
   },
   image: {
     position: 'absolute',
@@ -44,11 +76,6 @@ const styles = StyleSheet.create({
   blob: {
     position: 'absolute',
     bottom: 10,
-    zIndex: -1,
-  },
-  bg: {
-    position: 'absolute',
-    bottom: 0,
     zIndex: -1,
   },
   background: {
