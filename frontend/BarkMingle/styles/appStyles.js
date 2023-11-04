@@ -146,6 +146,16 @@ const appStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  purpleButton: {
+    backgroundColor: "#6263AF",
+    borderRadius: 30,
+    width: "60%",
+    height: 45,
+    marginBottom: 10,
+    marginTop: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   whiteButton: {
     backgroundColor: "#FFFCF6",
     borderRadius: 30,
