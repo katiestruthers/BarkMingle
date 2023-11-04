@@ -43,16 +43,6 @@ const appStyles = StyleSheet.create({
     fontWeight: "400",
     textAlign: "center",
   },
-  landingDescription: {
-    color: "#FFFCF6",
-    fontSize: 20,
-    fontFamily: "Baloo2_600SemiBold",
-    fontWeight: "400",
-    textAlign: "center",
-    alignSelf: 'center',
-    width: '60%',
-    paddingTop: 20,
-  },
   textSignIn: {
     color: "#1E1E1E",
     fontSize: 18,
@@ -60,11 +50,7 @@ const appStyles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
   },
-  textLogoPurple: {
-    color: "#6263AF",
-    fontSize: 30,
-    fontFamily: "Baloo2_800ExtraBold",
-  },
+  
   textHeaderPurple: {
     color: "#6263AF",
     fontSize: 30,
@@ -80,11 +66,7 @@ const appStyles = StyleSheet.create({
     left: 30,
     paddingEnd: 50,
   },
-  textLogoBlack: {
-    color: "#1E1E1E",
-    fontSize: 30,
-    fontFamily: "Baloo2_800ExtraBold",
-  },
+  
   textBlackButton: {
     color: "#1E1E1E",
     fontSize: 18,
