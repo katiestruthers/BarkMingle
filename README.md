@@ -24,7 +24,7 @@ Bark Mingle is Tinder-esque style mobile app where dog owners can set-up playdat
 #### 👤 Sign-up Screen
 !["Sign-up Screen"](/docs/sign-up-screen.png)
 
-### 🐕 Create Dog Profile Screen
+#### 🐕 Create Dog Profile Screen
 !["Create Dog Profile Screen"](/docs/create-dog-profile-screen.png)
 
 #### 🎭 Traits Screen
@@ -39,8 +39,20 @@ Bark Mingle is Tinder-esque style mobile app where dog owners can set-up playdat
 #### 🙋 Create User Profile Screen
 !["Create User Profile Screen"](/docs/create-user-profile-screen.png)
 
+#### 🙋 User Profile Screen
+!["User Profile Screen"](/docs/user-profile-screen.png)
+
 #### 🐾 Home Screen, Example 1
 !["Home Screen, Example 1"](/docs/home-screen-1.png)
 
 #### 🐾 Home Screen, Example 2
 !["Home Screen, Example 2"](/docs/home-screen-2.png)
+
+#### 👯 Matched Screen
+!["Matched Screen"](/docs/matched-screen.png)
+
+#### 💬 Chat Screen, View 1
+!["Chat Screen, View 1"](/docs/chat-screen-1.png)
+
+#### 💬 Chat Screen, View 2
+!["Chat Screen, View 2"](/docs/chat-screen-2.png)
