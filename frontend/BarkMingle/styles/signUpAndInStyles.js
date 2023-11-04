@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
   },
   image: {
     position: "absolute",
-    bottom: 40,
-    right:   10,
+    bottom: 30,
+    right:   0,
     width: 270,
     zIndex: -1,
     overflow: 'visible'
