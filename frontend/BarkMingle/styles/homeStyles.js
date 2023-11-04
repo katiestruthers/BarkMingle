@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    height: '80%',
   },
   textBlack: {
     color: '#1E1E1E',
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 400/ 2,
     marginRight: 20,
     borderColor: '#6263AF',
-    borderWidth: 3
+    borderWidth: 3,
   },
   petInfoContainer: {
     margin: 10,
