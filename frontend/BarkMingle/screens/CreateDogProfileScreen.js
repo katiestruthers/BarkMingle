@@ -37,39 +37,36 @@ const CreateDogProfileScreen = () => {
   const [isNeutered, setIsNeutered] = useState(true);
 
   const [dataBreed, setDataBreed] = useState("");
+  const [dataAge, setDataAge] = useState("");
   const dataGender = [{ value: "Male" }, { value: "Female" }];
   const dataSize = [
     { value: "Small" },
     { value: "Medium" },
     { value: "Large" },
   ];
-  const dataAge = [
-    { value: "Less than a year" },
-    { value: "1" },
-    { value: "2" },
-    { value: "3" },
-    { value: "4" },
-    { value: "5" },
-    { value: "6" },
-    { value: "7" },
-    { value: "8" },
-    { value: "9" },
-    { value: "10" },
-    { value: "11" },
-    { value: "12" },
-    { value: "13" },
-    { value: "13+" },
-  ];
+
+  // Set dataAge for drop-down menu
+  useEffect(() => {
+    const dataAgeArray = [];
+
+    dataAgeArray.push({ key: 0, value: "Less than a year"})
+    for (i = 1; i <= 13; i++) {
+      dataAgeArray.push({ key: i, value: i })
+    };
+    dataAgeArray.push({ key: 14, value: "13+"});
+
+    setDataAge(dataAgeArray);
+  }, []);
  
   // Set dataBreed for drop-down menu
   useEffect(() => {
     Axios
       .get ("http://localhost:8080/api/dogs/breeds")
       .then((response) => {
-        let newArray = response.data.map((item) => {
+        let dataBreedArray = response.data.map((item) => {
           return { key: item.id, value: item.name }
       });
-      setDataBreed(newArray)
+      setDataBreed(dataBreedArray)
     })
   }, []);
 
