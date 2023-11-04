@@ -108,7 +108,7 @@ const appStyles = StyleSheet.create({
     alignSelf: "center",
   },
   textPurpleButton: {
-    color: "#A5A7FB",
+    color: "#6263AF",
     fontSize: 18,
     fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "center",
@@ -175,7 +175,7 @@ const appStyles = StyleSheet.create({
     width: 250,
     height: 45,
     marginBottom: 10,
-    marginTop: 300,
+    marginTop: 50,
     alignItems: "center",
     justifyContent: "center",
   },

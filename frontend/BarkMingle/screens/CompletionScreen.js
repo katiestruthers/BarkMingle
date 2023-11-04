@@ -25,18 +25,18 @@ const CompletionScreen = () => {
   state = { selectedItems: [] };
 
   return (
-    <View style={styles.container}>
+    <View style={appStyles.containerPurple}>
       <FullScreenBgSvg style={appStyles.backgroundFull} />
       <TouchableOpacity onPress={() => navigation.navigate("CreateUserProfile")}>
         <FontAwesomeIcon
           icon={faArrowLeft}
           size={50}
-          style={styles.backIconWhite}
+          style={appStyles.backIconWhite}
         />
       </TouchableOpacity>
 
-      <View style={styles.innerContainer}>
-        <Text style={appStyles.textHeaderBlack}>
+      <View style={appStyles.contentContainer}>
+        <Text style={styles.headerBlack}>
           You're all set!
         </Text>
 
