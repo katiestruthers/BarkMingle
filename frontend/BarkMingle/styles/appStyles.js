@@ -77,8 +77,9 @@ const appStyles = StyleSheet.create({
     color: "#1E1E1E",
     fontSize: 30,
     fontFamily: "Baloo2_800ExtraBold",
-    left: 30,
-    paddingEnd: 50,
+    paddingHorizontal: 10,
+    width: 350,
+    alignSelf: "center",
   },
   textSmallHeaderBlack: {
     color: '#1E1E1E',
