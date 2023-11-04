@@ -101,7 +101,7 @@ const TraitsScreen = () => {
                   : styles.button
               }
             >
-              <Text style={appStyles.textWhiteButton}>{item.name}</Text>
+              <Text style={selectedTraits.includes(item.id) ? appStyles.textPurpleButton : appStyles.textWhiteButton}>{item.name}</Text>
             </TouchableOpacity>
           )}
         />

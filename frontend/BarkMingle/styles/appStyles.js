@@ -100,7 +100,7 @@ const appStyles = StyleSheet.create({
     alignSelf: "center",
   },
   textPurpleButton: {
-    color: "#6263AF",
+    color: "#A5A7FB",
     fontSize: 18,
     fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "center",
