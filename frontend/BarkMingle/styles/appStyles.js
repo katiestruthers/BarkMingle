@@ -3,13 +3,23 @@ import { StyleSheet } from "react-native";
 const appStyles = StyleSheet.create({
   
   // container styles
-  container: {
+  containerPurple: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#6263AF",
   },
-  
+  containerWhite: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFCF6",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    paddingEnd: 20,
+    paddingStart: 20,
+  },
 
   // background styles
   background: {
@@ -27,6 +37,8 @@ const appStyles = StyleSheet.create({
     position: "absolute",
     zIndex: -1,
   },
+
+  // text styles
   textPurple: {
     fontFamily: "Baloo2_600SemiBold",
     color: "#6263AF",
@@ -57,8 +69,8 @@ const appStyles = StyleSheet.create({
     color: "#6263AF",
     fontSize: 30,
     fontFamily: "Baloo2_800ExtraBold",
-    paddingRight: 40,
-    left: 30,
+    paddingHorizontal: 10,
+    width: 350,
     alignSelf: "center",
   },
   textHeaderBlack: {
@@ -67,6 +79,13 @@ const appStyles = StyleSheet.create({
     fontFamily: "Baloo2_800ExtraBold",
     left: 30,
     paddingEnd: 50,
+  },
+  textSmallHeaderBlack: {
+    color: '#1E1E1E',
+    fontSize: 18,
+    fontFamily: 'Baloo2_800ExtraBold',
+    alignSelf: "flex-start",
+    left: 30,
   },
   textBlackButton: {
     color: "#1E1E1E",
@@ -93,6 +112,8 @@ const appStyles = StyleSheet.create({
     left: -90,
     top: -40,
   },
+
+  // icon styles
   backIconWhite: {
     color: "#FFFCF6",
     position: "absolute",
@@ -108,15 +129,17 @@ const appStyles = StyleSheet.create({
   backIconPurple: {
     color: "#6263AF",
     position: "absolute",
-    top: -80,
+    top: -70,
     right: 120,
   },
   forwardIconPurple: {
     color: "#6263AF",
     position: "absolute",
-    bottom: -90,
+    bottom: -75,
     right: -160,
   },
+
+  // input style
   inputView: {
     backgroundColor: "#D2D1F8",
     borderRadius: 30,
@@ -126,6 +149,8 @@ const appStyles = StyleSheet.create({
     marginTop: 10,
     alignItems: "flex-start",
   },
+
+  // button styles
   blackButton: {
     backgroundColor: "#1E1E1E",
     borderRadius: 30,
@@ -146,11 +171,7 @@ const appStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  statusBar: {
-    position: "absolute",
-    top: 60,
-  },
-  button: {
+  lightPurpleButton: {
     flex: 1,
     margin: 10,
     width: "50%",
@@ -171,11 +192,7 @@ const appStyles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#1E1E1E",
   },
-  buttonContainer: {
-    flexDirection: "row",
-    paddingEnd: 20,
-    paddingStart: 20,
-  },
+  
   linearGradient: {
     borderRadius: 20,
     bottom: 0,
@@ -189,6 +206,11 @@ const appStyles = StyleSheet.create({
     justifyContent: "flex-start",
     position: "fixed",
     marginTop: 80,
+  },
+
+  statusBar: {
+    position: "absolute",
+    top: 60,
   },
 });
 

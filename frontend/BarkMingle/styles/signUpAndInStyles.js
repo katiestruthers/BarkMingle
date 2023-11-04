@@ -36,13 +36,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-  textHeaderBlack: {
-    color: '#1E1E1E',
-    fontSize: 18,
-    fontFamily: 'Baloo2_800ExtraBold',
-    alignSelf: "flex-start",
-    left: 30,
-  },
   background: {
     position: 'absolute',
     zIndex: -1,

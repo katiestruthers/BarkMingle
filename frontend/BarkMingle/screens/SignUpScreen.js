@@ -41,7 +41,7 @@ const SignIn = () => {
   
   return (
     <KeyboardAvoidingView
-      style={appStyles.container}
+      style={appStyles.containerPurple}
       behavior={Platform.OS == "ios" ? "padding" : "height"} 
     >
       <View style={styles.upperContainer}>
@@ -58,7 +58,7 @@ const SignIn = () => {
       </View>
 
       <View style={styles.textContainer}>
-        <Text style={styles.textHeaderBlack}>Email</Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Email</Text>
         <View style={appStyles.inputView}>
           <TextInput
             autoCapitalize="none"
@@ -67,7 +67,7 @@ const SignIn = () => {
           />
         </View>
 
-        <Text style={styles.textHeaderBlack}>Password</Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Password</Text>
         <View style={appStyles.inputView}>
           <TextInput
             autoCapitalize="none"
