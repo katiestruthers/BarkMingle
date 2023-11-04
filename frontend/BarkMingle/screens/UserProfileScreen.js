@@ -32,6 +32,11 @@ const UserProfileScreen = () => {
     navigation.navigate("EditUserProfile", { user });
   };
 
+  const EditDogProfile = () => {
+    navigation.navigate("EditDogProfile");
+  };
+
+
   const signOut = () => {
     disconnectUser();
     navigation.navigate("GetStarted");
@@ -60,7 +65,7 @@ const UserProfileScreen = () => {
           <Text style={styles.buttonText}> Edit Profile </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={EditUserProfile}>
+        <TouchableOpacity style={styles.button} onPress={EditDogProfile}>
           <Text style={styles.buttonText}>
             {" "}
             {`Edit ${user.dog_name}'s Profile`}{" "}
