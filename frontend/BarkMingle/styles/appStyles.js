@@ -1,12 +1,17 @@
 import { StyleSheet } from "react-native";
 
 const appStyles = StyleSheet.create({
+  
+  // container styles
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#6263AF",
   },
+  
+
+  // background styles
   background: {
     width: "100%",
     height: "100%",
@@ -29,10 +34,8 @@ const appStyles = StyleSheet.create({
   },
   textInput: {
     height: 50,
-    flex: 1,
-    padding: 10,
-    marginHorizontal: 10,
-    fontSize: 14,
+    marginHorizontal: 24,
+    fontSize: 16,
     fontFamily: "Baloo2_400Regular",
     width: "90%",
   },
@@ -50,7 +53,6 @@ const appStyles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
   },
-  
   textHeaderPurple: {
     color: "#6263AF",
     fontSize: 30,
@@ -66,7 +68,6 @@ const appStyles = StyleSheet.create({
     left: 30,
     paddingEnd: 50,
   },
-  
   textBlackButton: {
     color: "#1E1E1E",
     fontSize: 18,
@@ -84,6 +85,13 @@ const appStyles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Baloo2_800ExtraBold",
     alignSelf: "center",
+  },
+  textHeadingWhite: {
+    color: '#FFFCF6',
+    fontSize: 34,
+    fontFamily: 'Baloo2_800ExtraBold',
+    left: -90,
+    top: -40,
   },
   backIconWhite: {
     color: "#FFFCF6",
@@ -113,7 +121,7 @@ const appStyles = StyleSheet.create({
     backgroundColor: "#D2D1F8",
     borderRadius: 30,
     width: "85%",
-    height: 45,
+    height: 48,
     marginBottom: 20,
     marginTop: 10,
     alignItems: "flex-start",

@@ -1,12 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#6263AF",
-  },
   upperContainer: {
     flex: 2.5,
     justifyContent: "center",
@@ -21,12 +15,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "#FFFCF6",
     width: "100%",
-    paddingTop: 35,
+    paddingTop: 30,
   },
   image: {
     position: "absolute",
-    bottom: 30,
-    right:   0,
+    bottom: 40,
+    right:   10,
     width: 270,
     zIndex: -1,
     overflow: 'visible'
@@ -36,12 +30,11 @@ const styles = StyleSheet.create({
     bottom: 80,
     zIndex: -2,
   },
-  textHeadingWhite: {
-    color: '#FFFCF6',
-    fontSize: 30,
-    fontFamily: 'Baloo2_800ExtraBold',
-    left: -100,
-    top: -40,
+  textPurple: {
+    color: '#6263AF',
+    fontFamily: 'Baloo2_600SemiBold',
+    fontSize: 18,
+    textAlign: 'center',
   },
   textHeaderBlack: {
     color: '#1E1E1E',
@@ -49,12 +42,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Baloo2_800ExtraBold',
     alignSelf: "flex-start",
     left: 30,
-  },
-  textPurple: {
-    color: '#6263AF',
-    fontFamily: 'Baloo2_600SemiBold',
-    fontSize: 18,
-    textAlign: 'center',
   },
   background: {
     position: 'absolute',

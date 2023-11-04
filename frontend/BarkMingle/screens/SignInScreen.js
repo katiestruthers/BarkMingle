@@ -5,8 +5,8 @@ import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import appStyles from "../styles/appStyles.js";
+import styles from "../styles/signUpAndInStyles.js";
 import SignInSvgComponent from "../svg-images/SignInSvgComponent.js";
-import styles from "../styles/signInStyles.js";
 import SignInSvgBlob from "../svg-images/SignInSvgBlob.js";
 import WhiteBGPatternSvgComponent from "../svg-images/WhiteBGPatternSvgComponent.js";
 import Axios from "axios";
@@ -38,7 +38,7 @@ const SignIn = () => {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={appStyles.container}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
       <View style={styles.upperContainer}>
@@ -49,7 +49,7 @@ const SignIn = () => {
             style={appStyles.backIconWhite}
           />
         </TouchableOpacity>
-        <Text style={styles.textHeadingWhite}> Sign In </Text>
+        <Text style={appStyles.textHeadingWhite}>Sign In</Text>
         <SignInSvgComponent style={styles.image} />
         <SignInSvgBlob style={styles.blob} />
       </View>
