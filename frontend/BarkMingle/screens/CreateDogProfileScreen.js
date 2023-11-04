@@ -17,7 +17,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
 import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 import Axios from "axios";
-// https://www.npmjs.com/package/react-native-dropdown-select-list
+
+// Read more here: https://www.npmjs.com/package/react-native-dropdown-select-list
 import { SelectList } from "react-native-dropdown-select-list";
 
 const CreateDogProfileScreen = () => {
@@ -29,13 +30,13 @@ const CreateDogProfileScreen = () => {
   };
 
   const [name, setName] = useState("");
-  const [breeds, setBreeds] = useState("");
+  const [breed, setBreed] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [size, setSize] = useState("");
   const [isNeutered, setIsNeutered] = useState(true);
 
-
+  const [dataBreed, setDataBreed] = useState("");
   const dataGender = [{ value: "Male" }, { value: "Female" }];
   const dataSize = [
     { value: "Small" },
@@ -60,22 +61,23 @@ const CreateDogProfileScreen = () => {
     { value: "13+" },
   ];
  
-  useEffect( () => {
+  // Set dataBreed for drop-down menu
+  useEffect(() => {
     Axios
       .get ("http://localhost:8080/api/dogs/breeds")
       .then((response) => {
         let newArray = response.data.map((item) => {
           return { key: item.id, value: item.name }
       });
-      setBreeds(newArray)
+      setDataBreed(newArray)
     })
   }, []);
 
-
+  
   const onSubmit = () => {
     Axios.post("http://localhost:8080/api/dogs/signup", {
       name,
-      breeds,
+      breed,
       gender,
       age,
       size,
@@ -117,8 +119,8 @@ const CreateDogProfileScreen = () => {
         <Text style={styles.textHeaderBlack}>Breed * </Text>
         <View style={styles.dropDownView1}>
           <SelectList
-            data={breeds}
-            setSelected={(text) => setBreeds(text)}
+            data={dataBreed}
+            setSelected={(text) => setBreed(text)}
             fontFamily="Baloo2_400Regular"
             boxStyles={styles.dropDown}
             dropdownStyles={styles.dropDownScroll1}
