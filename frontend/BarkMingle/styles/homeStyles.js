@@ -82,10 +82,8 @@ const styles = StyleSheet.create({
   },
   humanProfileBox: {
     marginVertical: 10,
-    flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    padding: 20,
     paddingTop: 25,
     backgroundColor: 'rgb(252, 252, 252)',
     borderRadius: 30,
@@ -105,7 +103,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     height: '80%',
-    bottom: 10,
   },
   textBlack: {
     color: '#1E1E1E',
@@ -136,8 +133,7 @@ const styles = StyleSheet.create({
     width: 70, 
     height: 70, 
     borderRadius: 400/ 2,
-    marginRight: 10,
-    bottom: 10,
+    marginRight: 15,
     borderColor: '#6263AF',
     borderWidth: 3
   },
