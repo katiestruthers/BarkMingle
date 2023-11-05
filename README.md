@@ -1,4 +1,9 @@
-<link href="/docs/style.css" rel="stylesheet"></link>
+<style>
+  img {
+    width: 50%;
+    height: 50%;
+  }
+</style>
 
 # Final Project: Bark Mingle
 Bark Mingle is Tinder-esque style mobile app where dog owners can set-up playdates. It includes the following features:
