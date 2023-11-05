@@ -36,6 +36,9 @@ Bark Mingle is Tinder-esque style mobile app where dog owners can set-up playdat
 #### 📸 Image Upload Screen, View 2
 !["Image Upload Screen, View 2"](/docs/image-upload-screen-2.png)
 
+#### 📸 Image Upload Screen, View 3
+!["Image Upload Screen, View 3"](/docs/image-upload-screen-3.png)
+
 #### 🙋 Create User Profile Screen
 !["Create User Profile Screen"](/docs/create-user-profile-screen.png)
 
@@ -51,8 +54,14 @@ Bark Mingle is Tinder-esque style mobile app where dog owners can set-up playdat
 #### 👯 Matched Screen
 !["Matched Screen"](/docs/matched-screen.png)
 
-#### 💬 Chat Screen, View 1
+#### 💬 Chat Screen, View 1 (logged in as Jasper)
+##### Jasper messages Yvonne:
 !["Chat Screen, View 1"](/docs/chat-screen-1.png)
 
-#### 💬 Chat Screen, View 2
+#### 💬 Chat Screen, View 2 (logged in as Yvonne)
+##### Yvonne sees a new message notification from Jasper:
 !["Chat Screen, View 2"](/docs/chat-screen-2.png)
+
+#### 💬 Chat Screen, View 3 (logged in as Yvonne)
+##### Yvonne reads the new message from Jasper:
+!["Chat Screen, View 3"](/docs/chat-screen-3.png)
