@@ -11,7 +11,7 @@ VALUES
   ('Belle', 4, true, 'Female', 'Small', 'https://image.petmd.com/files/styles/863x625/public/2022-12/yorkshire-terrier.jpg', 9),
   ('Raven', 0, false, 'Female', 'Large', 'https://img.cutenesscdn.com/-/cme-data/getty%2Fa3730f76635d48a6966b671ab6136cf5.jpg', 10),
   ('Orlando', 5, true, 'Male', 'Small', 'https://topdogtips.com/wp-content/uploads/2021/11/Untitled-design-2021-10-22T222329.601.jpg', 11),
-  ('Christine', 3, true, 'Female', 'Medium', 'https://www.hepper.com/wp-content/uploads/2023/03/lilac-border-collie-lying-on-grass_Susan-McQuade_Shutterstock.jpg', 12),
+  ('Milo', 3, true, 'Male', 'Medium', 'https://firebasestorage.googleapis.com/v0/b/barkmingle-d1178.appspot.com/o/Photos%2FIMG_2996.HEIC?alt=media&token=6bcdb507-3ac9-4a9c-a1c2-37461f2c222e&_gl=1*1ecioyx*_ga*MTgwNzg1MjgyMC4xNjk3ODEyMzMz*_ga_CW55HF8NVT*MTY5OTIyODE2Mi43LjEuMTY5OTIyODIyNC41OS4wLjA.', 12),
   ('Lana', 6, true, 'Female', 'Large', 'https://media-be.chewy.com/wp-content/uploads/2021/05/27134335/Dalmatian_FeaturedImage-1024x615.jpg', 13),
   ('Cecilia', 1, true, 'Female', 'Medium', 'https://image.petmd.com/files/styles/863x625/public/2022-10/English-Cocker-Spaniel.jpg', 14),
   ('Donut', 5, true, 'Male', 'Small', 'https://firebasestorage.googleapis.com/v0/b/barkmingle-d1178.appspot.com/o/Photos%2F8F621051-4477-4ABD-8862-E604C6F49C13.JPG?alt=media&token=5b93521d-7560-4639-8722-2f18b43c4e1e&_gl=1*1xna3ra*_ga*MTgwNzg1MjgyMC4xNjk3ODEyMzMz*_ga_CW55HF8NVT*MTY5OTIxMTU0OC42LjEuMTY5OTIxNTQ1NC40MS4wLjA.', 15);
