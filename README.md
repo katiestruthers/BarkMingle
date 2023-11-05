@@ -19,40 +19,49 @@ Bark Mingle is Tinder-esque style mobile app where dog owners can set-up playdat
 
 ## Final Product
 #### 🐶 Landing Screen
-!["Landing Screen"](/docs/landing-screen.png)
+<img alt="Landing Screen" src="/docs/landing-screen.png" width=50% height=50%>
 
 #### 👤 Sign-up Screen
-!["Sign-up Screen"](/docs/sign-up-screen.png)
+<img alt="Sign-up Screen" src="/docs/sign-up-screen.png" width=50% height=50%>
 
 #### 🐕 Create Dog Profile Screen
-!["Create Dog Profile Screen"](/docs/create-dog-profile-screen.png)
+<img alt="Create Dog Profile Screen" src="/docs/create-dog-profile-screen.png" width=50% height=50%>
 
 #### 🎭 Traits Screen
-!["Traits Screen"](/docs/traits-screen.png)
+<img alt="Traits Screen" src="/docs/traits-screen.png" width=50% height=50%>
 
 #### 📸 Image Upload Screen, View 1
-!["Image Upload Screen, View 1"](/docs/image-upload-screen-1.png)
+<img alt="Image Upload Screen, View 1" src="/docs/image-upload-screen-1.png" width=50% height=50%>
 
 #### 📸 Image Upload Screen, View 2
-!["Image Upload Screen, View 2"](/docs/image-upload-screen-2.png)
+<img alt="Image Upload Screen, View 2" src="/docs/image-upload-screen-2.png" width=50% height=50%>
+
+#### 📸 Image Upload Screen, View 3
+<img alt="Image Upload Screen, View 3" src="/docs/image-upload-screen-3.png" width=50% height=50%>
 
 #### 🙋 Create User Profile Screen
-!["Create User Profile Screen"](/docs/create-user-profile-screen.png)
+<img alt="Create User Profile Screen" src="/docs/create-user-profile-screen.png" width=50% height=50%>
 
 #### 🙋 User Profile Screen
-!["User Profile Screen"](/docs/user-profile-screen.png)
+<img alt="User Profile Screen" src="/docs/user-profile-screen.png" width=50% height=50%>
 
 #### 🐾 Home Screen, Example 1
-!["Home Screen, Example 1"](/docs/home-screen-1.png)
+<img alt="Home Screen, Example 1" src="/docs/home-screen-1.png" width=50% height=50%>
 
 #### 🐾 Home Screen, Example 2
-!["Home Screen, Example 2"](/docs/home-screen-2.png)
+<img alt="Home Screen, Example 2" src="/docs/home-screen-2.png" width=50% height=50%>
 
 #### 👯 Matched Screen
-!["Matched Screen"](/docs/matched-screen.png)
+<img alt="Matched Screen" src="/docs/matched-screen.png" width=50% height=50%>
 
-#### 💬 Chat Screen, View 1
-!["Chat Screen, View 1"](/docs/chat-screen-1.png)
+#### 💬 Chat Screen, View 1 (logged in as Jasper)
+##### Jasper messages Yvonne:
+<img alt="Chat Screen, View 1" src="/docs/chat-screen-1.png" width=50% height=50%>
 
-#### 💬 Chat Screen, View 2
-!["Chat Screen, View 2"](/docs/chat-screen-2.png)
+#### 💬 Chat Screen, View 2 (logged in as Yvonne)
+##### Yvonne sees a new message notification from Jasper:
+<img alt="Chat Screen, View 2" src="/docs/chat-screen-2.png" width=50% height=50%>
+
+#### 💬 Chat Screen, View 3 (logged in as Yvonne)
+##### Yvonne reads the new message from Jasper:
+<img alt="Chat Screen, View 3" src="/docs/chat-screen-3.png" width=50% height=50%>
