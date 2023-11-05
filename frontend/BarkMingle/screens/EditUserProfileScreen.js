@@ -1,16 +1,13 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useState, useEffect } from 'react';
-import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Platform, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Platform } from 'react-native';
 import appStyles from '../styles/appStyles.js';
 import styles from '../styles/createUserProfileStyles.js';
 import useAuth from '../hooks/useAuth.js';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faArrowLeft, faImage, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import BonePatternSvg from "../svg-images/BonePatternSvg.js";
-import StatusBarSvg4 from '../svg-images/StatusBarSvg4.js';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Axios from 'axios';
-import useFileUpload from '../hooks/useFileUpload.js';
-import Uploading from '../components/Uploading.js';
+import FullScreenBgSvg from '../svg-images/FullScreenBgSvg.js';
 
 
 const EditUserProfileScreen = () => {
@@ -41,10 +38,10 @@ const EditUserProfileScreen = () => {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={appStyles.containerWhite}
       behavior={Platform.OS == "ios" ? "padding" : "height"} 
     >
-    <BonePatternSvg style={styles.backgroundTop} />
+      <FullScreenBgSvg style={appStyles.backgroundFull} />
     <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
       <FontAwesomeIcon
         icon={faArrowLeft}
@@ -58,9 +55,9 @@ const EditUserProfileScreen = () => {
       </Text>
     </View>
 
-    <View style={styles.textContainer}>
-      <Text style={styles.textHeaderBlack}>First Name *</Text>
-      <View style={styles.inputView}>
+    <View style={styles.contentContainer}>
+      <Text style={appStyles.textSmallHeaderBlack}>First Name *</Text>
+      <View style={appStyles.inputView}>
         <TextInput
           style={appStyles.textInput}
           onChangeText={(text)=>setFirstName(text)}
@@ -68,8 +65,8 @@ const EditUserProfileScreen = () => {
         />
       </View>
 
-      <Text style={styles.textHeaderBlack}>Last Name * </Text>
-      <View style={styles.inputView}>
+      <Text style={appStyles.textSmallHeaderBlack}>Last Name * </Text>
+      <View style={appStyles.inputView}>
         <TextInput
           style={appStyles.textInput}
           onChangeText={(text)=>setLastName(text)}
@@ -77,10 +74,10 @@ const EditUserProfileScreen = () => {
         />
       </View>
 
-      <Text style={styles.textHeaderBlack}>Write a short bio</Text>
+      <Text style={appStyles.textSmallHeaderBlack}>Write a short bio</Text>
       <View style={styles.inputViewBio}>
         <TextInput
-          style={appStyles.textInput}
+          style={styles.textInputBio}
           onChangeText={(text)=>setBio(text)}
           value={bio}
           multiline={true}
@@ -95,7 +92,6 @@ const EditUserProfileScreen = () => {
     >
     <Text style={appStyles.textWhite}> Save Changes </Text>
     </TouchableOpacity>
-    <BonePatternSvg style={styles.backgroundBottom} />
   </KeyboardAvoidingView>
 );
 };
