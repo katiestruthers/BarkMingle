@@ -9,9 +9,8 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "center",
-    justifyContent: "flex-start",
     width: "100%",
-    paddingTop: 35,
+    paddingTop: 350,
   },
   inputView: {
     backgroundColor: "#D2D1F8",
@@ -69,6 +68,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: '60%',
     width: "100%",
+    paddingTop: 40,
   },
 });
 

@@ -13,9 +13,7 @@ import styles from "../styles/createDogProfileStyles.js";
 import useAuth from "../hooks/useAuth.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import FullScreenBgSvg from "../svg-images/FullScreenBgSvg.js";
-import StatusBarSvg1 from "../svg-images/StatusBarSvg1.js";
 import Axios from "axios";
 
 // Read more here: https://www.npmjs.com/package/react-native-dropdown-select-list
@@ -99,7 +97,7 @@ const CreateDogProfileScreen = () => {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={appStyles.containerWhite}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
       <FullScreenBgSvg style={appStyles.backgroundFull} />
@@ -112,12 +110,12 @@ const CreateDogProfileScreen = () => {
       </TouchableOpacity>
       <View>
         <Text style={appStyles.textHeaderPurple}>
-          Edit your dog's profile details
+          {`Edit ${user.dog_name}'s profile details`}
         </Text>
       </View>
 
-      <View style={styles.textContainer}>
-        <Text style={styles.textHeaderBlack}>Dog Name *</Text>
+      <View style={appStyles.contentContainer}>
+        <Text style={appStyles.textSmallHeaderBlack}>Dog Name *</Text>
         <View style={styles.inputView}>
           <TextInput
             style={appStyles.textInput}
@@ -126,7 +124,7 @@ const CreateDogProfileScreen = () => {
           />
         </View>
 
-        <Text style={styles.textHeaderBlack}>Breed * </Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Breed * </Text>
         <View style={styles.dropDownView1}>
           <SelectList
             data={dataBreed}
@@ -138,7 +136,7 @@ const CreateDogProfileScreen = () => {
           />
         </View>
 
-        <Text style={styles.textHeaderBlack}>Gender * </Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Gender * </Text>
         <View style={styles.dropDownView2}>
           <SelectList
             data={dataGender}
@@ -153,7 +151,7 @@ const CreateDogProfileScreen = () => {
           />
         </View>
 
-        <Text style={styles.textHeaderBlack}>Age * </Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Age * </Text>
         <View style={styles.dropDownView3}>
           <SelectList
             data={dataAge}
@@ -168,7 +166,7 @@ const CreateDogProfileScreen = () => {
           />
         </View>
 
-        <Text style={styles.textHeaderBlack}>Size * </Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Size * </Text>
         <View style={styles.dropDownView4}>
           <SelectList
             data={dataSize}
@@ -183,29 +181,29 @@ const CreateDogProfileScreen = () => {
           />
         </View>
 
-        <Text style={styles.textHeaderBlack}>Spayed / Neutered? * </Text>
+        <Text style={appStyles.textSmallHeaderBlack}>Spayed / Neutered? * </Text>
         <View style={appStyles.buttonContainer}>
           <TouchableOpacity
-            style={isNeutered ? appStyles.activeButton : appStyles.button}
+            style={isNeutered ? appStyles.activeButton : appStyles.lightPurpleButton}
             onPress={() => setIsNeutered(true)}
           >
             <Text style={isNeutered ? appStyles.textPurpleButton : appStyles.textBlackButton}>Yes</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={!isNeutered ? appStyles.activeButton : appStyles.button}
+            style={!isNeutered ? appStyles.activeButton : appStyles.lightPurpleButton}
             onPress={() => setIsNeutered(false)}
           >
             <Text style={!isNeutered ? appStyles.textPurpleButton : appStyles.textBlackButton}>No</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          onPress={onSubmit}
+          style={appStyles.purpleButton}
+        >
+          <Text style={appStyles.textWhite}> Save Changes </Text>
+        </TouchableOpacity>
       </View>
 
-    <TouchableOpacity
-      onPress={onSubmit}
-      style={appStyles.purpleButton}
-    >
-      <Text style={appStyles.textWhite}> Save Changes </Text>
-    </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 };
