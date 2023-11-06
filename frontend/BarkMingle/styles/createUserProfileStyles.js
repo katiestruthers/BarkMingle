@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   textContainer: {
     alignItems: "center",
     width: "100%",
-    paddingTop: 350,
+    paddingTop: 50, 
   },
   inputView: {
     backgroundColor: "#D2D1F8",
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: '60%',
     width: "100%",
-    paddingTop: 40,
+    paddingTop: 50,
   },
 });
 
